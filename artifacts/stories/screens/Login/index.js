@@ -7,7 +7,7 @@ class Login extends React.Component {
             React.createElement(Header, { style: { height: 200 } },
                 React.createElement(Body, { style: { alignItems: "center" } },
                     React.createElement(Icon, { name: "flash", style: { fontSize: 104 } }),
-                    React.createElement(Title, null, "ReactNativeSeed.com"),
+                    React.createElement(Title, null, "Orion"),
                     React.createElement(View, { padder: true },
                         React.createElement(Text, { style: { color: Platform.OS === "ios" ? "#000" : "#FFF" } })))),
             React.createElement(Content, null,
@@ -17,9 +17,7 @@ class Login extends React.Component {
                         React.createElement(Text, null, "Login")))),
             React.createElement(Footer, { style: { backgroundColor: "#F8F8F8" } },
                 React.createElement(View, { style: { alignItems: "center", opacity: 0.5, flexDirection: "row" } },
-                    React.createElement(View, { padder: true },
-                        React.createElement(Text, { style: { color: "#000" } }, "Made with love at ")),
-                    React.createElement(Image, { source: { uri: "https://geekyants.com/images/logo-dark.png" }, style: { width: 422 / 4, height: 86 / 4 } })))));
+                    ))));
     }
 }
 export default Login;

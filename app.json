@@ -1,7 +1,7 @@
 {
   "expo": {
     "sdkVersion": "24.0.0",
-    "slug": "React-Native-Seed",
+    "slug": "Orion",
     "loading": {
       "hideExponentText": false,
       "icon": "./assets/loading.png"
@@ -19,6 +19,6 @@
       "backgroundColor": "#334393"
     }
   },
-  "name": "ReactNativeSeed",
-  "displayName": "ReactNativeSeed"
+  "name": "Orion",
+  "displayName": "Orion"
 }
