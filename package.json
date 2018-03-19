@@ -8,6 +8,7 @@
     "@types/react-native": "^0.47.7",
     "@types/react-native-vector-icons": "^4.3.1",
     "@types/react-navigation": "^1.0.19",
+    "aws-sdk": "^2.211.0",
     "babel-eslint": "8.1.0",
     "babel-jest": "22.0.4",
     "babel-preset-react-native": "^3.0.1",

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, Platform } from "react-native";
+import { Platform } from "react-native";
 import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
 class Login extends React.Component {
     render() {
@@ -16,8 +16,7 @@ class Login extends React.Component {
                     React.createElement(Button, { block: true, onPress: () => this.props.onLogin() },
                         React.createElement(Text, null, "Login")))),
             React.createElement(Footer, { style: { backgroundColor: "#F8F8F8" } },
-                React.createElement(View, { style: { alignItems: "center", opacity: 0.5, flexDirection: "row" } },
-                    ))));
+                React.createElement(View, { style: { alignItems: "center", opacity: 0.5, flexDirection: "row" } }))));
     }
 }
 export default Login;

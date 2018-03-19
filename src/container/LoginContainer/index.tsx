@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 
@@ -20,7 +20,16 @@ export interface Props {
 export interface State {}
 class LoginForm extends React.Component<Props, State> {
 	textInput: any;
-
+	form = (
+		<Form>
+			<Field name="email" component={this.renderInput} validate={[email, required]} />
+			<Field
+				name="password"
+				component={this.renderInput}
+				validate={[alphaNumeric, minLength8, maxLength15, required]}
+			/>
+		</Form>
+	);
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>
@@ -36,15 +45,22 @@ class LoginForm extends React.Component<Props, State> {
 	}
 
 	login() {
-		// Auth.signIn(username, password)
-		// 	.then(user => console.log(user))
-		// 	.catch(err => console.log(err));
-		console.log(this.props);
+		const selector = formValueSelector('form');
+		const { email, password } = selector(this.state, 'email', 'password');
+		
 		if (this.props.valid) {
-			this.props.navigation.navigate("Drawer");
+			Auth.signIn(email, password)
+				.then(user => console.log(user))
+				.catch(err => console.log(err));
+			Toast.show({
+				text: selector,
+				duration: 5000,
+				position: "top",
+				textStyle: { textAlign: "center" },
+			});
 		} else {
 			Toast.show({
-				text: "Enter Valid Username & password!",
+				text: "Enter Valid UserName & password!",
 				duration: 2000,
 				position: "top",
 				textStyle: { textAlign: "center" },
@@ -53,17 +69,7 @@ class LoginForm extends React.Component<Props, State> {
 	}
 
 	render() {
-		const form = (
-			<Form>
-				<Field name="email" component={this.renderInput} validate={[email, required]} />
-				<Field
-					name="password"
-					component={this.renderInput}
-					validate={[alphaNumeric, minLength8, maxLength15, required]}
-				/>
-			</Form>
-		);
-		return <Login loginForm={form} onLogin={() => this.login()} />;
+		return <Login loginForm={this.form} onLogin={() => this.login()} />;
 	}
 }
 const LoginContainer = reduxForm({

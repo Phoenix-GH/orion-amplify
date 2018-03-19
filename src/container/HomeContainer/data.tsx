@@ -1,5 +1,5 @@
 export default [
-	"React Native Starter Kit",
+	"Home",
 	"React Navigation",
 	"NativeBase Easy Grid",
 	"NativeBase",
