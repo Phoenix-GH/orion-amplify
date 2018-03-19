@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm } from "redux-form";
+import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 
 const required = value => (value ? undefined : "Required");
@@ -35,6 +36,10 @@ class LoginForm extends React.Component<Props, State> {
 	}
 
 	login() {
+		// Auth.signIn(username, password)
+		// 	.then(user => console.log(user))
+		// 	.catch(err => console.log(err));
+		console.log(this.props);
 		if (this.props.valid) {
 			this.props.navigation.navigate("Drawer");
 		} else {

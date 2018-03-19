@@ -58,6 +58,7 @@
     ]
   },
   "dependencies": {
+    "aws-amplify": "^0.2.9",
     "lodash": "4.17.4",
     "native-base": "2.3.5",
     "react": "16.2.0",
