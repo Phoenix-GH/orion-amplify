@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
-import { Field, reduxForm, formValueSelector } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 
@@ -20,7 +20,10 @@ export interface Props {
 export interface State {}
 class LoginForm extends React.Component<Props, State> {
 	textInput: any;
-	
+	constructor(props) {
+		super(props);
+		this.state = { email: '', password: '' };
+	}
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>
@@ -36,40 +39,44 @@ class LoginForm extends React.Component<Props, State> {
 	}
 
 	login() {
-		const selector = formValueSelector('login');
-		const { email, password } = selector(this.state, 'email', 'password');
-		console.log('email', email);
-		if (this.props.valid) {
-			Auth.signIn(email, password)
-			.then(user => {
-					console.log('logged in');
-					this.props.navigation.navigate("Drawer");
-				}
-			)
-			.catch(err => {
-				console.log(err)
-			})
-		} else {
-			Toast.show({
-				text: "Enter Valid UserName & password!",
-				duration: 2000,
-				position: "top",
-				textStyle: { textAlign: "center" },
-			});
-		}
+		const { username, password } = this.state;
+		
+		Auth.signIn(username, password)
+		.then(user => {
+				console.log('logged in');
+				this.props.navigation.navigate("Drawer");
+			}
+		)
+		.catch(err => {
+			console.log(err)
+		})
+		// } else {
+		// 	Toast.show({
+		// 		text: "Enter Valid UserName & password!",
+		// 		duration: 2000,
+		// 		position: "top",
+		// 		textStyle: { textAlign: "center" },
+		// 	});
+		// }
 	}
+
 	onChangeEmail = e => {
-		console.log(e.target.value);
+		this.setState({ username: e.nativeEvent.text });
+	}
+
+	onChangePassword = e => {
+		this.setState({ password: e.nativeEvent.text });
 	}
 	
 	render() {
 		const form = (
 			<Form>
-				<Field name="email" component={this.renderInput} validate={[email, required]} onChange={e => this.onChangeEmail(e)}/>
+				<Field name="email" component={this.renderInput} validate={[required]} onChange={this.onChangeEmail} />
 				<Field
 					name="password"
 					component={this.renderInput}
 					validate={[alphaNumeric, minLength8, maxLength15, required]}
+					onChange={this.onChangePassword}
 				/>
 			</Form>
 		);

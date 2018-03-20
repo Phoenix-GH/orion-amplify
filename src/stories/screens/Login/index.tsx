@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, Platform } from "react-native";
+import { Platform } from "react-native";
 import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
 //import styles from "./styles";
 export interface Props {
