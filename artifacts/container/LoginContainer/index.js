@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm, formValueSelector } from "redux-form";
+import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 const required = value => (value ? undefined : "Required");
 const maxLength = max => value => (value && value.length > max ? `Must be ${max} characters or less` : undefined);
@@ -12,9 +13,9 @@ const alphaNumeric = value => (value && /[^a-zA-Z0-9 ]/i.test(value) ? "Only alp
 class LoginForm extends React.Component {
     constructor() {
         super(...arguments);
-        this.form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "email", component: this.renderInput, validate: [email, required] }),
-            React.createElement(Field, { name: "password", component: this.renderInput, validate: [alphaNumeric, minLength8, maxLength15, required] })));
+        this.onChangeEmail = e => {
+            console.log(e.target.value);
+        };
     }
     renderInput({ input, meta: { touched, error } }) {
         return (React.createElement(Item, { error: error && touched },
@@ -22,17 +23,17 @@ class LoginForm extends React.Component {
             React.createElement(Input, Object.assign({ ref: c => (this.textInput = c), placeholder: input.name === "email" ? "Email" : "Password", secureTextEntry: input.name === "password" ? true : false }, input))));
     }
     login() {
-        const selector = formValueSelector('form');
+        const selector = formValueSelector('login');
         const { email, password } = selector(this.state, 'email', 'password');
-        // Auth.signIn(username, password)
-        // 	.then(user => console.log(user))
-        // 	.catch(err => console.log(err));
+        console.log('email', email);
         if (this.props.valid) {
-            Toast.show({
-                text: email,
-                duration: 5000,
-                position: "top",
-                textStyle: { textAlign: "center" },
+            Auth.signIn(email, password)
+                .then(user => {
+                console.log('logged in');
+                this.props.navigation.navigate("Drawer");
+            })
+                .catch(err => {
+                console.log(err);
             });
         }
         else {
@@ -46,7 +47,7 @@ class LoginForm extends React.Component {
     }
     render() {
         const form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "email", component: this.renderInput, validate: [email, required] }),
+            React.createElement(Field, { name: "email", component: this.renderInput, validate: [email, required], onChange: e => this.onChangeEmail(e) }),
             React.createElement(Field, { name: "password", component: this.renderInput, validate: [alphaNumeric, minLength8, maxLength15, required] })));
         return React.createElement(Login, { loginForm: form, onLogin: () => this.login() });
     }

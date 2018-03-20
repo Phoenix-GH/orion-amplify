@@ -20,16 +20,7 @@ export interface Props {
 export interface State {}
 class LoginForm extends React.Component<Props, State> {
 	textInput: any;
-	form = (
-		<Form>
-			<Field name="email" component={this.renderInput} validate={[email, required]} />
-			<Field
-				name="password"
-				component={this.renderInput}
-				validate={[alphaNumeric, minLength8, maxLength15, required]}
-			/>
-		</Form>
-	);
+	
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>
@@ -45,19 +36,19 @@ class LoginForm extends React.Component<Props, State> {
 	}
 
 	login() {
-		const selector = formValueSelector('form');
+		const selector = formValueSelector('login');
 		const { email, password } = selector(this.state, 'email', 'password');
-		
+		console.log('email', email);
 		if (this.props.valid) {
 			Auth.signIn(email, password)
-				.then(user => console.log(user))
-				.catch(err => console.log(err));
-			Toast.show({
-				text: selector,
-				duration: 5000,
-				position: "top",
-				textStyle: { textAlign: "center" },
-			});
+			.then(user => {
+					console.log('logged in');
+					this.props.navigation.navigate("Drawer");
+				}
+			)
+			.catch(err => {
+				console.log(err)
+			})
 		} else {
 			Toast.show({
 				text: "Enter Valid UserName & password!",
@@ -67,9 +58,22 @@ class LoginForm extends React.Component<Props, State> {
 			});
 		}
 	}
-
+	onChangeEmail = e => {
+		console.log(e.target.value);
+	}
+	
 	render() {
-		return <Login loginForm={this.form} onLogin={() => this.login()} />;
+		const form = (
+			<Form>
+				<Field name="email" component={this.renderInput} validate={[email, required]} onChange={e => this.onChangeEmail(e)}/>
+				<Field
+					name="password"
+					component={this.renderInput}
+					validate={[alphaNumeric, minLength8, maxLength15, required]}
+				/>
+			</Form>
+		);
+		return <Login loginForm={form} onLogin={() => this.login()} />;
 	}
 }
 const LoginContainer = reduxForm({
