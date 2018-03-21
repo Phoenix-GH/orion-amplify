@@ -22,10 +22,12 @@ class SignupForm extends React.Component<Props, State> {
 	textInput: any;
 	username: any;
 	password: any;
+	
 	constructor(props) {
 		super(props);
 		this.state = { username: '', password: '' };
 	}
+
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>

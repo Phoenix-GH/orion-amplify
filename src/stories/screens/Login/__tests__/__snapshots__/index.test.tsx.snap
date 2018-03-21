@@ -105,7 +105,7 @@ exports[`renders correctly 1`] = `
           }
           virtual={undefined}
         >
-          ReactNativeSeed.com
+          Orion
         </Text>
         <View
           padder={true}
@@ -249,6 +249,75 @@ exports[`renders correctly 1`] = `
             Login
           </Text>
         </View>
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          collapsable={undefined}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderBottomWidth": null,
+              "borderColor": "#007aff",
+              "borderLeftWidth": null,
+              "borderRadius": 5,
+              "borderRightWidth": null,
+              "borderTopWidth": null,
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 45,
+              "justifyContent": "center",
+              "marginTop": 20,
+              "opacity": 1,
+              "paddingBottom": 6,
+              "paddingTop": 6,
+            }
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#fff",
+                  "fontFamily": "System",
+                  "fontSize": 16.5,
+                  "lineHeight": 19,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                },
+                Object {
+                  "color": "blue",
+                },
+              ]
+            }
+            uppercase={false}
+            virtual={undefined}
+          >
+            Signup
+          </Text>
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -286,55 +355,7 @@ exports[`renders correctly 1`] = `
         ]
       }
       virtual={undefined}
-    >
-      <View
-        padder={true}
-        style={
-          Object {
-            "paddingBottom": 10,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "paddingTop": 10,
-          }
-        }
-        virtual={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "color": "#000",
-                "fontFamily": "System",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#000",
-              },
-            ]
-          }
-          uppercase={false}
-          virtual={undefined}
-        >
-          Made with love at 
-        </Text>
-      </View>
-      <Image
-        source={
-          Object {
-            "uri": "https://geekyants.com/images/logo-dark.png",
-          }
-        }
-        style={
-          Object {
-            "height": 21.5,
-            "width": 105.5,
-          }
-        }
-      />
-    </View>
+    />
   </View>
 </View>
 `;

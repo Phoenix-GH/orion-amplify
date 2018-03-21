@@ -105,7 +105,7 @@ exports[`renders correctly 1`] = `
           }
           virtual={undefined}
         >
-          ReactNativeSeed.com
+          New User
         </Text>
         <View
           padder={true}
@@ -246,95 +246,11 @@ exports[`renders correctly 1`] = `
             uppercase={false}
             virtual={undefined}
           >
-            Login
+            Signup
           </Text>
         </View>
       </View>
     </View>
   </RCTScrollView>
-  <View
-    style={
-      Array [
-        Object {
-          "backgroundColor": "#F8F8F8",
-          "borderColor": "#cbcbcb",
-          "borderTopWidth": 0.5,
-          "elevation": 3,
-          "flexDirection": "row",
-          "height": 55,
-          "justifyContent": "center",
-          "left": 0,
-          "paddingBottom": 0,
-          "right": 0,
-        },
-        Object {
-          "backgroundColor": "#F8F8F8",
-        },
-      ]
-    }
-    virtual={undefined}
-  >
-    <View
-      style={
-        Array [
-          Object {},
-          Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "opacity": 0.5,
-          },
-        ]
-      }
-      virtual={undefined}
-    >
-      <View
-        padder={true}
-        style={
-          Object {
-            "paddingBottom": 10,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "paddingTop": 10,
-          }
-        }
-        virtual={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "color": "#000",
-                "fontFamily": "System",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#000",
-              },
-            ]
-          }
-          uppercase={false}
-          virtual={undefined}
-        >
-          Made with love at 
-        </Text>
-      </View>
-      <Image
-        source={
-          Object {
-            "uri": "https://geekyants.com/images/logo-dark.png",
-          }
-        }
-        style={
-          Object {
-            "height": 21.5,
-            "width": 105.5,
-          }
-        }
-      />
-    </View>
-  </View>
 </View>
 `;
