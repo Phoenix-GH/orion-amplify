@@ -11,10 +11,6 @@ const routes = [
         caption: "New Page",
     },
     {
-        route: "Another",
-        caption: "New Page",
-    },
-    {
         route: "Login",
         caption: "Logout",
     },

@@ -5,6 +5,7 @@ import { Dimensions } from "react-native";
 import Amplify from 'aws-amplify';
 const deviceWidth = Dimensions.get("window").width;
 import Login from "./container/LoginContainer";
+import Signup from "./container/SignupContainer";
 import Home from "./container/HomeContainer";
 import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
@@ -29,6 +30,7 @@ const Drawer = DrawerNavigator({
 });
 const App = StackNavigator({
     Login: { screen: Login },
+    Signup: { screen: Signup },
     BlankPage: { screen: BlankPage },
     Drawer: { screen: Drawer },
 }, {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
-import Login from "../../stories/screens/Login";
+import Signup from "../../stories/screens/Signup";
 
 const required = value => (value ? undefined : "Required");
 const maxLength = max => value => (value && value.length > max ? `Must be ${max} characters or less` : undefined);
@@ -18,7 +18,7 @@ export interface Props {
 	valid: boolean;
 }
 export interface State {}
-class LoginForm extends React.Component<Props, State> {
+class SignupForm extends React.Component<Props, State> {
 	textInput: any;
 	username: any;
 	password: any;
@@ -40,7 +40,7 @@ class LoginForm extends React.Component<Props, State> {
 		);
 	}
 
-	login() {
+	onSignup() {
 		if(this.props.valid) {
 			Auth.signIn(this.username, this.password)
 			.then(user => {
@@ -81,10 +81,10 @@ class LoginForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Login loginForm={form} onLogin={() => this.login()} />;
+		return <Signup signupForm={form} onSignup={() => this.onSignup()} />;
 	}
 }
-const LoginContainer = reduxForm({
-	form: "login",
-})(LoginForm);
-export default LoginContainer;
+const SignupContainer = reduxForm({
+	form: "signup",
+})(SignupForm);
+export default SignupContainer;

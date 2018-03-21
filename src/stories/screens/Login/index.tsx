@@ -8,6 +8,10 @@ export interface Props {
 }
 export interface State {}
 class Login extends React.Component<Props, State> {
+	onSignup = () => {
+		console.log('Signup');
+	}
+
 	render() {
 		return (
 			<Container>
@@ -25,6 +29,9 @@ class Login extends React.Component<Props, State> {
 					<View padder>
 						<Button block onPress={() => this.props.onLogin()}>
 							<Text>Login</Text>
+						</Button>
+						<Button block onPress={() => this.onSignup()} style={{ backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 }}>
+							<Text style={{ color: "blue" }}>Signup</Text>
 						</Button>
 					</View>
 				</Content>
