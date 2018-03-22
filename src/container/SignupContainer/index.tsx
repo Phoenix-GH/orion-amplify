@@ -5,10 +5,6 @@ import { Auth } from 'aws-amplify';
 import Signup from "../../stories/screens/Signup";
 
 const required = value => (value ? undefined : "Required");
-const maxLength = max => value => (value && value.length > max ? `Must be ${max} characters or less` : undefined);
-const maxLength15 = maxLength(15);
-const minLength = min => value => (value && value.length < min ? `Must be ${min} characters or more` : undefined);
-const minLength8 = minLength(8);
 const email = value =>
 	value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? "Invalid email address" : undefined;
 const alphaNumeric = value => (value && /[^a-zA-Z0-9 ]/i.test(value) ? "Only alphanumeric characters" : undefined);
@@ -22,20 +18,20 @@ class SignupForm extends React.Component<Props, State> {
 	textInput: any;
 	username: any;
 	password: any;
-	
+  email: any;
+  phone_number: any;
 	constructor(props) {
 		super(props);
-		this.state = { username: '', password: '' };
 	}
 
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>
-				<Icon active name={input.name === "email" ? "person" : "unlock"} />
+				<Icon active name={input.name === "Password" ? "unlock" : "person"} />
 				<Input
 					ref={c => (this.textInput = c)}
-					placeholder={input.name === "email" ? "Email" : "Password"}
-					secureTextEntry={input.name === "password" ? true : false}
+					placeholder= {input.name} 
+					secureTextEntry={input.name === "Password" ? true : false}
 					{...input}
 				/>
 			</Item>
@@ -43,42 +39,74 @@ class SignupForm extends React.Component<Props, State> {
 	}
 
 	onSignup() {
-		if(this.props.valid) {
-			Auth.signIn(this.username, this.password)
-			.then(user => {
-					console.log('logged in');
-					this.props.navigation.navigate("Drawer");
-				}
-			)
-			.catch(err => {
-				console.log(err)
-			})
-		} else {
-			Toast.show({
-				text: "Enter Valid UserName & password!",
-				duration: 2000,
-				position: "top",
-				textStyle: { textAlign: "center" },
-			});
-		}
+    Auth.signUp({
+      username: this.username,
+      password: this.password,
+      attributes: {
+          email: this.email,          // optional
+          phone_number: this.phone_number,   // optional - E.164 number convention
+          // other custom attributes
+      },
+      validationData: []  //optional
+    })
+    .then(data => {
+      console.log(data);
+      Auth.confirmSignUp(this.username, data.userSub)
+      .then(data => {
+        Toast.show({
+          text: "You should have received email with verification code, please ",
+          duration: 2000,
+          position: "top",
+          textStyle: { textAlign: "center" },
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        Toast.show({
+          text: err.message,
+          duration: 2000,
+          position: "top",
+          textStyle: { textAlign: "center" },
+        });
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      Toast.show({
+        text: err.message,
+        duration: 2000,
+        position: "top",
+        textStyle: { textAlign: "center" },
+      });
+    })
 	}
 
 	onChangeEmail = e => {
-		this.username = e.nativeEvent.text;
+		this.email = e.nativeEvent.text;
 	}
 
 	onChangePassword = e => {
 		this.password = e.nativeEvent.text;
+  }
+  
+  onChangePhone = e => {
+		this.phone_number = e.nativeEvent.text;
+  }
+  
+  onChangeUsername= e => {
+		this.username = e.nativeEvent.text;
 	}
 	
 	render() {
 		const form = (
 			<Form>
-				<Field name="email" component={this.renderInput} validate={[required]} onChange={this.onChangeEmail} />
+        <Field name="User name" component={this.renderInput} validate={[required]} onChange={this.onChangeUsername} />
+				<Field name="Email" component={this.renderInput} validate={[email]} onChange={this.onChangeEmail} />
+        <Field name="Phone number" component={this.renderInput} validate={[alphaNumeric]} onChange={this.onChangePhone} />
 				<Field
-					name="password"
+					name="Password"
 					component={this.renderInput}
-					validate={[alphaNumeric, minLength8, maxLength15, required]}
+					validate={[required]}
 					onChange={this.onChangePassword}
 				/>
 			</Form>
