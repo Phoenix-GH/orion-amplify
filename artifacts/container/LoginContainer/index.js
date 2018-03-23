@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     renderInput({ input, meta: { touched, error } }) {
         return (React.createElement(Item, { error: error && touched },
             React.createElement(Icon, { active: true, name: input.name === "email" ? "person" : "unlock" }),
-            React.createElement(Input, Object.assign({ ref: c => (this.textInput = c), placeholder: input.name === "email" ? "Email" : "Password", secureTextEntry: input.name === "password" ? true : false }, input))));
+            React.createElement(Input, Object.assign({ ref: c => (this.textInput = c), placeholder: input.name === "email" ? "Email" : "Password", autoCapitalize: "none", secureTextEntry: input.name === "password" ? true : false }, input))));
     }
     login() {
         if (this.props.valid) {
