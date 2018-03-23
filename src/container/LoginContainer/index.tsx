@@ -5,9 +5,6 @@ import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 
 const required = value => (value ? undefined : "Required");
-const email = value =>
-	value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? "Invalid email address" : undefined;
-const alphaNumeric = value => (value && /[^a-zA-Z0-9 ]/i.test(value) ? "Only alphanumeric characters" : undefined);
 
 export interface Props {
 	navigation: any;
@@ -20,7 +17,6 @@ class LoginForm extends React.Component<Props, State> {
 	password: any;
 	constructor(props) {
 		super(props);
-		this.state = { username: '', password: '' };
 	}
 	renderInput({ input, meta: { touched, error } }) {
 		return (
@@ -28,7 +24,8 @@ class LoginForm extends React.Component<Props, State> {
 				<Icon active name={input.name === "email" ? "person" : "unlock"} />
 				<Input
 					ref={c => (this.textInput = c)}
-					placeholder={input.name === "email" ? "Email" : "Password"}
+          placeholder={input.name === "email" ? "Email" : "Password"}
+          autoCapitalize="none"
 					secureTextEntry={input.name === "password" ? true : false}
 					{...input}
 				/>
@@ -40,9 +37,13 @@ class LoginForm extends React.Component<Props, State> {
 		if(this.props.valid) {
 			Auth.signIn(this.username, this.password)
 			.then(user => {
-					this.props.navigation.navigate("Drawer");
-				}
-			)
+        // try {
+        //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
+        // } catch (error) {
+        //   // Error saving data
+        // }
+        this.props.navigation.navigate("Drawer");
+      })
 			.catch(err => {
 				Toast.show({
 					text: err.message,
@@ -61,6 +62,10 @@ class LoginForm extends React.Component<Props, State> {
 		}
 	}
 
+  signUp = () => {
+    this.props.navigation.navigate("Signup");
+  }
+  
 	onChangeEmail = e => {
 		this.username = e.nativeEvent.text;
 	}
@@ -76,12 +81,12 @@ class LoginForm extends React.Component<Props, State> {
 				<Field
 					name="password"
 					component={this.renderInput}
-					validate={[alphaNumeric, required]}
+					validate={[required]}
 					onChange={this.onChangePassword}
 				/>
 			</Form>
 		);
-		return <Login loginForm={form} onLogin={() => this.login()} />;
+		return <Login loginForm={form} onLogin={() => this.login()} onSignup={this.signUp} />;
 	}
 }
 const LoginContainer = reduxForm({

@@ -4,14 +4,11 @@ import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Foot
 //import styles from "./styles";
 export interface Props {
 	loginForm: any;
-	onLogin: Function;
+  onLogin: Function;
+  onSignup: Function;
 }
 export interface State {}
 class Login extends React.Component<Props, State> {
-	onSignup = () => {
-		console.log('Signup');
-	}
-
 	render() {
 		return (
 			<Container>
@@ -30,7 +27,7 @@ class Login extends React.Component<Props, State> {
 						<Button block onPress={() => this.props.onLogin()}>
 							<Text>Login</Text>
 						</Button>
-						<Button block onPress={() => this.onSignup()} style={{ backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 }}>
+						<Button block onPress={() => this.props.onSignup()} style={{ backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 }}>
 							<Text style={{ color: "blue" }}>Signup</Text>
 						</Button>
 					</View>

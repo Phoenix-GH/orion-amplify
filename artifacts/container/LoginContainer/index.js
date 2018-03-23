@@ -4,28 +4,33 @@ import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 const required = value => (value ? undefined : "Required");
-const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? "Invalid email address" : undefined;
-const alphaNumeric = value => (value && /[^a-zA-Z0-9 ]/i.test(value) ? "Only alphanumeric characters" : undefined);
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
+        this.signUp = () => {
+            this.props.navigation.navigate("Signup");
+        };
         this.onChangeEmail = e => {
             this.username = e.nativeEvent.text;
         };
         this.onChangePassword = e => {
             this.password = e.nativeEvent.text;
         };
-        this.state = { username: '', password: '' };
     }
     renderInput({ input, meta: { touched, error } }) {
         return (React.createElement(Item, { error: error && touched },
             React.createElement(Icon, { active: true, name: input.name === "email" ? "person" : "unlock" }),
-            React.createElement(Input, Object.assign({ ref: c => (this.textInput = c), placeholder: input.name === "email" ? "Email" : "Password", secureTextEntry: input.name === "password" ? true : false }, input))));
+            React.createElement(Input, Object.assign({ ref: c => (this.textInput = c), placeholder: input.name === "email" ? "Email" : "Password", autoCapitalize: "none", secureTextEntry: input.name === "password" ? true : false }, input))));
     }
     login() {
         if (this.props.valid) {
             Auth.signIn(this.username, this.password)
                 .then(user => {
+                // try {
+                //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
+                // } catch (error) {
+                //   // Error saving data
+                // }
                 this.props.navigation.navigate("Drawer");
             })
                 .catch(err => {
@@ -49,8 +54,8 @@ class LoginForm extends React.Component {
     render() {
         const form = (React.createElement(Form, null,
             React.createElement(Field, { name: "email", component: this.renderInput, validate: [required], onChange: this.onChangeEmail }),
-            React.createElement(Field, { name: "password", component: this.renderInput, validate: [alphaNumeric, required], onChange: this.onChangePassword })));
-        return React.createElement(Login, { loginForm: form, onLogin: () => this.login() });
+            React.createElement(Field, { name: "password", component: this.renderInput, validate: [required], onChange: this.onChangePassword })));
+        return React.createElement(Login, { loginForm: form, onLogin: () => this.login(), onSignup: this.signUp });
     }
 }
 const LoginContainer = reduxForm({

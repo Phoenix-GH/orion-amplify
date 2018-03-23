@@ -8,6 +8,7 @@ const deviceWidth = Dimensions.get("window").width;
 
 import Login from "./container/LoginContainer";
 import Signup from "./container/SignupContainer";
+import Verification from "./container/VerificationContainer";
 import Home from "./container/HomeContainer";
 import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
@@ -40,6 +41,7 @@ const App = StackNavigator(
 	{
 		Login: { screen: Login },
 		Signup: {screen: Signup },
+		Verification: {screen: Verification },
 		BlankPage: { screen: BlankPage },
 		Drawer: { screen: Drawer },
 	},
