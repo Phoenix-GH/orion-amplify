@@ -15,17 +15,19 @@ class LoginForm extends React.Component<Props, State> {
 	textInput: any;
 	username: any;
 	password: any;
+
 	constructor(props) {
 		super(props);
 	}
+
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>
 				<Icon active name={input.name === "email" ? "person" : "unlock"} />
 				<Input
 					ref={c => (this.textInput = c)}
-          placeholder={input.name === "email" ? "Email" : "Password"}
-          autoCapitalize="none"
+					placeholder={input.name === "email" ? "Email" : "Password"}
+					autoCapitalize="none"
 					secureTextEntry={input.name === "password" ? true : false}
 					{...input}
 				/>
@@ -35,15 +37,15 @@ class LoginForm extends React.Component<Props, State> {
 
 	login() {
 		if(this.props.valid) {
-			Auth.signIn(this.username, this.password)
+			Auth.signIn(this.username.toLowerCase(), this.password)
 			.then(user => {
         // try {
         //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
         // } catch (error) {
         //   // Error saving data
         // }
-        this.props.navigation.navigate("Drawer");
-      })
+          this.props.navigation.navigate("Drawer");
+        })
 			.catch(err => {
 				Toast.show({
 					text: err.message,
@@ -62,9 +64,13 @@ class LoginForm extends React.Component<Props, State> {
 		}
 	}
 
-  signUp = () => {
-    this.props.navigation.navigate("Signup");
-  }
+	signUp = () => {
+		this.props.navigation.navigate("Signup");
+	}
+
+	forgotPassword = () => {
+		this.props.navigation.navigate("ForgotPassword");
+	}
   
 	onChangeEmail = e => {
 		this.username = e.nativeEvent.text;
@@ -86,7 +92,7 @@ class LoginForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Login loginForm={form} onLogin={() => this.login()} onSignup={this.signUp} />;
+		return <Login loginForm={form} onLogin={() => this.login()} onSignup={this.signUp} onForgotPassword={this.forgotPassword} />;
 	}
 }
 const LoginContainer = reduxForm({

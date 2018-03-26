@@ -1,42 +1,30 @@
 import * as React from "react";
 import { Platform } from "react-native";
-import {
-	Container,
-	Content,
-	Header,
-	Body,
-	Title,
-	Button,
-	Text,
-	View,
-	Icon,
-} from "native-base";
+import { Container, Content, Header, Body, Title, Button, Text, View, Icon } from "native-base";
 //import styles from "./styles";
 export interface Props {
-	signupForm: any;
-	onSignup: Function;
+	resetPasswordForm: any;
+	onResetPassword: Function;
 }
 export interface State {}
-class Signup extends React.Component<Props, State> {
+class ResetPassword extends React.Component<Props, State> {
 	render() {
 		return (
 			<Container>
 				<Header style={{ height: 200 }}>
-				<Body>
 					<Body style={{ alignItems: "center" }}>
 						<Icon name="flash" style={{ fontSize: 104 }} />
-						<Title>New User</Title>
+						<Title>Reset Password</Title>
 						<View padder>
 							<Text style={{ color: Platform.OS === "ios" ? "#000" : "#FFF" }} />
 						</View>
 					</Body>
-				</Body>					
 				</Header>
 				<Content>
-					{this.props.signupForm}
+					{this.props.resetPasswordForm}
 					<View padder>
-						<Button block onPress={() => this.props.onSignup()}>
-							<Text>Signup</Text>
+						<Button block onPress={() => this.props.onResetPassword()}>
+							<Text>Reset</Text>
 						</Button>
 					</View>
 				</Content>
@@ -45,4 +33,4 @@ class Signup extends React.Component<Props, State> {
 	}
 }
 
-export default Signup;
+export default ResetPassword;

@@ -44,7 +44,7 @@ class SignupForm extends React.Component<Props, State> {
 	async onSignup() {
     if(this.props.valid) {
       Auth.signUp({
-        username: this.username,
+        username: this.username.toLowerCase(),
         password: this.password,
         attributes: {
             email: this.email,          // optional

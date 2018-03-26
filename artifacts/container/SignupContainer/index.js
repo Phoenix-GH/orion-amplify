@@ -40,7 +40,7 @@ class SignupForm extends React.Component {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.props.valid) {
                 Auth.signUp({
-                    username: this.username,
+                    username: this.username.toLowerCase(),
                     password: this.password,
                     attributes: {
                         email: this.email,

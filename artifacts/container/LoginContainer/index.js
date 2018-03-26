@@ -10,6 +10,9 @@ class LoginForm extends React.Component {
         this.signUp = () => {
             this.props.navigation.navigate("Signup");
         };
+        this.forgotPassword = () => {
+            this.props.navigation.navigate("ForgotPassword");
+        };
         this.onChangeEmail = e => {
             this.username = e.nativeEvent.text;
         };
@@ -24,7 +27,7 @@ class LoginForm extends React.Component {
     }
     login() {
         if (this.props.valid) {
-            Auth.signIn(this.username, this.password)
+            Auth.signIn(this.username.toLowerCase(), this.password)
                 .then(user => {
                 // try {
                 //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
@@ -55,7 +58,7 @@ class LoginForm extends React.Component {
         const form = (React.createElement(Form, null,
             React.createElement(Field, { name: "email", component: this.renderInput, validate: [required], onChange: this.onChangeEmail }),
             React.createElement(Field, { name: "password", component: this.renderInput, validate: [required], onChange: this.onChangePassword })));
-        return React.createElement(Login, { loginForm: form, onLogin: () => this.login(), onSignup: this.signUp });
+        return React.createElement(Login, { loginForm: form, onLogin: () => this.login(), onSignup: this.signUp, onForgotPassword: this.forgotPassword });
     }
 }
 const LoginContainer = reduxForm({

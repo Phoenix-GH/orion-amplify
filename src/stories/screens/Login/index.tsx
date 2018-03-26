@@ -6,6 +6,7 @@ export interface Props {
 	loginForm: any;
   onLogin: Function;
   onSignup: Function;
+  onForgotPassword: Function;
 }
 export interface State {}
 class Login extends React.Component<Props, State> {
@@ -27,8 +28,11 @@ class Login extends React.Component<Props, State> {
 						<Button block onPress={() => this.props.onLogin()}>
 							<Text>Login</Text>
 						</Button>
-						<Button block onPress={() => this.props.onSignup()} style={{ backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 }}>
-							<Text style={{ color: "blue" }}>Signup</Text>
+            <Button block onPress={() => this.props.onSignup()} style={{ marginTop: 20 }}>
+							<Text>Signup</Text>
+						</Button>
+						<Button block onPress={() => this.props.onForgotPassword()} style={{ backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 }}>
+							<Text style={{ color: "blue" }}>Forgot Password</Text>
 						</Button>
 					</View>
 				</Content>

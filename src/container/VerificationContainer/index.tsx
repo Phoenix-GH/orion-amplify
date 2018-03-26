@@ -1,6 +1,7 @@
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
+import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Verification from "../../stories/screens/Verification";
@@ -42,13 +43,13 @@ class VerificationForm extends React.Component<Props, State> {
 				console.log('username', username);
 				Auth.confirmSignUp(username, this.passcode)
 				.then(data => {
-					Toast.show({
-						text: data.message,
-						duration: 2000,
-						position: "top",
-						textStyle: { textAlign: "center" },
-					});
-					this.props.navigation.navigate("Login");
+					this.props.navigation.dispatch(NavigationActions.reset({
+            index: 0,
+            key: null,
+            actions: [
+              NavigationActions.navigate({ routeName: 'Login'})
+            ]
+          }));
 				})
 				.catch(err => {
 					console.log(err);
