@@ -26,6 +26,9 @@ class Verification extends React.Component<Props, State> {
 						<Button block onPress={() => this.props.onVerification()}>
 							<Text>Verify User</Text>
 						</Button>
+						{/* <Button block onPress={() => this.props.resendVerification()}>
+							<Text>Resend Verification</Text>
+						</Button> */}
 					</View>
 				</Content>
 			</Container>

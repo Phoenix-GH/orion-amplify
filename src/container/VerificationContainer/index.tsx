@@ -43,6 +43,12 @@ class VerificationForm extends React.Component<Props, State> {
 				console.log('username', username);
 				Auth.confirmSignUp(username, this.passcode)
 				.then(data => {
+					Toast.show({
+						text: "Orion Account successfully created. You may now log in.",
+						duration: 2000,
+						position: "top",
+						textStyle: { textAlign: "center" },
+					});
 					this.props.navigation.dispatch(NavigationActions.reset({
             index: 0,
             key: null,
