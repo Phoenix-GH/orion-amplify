@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm } from "redux-form";
+import { AsyncStorage } from 'react-native';
 import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 
@@ -38,14 +39,15 @@ class LoginForm extends React.Component<Props, State> {
 	login() {
 		if(this.props.valid) {
 			Auth.signIn(this.username.toLowerCase(), this.password)
-			.then(user => {
-        // try {
-        //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
-        // } catch (error) {
-        //   // Error saving data
-        // }
-          this.props.navigation.navigate("Drawer");
-        })
+			.then(async user => {
+				console.log('Logged in:', user);
+				try {
+					await AsyncStorage.setItem('@Orion:username', user.username);
+					this.props.navigation.navigate("Drawer");
+				} catch (error) {
+					// Error saving data
+				}
+      })
 			.catch(err => {
 				Toast.show({
 					text: err.message,

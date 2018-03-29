@@ -55,7 +55,12 @@ class ResetPasswordForm extends React.Component<Props, State> {
         this.password,
       )
       .then(async data => {
-        console.log(data);
+        Toast.show({
+          text: "Successfully changed password.",
+          duration: 2000,
+          position: "top",
+          textStyle: { textAlign: "center" },
+        });
         this.props.navigation.dispatch(NavigationActions.reset({
           index: 0,
           key: null,
@@ -96,6 +101,10 @@ class ResetPasswordForm extends React.Component<Props, State> {
 		this.code = e.nativeEvent.text;
 	}
   
+	onBack = () => {
+		this.props.navigation.dispatch(NavigationActions.back());
+	}
+
   formatNumber(number) {
     const formattedNumber = number.replace(/[^\w\s]/gi, '');
     return '+' + formattedNumber;
@@ -119,7 +128,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <ResetPassword resetPasswordForm={form} onResetPassword={() => this.onResetPassword()} />;
+		return <ResetPassword resetPasswordForm={form} onResetPassword={() => this.onResetPassword()} onBack={this.onBack} />;
 	}
 }
 const ResetPasswordContainer = reduxForm({

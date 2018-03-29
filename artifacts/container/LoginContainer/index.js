@@ -1,6 +1,15 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm } from "redux-form";
+import { AsyncStorage } from 'react-native';
 import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 const required = value => (value ? undefined : "Required");
@@ -28,14 +37,16 @@ class LoginForm extends React.Component {
     login() {
         if (this.props.valid) {
             Auth.signIn(this.username.toLowerCase(), this.password)
-                .then(user => {
-                // try {
-                //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
-                // } catch (error) {
-                //   // Error saving data
-                // }
-                this.props.navigation.navigate("Drawer");
-            })
+                .then((user) => __awaiter(this, void 0, void 0, function* () {
+                console.log('Logged in:', user);
+                try {
+                    yield AsyncStorage.setItem('@Orion:username', user.username);
+                    this.props.navigation.navigate("Drawer");
+                }
+                catch (error) {
+                    // Error saving data
+                }
+            }))
                 .catch(err => {
                 Toast.show({
                     text: err.message,

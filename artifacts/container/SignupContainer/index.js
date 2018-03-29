@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
+import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Signup from "../../stories/screens/Signup";
@@ -18,6 +19,9 @@ const phoneNumber = value => (value && !/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. 
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
+        this.onBack = () => {
+            this.props.navigation.dispatch(NavigationActions.back());
+        };
         this.onChangeEmail = e => {
             this.email = e.nativeEvent.text;
         };
@@ -37,46 +41,43 @@ class SignupForm extends React.Component {
             React.createElement(Input, Object.assign({ ref: c => (this.textInput = c), placeholder: input.name, autoCapitalize: "none", secureTextEntry: input.name === "Password" ? true : false }, input))));
     }
     onSignup() {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.props.valid) {
-                Auth.signUp({
-                    username: this.username.toLowerCase(),
-                    password: this.password,
-                    attributes: {
-                        email: this.email,
-                        phone_number: this.formatNumber(this.phone_number),
-                    },
-                    validationData: [] //optional
-                })
-                    .then((data) => __awaiter(this, void 0, void 0, function* () {
-                    console.log(data);
-                    try {
-                        yield AsyncStorage.setItem('@Orion:username', this.username);
-                    }
-                    catch (error) {
-                        // Error saving data
-                    }
-                    this.props.navigation.navigate("Verification");
-                }))
-                    .catch(err => {
-                    console.log(err);
-                    Toast.show({
-                        text: err.message,
-                        duration: 2000,
-                        position: "top",
-                        textStyle: { textAlign: "center" },
-                    });
-                });
-            }
-            else {
+        if (this.props.valid) {
+            Auth.signUp({
+                username: this.username.toLowerCase(),
+                password: this.password,
+                attributes: {
+                    email: this.email,
+                    phone_number: this.formatNumber(this.phone_number),
+                },
+                validationData: [] //optional
+            })
+                .then((data) => __awaiter(this, void 0, void 0, function* () {
+                console.log(data);
+                try {
+                    yield AsyncStorage.setItem('@Orion:username', this.username);
+                }
+                catch (error) {
+                    // Error saving data
+                }
+                this.props.navigation.navigate("Verification");
+            }))
+                .catch(err => {
                 Toast.show({
-                    text: "Please fill all the fields",
+                    text: err.message,
                     duration: 2000,
                     position: "top",
                     textStyle: { textAlign: "center" },
                 });
-            }
-        });
+            });
+        }
+        else {
+            Toast.show({
+                text: "Please fill all the fields",
+                duration: 2000,
+                position: "top",
+                textStyle: { textAlign: "center" },
+            });
+        }
     }
     formatNumber(number) {
         const formattedNumber = number.replace(/[^\w\s]/gi, '');
@@ -88,7 +89,7 @@ class SignupForm extends React.Component {
             React.createElement(Field, { name: "Email", component: this.renderInput, validate: [email, required], onChange: this.onChangeEmail }),
             React.createElement(Field, { name: "Phone number", component: this.renderInput, validate: [phoneNumber], onChange: this.onChangePhone }),
             React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword })));
-        return React.createElement(Signup, { signupForm: form, onSignup: () => this.onSignup() });
+        return React.createElement(Signup, { signupForm: form, onSignup: () => this.onSignup(), onBack: this.onBack });
     }
 }
 const SignupContainer = reduxForm({

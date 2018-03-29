@@ -10,12 +10,16 @@ import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { AsyncStorage } from 'react-native';
 import { Field, reduxForm } from "redux-form";
+import { NavigationActions } from 'react-navigation';
 import { Auth } from 'aws-amplify';
 import ForgotPassword from "../../stories/screens/ForgotPassword";
 const required = value => (value ? undefined : "Required");
 class ForgotPasswordForm extends React.Component {
     constructor(props) {
         super(props);
+        this.onBack = () => {
+            this.props.navigation.dispatch(NavigationActions.back());
+        };
         this.onChangeUserName = e => {
             this.username = e.nativeEvent.text;
         };
@@ -50,7 +54,7 @@ class ForgotPasswordForm extends React.Component {
     render() {
         const form = (React.createElement(Form, null,
             React.createElement(Field, { name: "Username", component: this.renderInput, validate: [required], onChange: this.onChangeUserName })));
-        return React.createElement(ForgotPassword, { forgotPasswordForm: form, onResetPassword: () => this.onResetPassword() });
+        return React.createElement(ForgotPassword, { forgotPasswordForm: form, onResetPassword: () => this.onResetPassword(), onBack: this.onBack });
     }
 }
 const ForgotPasswordContainer = reduxForm({

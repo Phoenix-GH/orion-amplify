@@ -75,14 +75,18 @@ class VerificationForm extends React.Component<Props, State> {
 	onChangeCode = e => {
 		this.passcode = e.nativeEvent.text;
 	}
-	
+
+	onBack = () => {
+		this.props.navigation.dispatch(NavigationActions.back());
+	}
+
 	render() {
 		const form = (
 			<Form>
         <Field name="Verification Code" component={this.renderInput} validate={[required]} onChange={this.onChangeCode} />
 			</Form>
 		);
-		return <Verification verificationForm={form} onVerification={() => this.onVerification()} />;
+		return <Verification verificationForm={form} onVerification={() => this.onVerification()} onBack={this.onBack} />;
 	}
 }
 const VerificationContainer = reduxForm({

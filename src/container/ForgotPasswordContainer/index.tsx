@@ -2,6 +2,7 @@ import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { AsyncStorage } from 'react-native';
 import { Field, reduxForm } from "redux-form";
+import { NavigationActions } from 'react-navigation';
 import { Auth } from 'aws-amplify';
 import ForgotPassword from "../../stories/screens/ForgotPassword";
 
@@ -36,7 +37,7 @@ class ForgotPasswordForm extends React.Component<Props, State> {
 
 	async onResetPassword() {
 		const username = this.username.toLowerCase();
-    if (username !== null){
+    if(this.props.valid) {
       await AsyncStorage.setItem('@Orion:username', this.username);
       Auth.forgotPassword(username)
       .then(data => {
@@ -52,9 +53,20 @@ class ForgotPasswordForm extends React.Component<Props, State> {
           textStyle: { textAlign: "center" },
         });
       })
-    }
+    } else {
+			Toast.show({
+				text: "Username is missing",
+				duration: 2000,
+				position: "top",
+				textStyle: { textAlign: "center" },
+			});
+		}
 	}
 
+	onBack = () => {
+		this.props.navigation.dispatch(NavigationActions.back());
+	}
+	
 	onChangeUserName = e => {
 		this.username = e.nativeEvent.text;
 	}
@@ -65,7 +77,7 @@ class ForgotPasswordForm extends React.Component<Props, State> {
         <Field name="Username" component={this.renderInput} validate={[required]} onChange={this.onChangeUserName} />
 			</Form>
 		);
-		return <ForgotPassword forgotPasswordForm={form} onResetPassword={() => this.onResetPassword()} />;
+		return <ForgotPassword forgotPasswordForm={form} onResetPassword={() => this.onResetPassword()} onBack={this.onBack} />;
 	}
 }
 const ForgotPasswordContainer = reduxForm({

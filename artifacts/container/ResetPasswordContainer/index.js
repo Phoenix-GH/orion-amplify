@@ -26,6 +26,9 @@ class ResetPasswordForm extends React.Component {
         this.onChangeCode = e => {
             this.code = e.nativeEvent.text;
         };
+        this.onBack = () => {
+            this.props.navigation.dispatch(NavigationActions.back());
+        };
     }
     renderInput({ input, meta: { touched, error } }) {
         return (React.createElement(Item, { error: error && touched },
@@ -47,7 +50,12 @@ class ResetPasswordForm extends React.Component {
                 const username = yield AsyncStorage.getItem("@Orion:username");
                 Auth.forgotPasswordSubmit(username, this.code, this.password)
                     .then((data) => __awaiter(this, void 0, void 0, function* () {
-                    console.log(data);
+                    Toast.show({
+                        text: "Successfully changed password.",
+                        duration: 2000,
+                        position: "top",
+                        textStyle: { textAlign: "center" },
+                    });
                     this.props.navigation.dispatch(NavigationActions.reset({
                         index: 0,
                         key: null,
@@ -85,7 +93,7 @@ class ResetPasswordForm extends React.Component {
             React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode }),
             React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword }),
             React.createElement(Field, { name: "Confirm Password", component: this.renderInput, validate: [required], onChange: this.onChangeConfirm })));
-        return React.createElement(ResetPassword, { resetPasswordForm: form, onResetPassword: () => this.onResetPassword() });
+        return React.createElement(ResetPassword, { resetPasswordForm: form, onResetPassword: () => this.onResetPassword(), onBack: this.onBack });
     }
 }
 const ResetPasswordContainer = reduxForm({
