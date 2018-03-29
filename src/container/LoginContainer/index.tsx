@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm } from "redux-form";
+import { AsyncStorage } from 'react-native';
 import { Auth } from 'aws-amplify';
 import Login from "../../stories/screens/Login";
 
@@ -15,17 +16,19 @@ class LoginForm extends React.Component<Props, State> {
 	textInput: any;
 	username: any;
 	password: any;
+
 	constructor(props) {
 		super(props);
 	}
+
 	renderInput({ input, meta: { touched, error } }) {
 		return (
 			<Item error={error && touched}>
 				<Icon active name={input.name === "email" ? "person" : "unlock"} />
 				<Input
 					ref={c => (this.textInput = c)}
-          placeholder={input.name === "email" ? "Email" : "Password"}
-          autoCapitalize="none"
+					placeholder={input.name === "email" ? "Email" : "Password"}
+					autoCapitalize="none"
 					secureTextEntry={input.name === "password" ? true : false}
 					{...input}
 				/>
@@ -35,14 +38,15 @@ class LoginForm extends React.Component<Props, State> {
 
 	login() {
 		if(this.props.valid) {
-			Auth.signIn(this.username, this.password)
-			.then(user => {
-        // try {
-        //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
-        // } catch (error) {
-        //   // Error saving data
-        // }
-        this.props.navigation.navigate("Drawer");
+			Auth.signIn(this.username.toLowerCase(), this.password)
+			.then(async user => {
+				console.log('Logged in:', user);
+				try {
+					await AsyncStorage.setItem('@Orion:username', user.username);
+					this.props.navigation.navigate("Drawer");
+				} catch (error) {
+					// Error saving data
+				}
       })
 			.catch(err => {
 				Toast.show({
@@ -62,9 +66,13 @@ class LoginForm extends React.Component<Props, State> {
 		}
 	}
 
-  signUp = () => {
-    this.props.navigation.navigate("Signup");
-  }
+	signUp = () => {
+		this.props.navigation.navigate("Signup");
+	}
+
+	forgotPassword = () => {
+		this.props.navigation.navigate("ForgotPassword");
+	}
   
 	onChangeEmail = e => {
 		this.username = e.nativeEvent.text;
@@ -86,7 +94,7 @@ class LoginForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Login loginForm={form} onLogin={() => this.login()} onSignup={this.signUp} />;
+		return <Login loginForm={form} onLogin={() => this.login()} onSignup={this.signUp} onForgotPassword={this.forgotPassword} />;
 	}
 }
 const LoginContainer = reduxForm({

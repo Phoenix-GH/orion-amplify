@@ -1,6 +1,7 @@
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
+import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Signup from "../../stories/screens/Signup";
@@ -41,10 +42,10 @@ class SignupForm extends React.Component<Props, State> {
 		);
 	}
 
-	async onSignup() {
+	onSignup() {
     if(this.props.valid) {
       Auth.signUp({
-        username: this.username,
+        username: this.username.toLowerCase(),
         password: this.password,
         attributes: {
             email: this.email,          // optional
@@ -63,7 +64,6 @@ class SignupForm extends React.Component<Props, State> {
         this.props.navigation.navigate("Verification");
       })
       .catch(err => {
-        console.log(err);
         Toast.show({
           text: err.message,
           duration: 2000,
@@ -81,6 +81,10 @@ class SignupForm extends React.Component<Props, State> {
       });
     }
 	}
+  
+  onBack = () => {
+    this.props.navigation.dispatch(NavigationActions.back());
+  }
 
 	onChangeEmail = e => {
 		this.email = e.nativeEvent.text;
@@ -117,7 +121,7 @@ class SignupForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Signup signupForm={form} onSignup={() => this.onSignup()} />;
+		return <Signup signupForm={form} onSignup={() => this.onSignup()} onBack={this.onBack} />;
 	}
 }
 const SignupContainer = reduxForm({

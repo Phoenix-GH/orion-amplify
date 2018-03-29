@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
+import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Verification from "../../stories/screens/Verification";
@@ -18,6 +19,9 @@ class VerificationForm extends React.Component {
         super(props);
         this.onChangeCode = e => {
             this.passcode = e.nativeEvent.text;
+        };
+        this.onBack = () => {
+            this.props.navigation.dispatch(NavigationActions.back());
         };
     }
     renderInput({ input, meta: { touched, error } }) {
@@ -35,12 +39,18 @@ class VerificationForm extends React.Component {
                     Auth.confirmSignUp(username, this.passcode)
                         .then(data => {
                         Toast.show({
-                            text: data.message,
+                            text: "Orion Account successfully created. You may now log in.",
                             duration: 2000,
                             position: "top",
                             textStyle: { textAlign: "center" },
                         });
-                        this.props.navigation.navigate("Login");
+                        this.props.navigation.dispatch(NavigationActions.reset({
+                            index: 0,
+                            key: null,
+                            actions: [
+                                NavigationActions.navigate({ routeName: 'Login' })
+                            ]
+                        }));
                     })
                         .catch(err => {
                         console.log(err);
@@ -61,7 +71,7 @@ class VerificationForm extends React.Component {
     render() {
         const form = (React.createElement(Form, null,
             React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode })));
-        return React.createElement(Verification, { verificationForm: form, onVerification: () => this.onVerification() });
+        return React.createElement(Verification, { verificationForm: form, onVerification: () => this.onVerification(), onBack: this.onBack });
     }
 }
 const VerificationContainer = reduxForm({

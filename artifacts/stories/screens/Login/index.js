@@ -15,8 +15,10 @@ class Login extends React.Component {
                 React.createElement(View, { padder: true },
                     React.createElement(Button, { block: true, onPress: () => this.props.onLogin() },
                         React.createElement(Text, null, "Login")),
-                    React.createElement(Button, { block: true, onPress: () => this.props.onSignup(), style: { backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 } },
-                        React.createElement(Text, { style: { color: "blue" } }, "Signup")))),
+                    React.createElement(Button, { block: true, onPress: () => this.props.onSignup(), style: { marginTop: 20 } },
+                        React.createElement(Text, null, "Signup")),
+                    React.createElement(Button, { block: true, onPress: () => this.props.onForgotPassword(), style: { backgroundColor: "rgba(0, 0, 0, 0)", marginTop: 20 } },
+                        React.createElement(Text, { style: { color: "blue" } }, "Forgot Password")))),
             React.createElement(Footer, { style: { backgroundColor: "#F8F8F8" } },
                 React.createElement(View, { style: { alignItems: "center", opacity: 0.5, flexDirection: "row" } }))));
     }

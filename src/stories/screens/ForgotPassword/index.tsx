@@ -10,17 +10,17 @@ import {
 	Text,
 	View,
 	Icon,
-	Left,
-	Right, 
+	Left, 
+	Right,
 } from "native-base";
 //import styles from "./styles";
 export interface Props {
-	verificationForm: any;
-	onVerification: Function;
+	forgotPasswordForm: any;
+	onResetPassword: Function;
 	onBack: Function;
 }
 export interface State {}
-class Verification extends React.Component<Props, State> {
+class ForgotPassword extends React.Component<Props, State> {
 	render() {
 		return (
 			<Container>
@@ -35,28 +35,25 @@ class Verification extends React.Component<Props, State> {
             </Button>
           </Left>
           <Body>
-            <Title>SignUp</Title>
+            <Title>Forgot Password</Title>
           </Body>
           <Right />
         </Header>
 				<Header style={{ height: 200 }}>
 					<Body style={{ alignItems: "center" }}>
 						<Icon name="flash" style={{ fontSize: 104 }} />
-						<Title>Verification</Title>
+						<Title>Forgot Password?</Title>
 						<View padder>
 							<Text style={{ color: Platform.OS === "ios" ? "#000" : "#FFF" }} />
 						</View>
 					</Body>
 				</Header>
 				<Content>
-					{this.props.verificationForm}
+					{this.props.forgotPasswordForm}
 					<View padder>
-						<Button block onPress={() => this.props.onVerification()}>
-							<Text>Verify User</Text>
+						<Button block onPress={() => this.props.onResetPassword()}>
+							<Text>Reset Password</Text>
 						</Button>
-						{/* <Button block onPress={() => this.props.resendVerification()}>
-							<Text>Resend Verification</Text>
-						</Button> */}
 					</View>
 				</Content>
 			</Container>
@@ -64,4 +61,4 @@ class Verification extends React.Component<Props, State> {
 	}
 }
 
-export default Verification;
+export default ForgotPassword;
