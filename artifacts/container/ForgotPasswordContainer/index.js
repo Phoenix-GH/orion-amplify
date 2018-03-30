@@ -32,7 +32,7 @@ class ForgotPasswordForm extends React.Component {
     onResetPassword() {
         return __awaiter(this, void 0, void 0, function* () {
             const username = this.username.toLowerCase();
-            if (username !== null) {
+            if (this.props.valid) {
                 yield AsyncStorage.setItem('@Orion:username', this.username);
                 Auth.forgotPassword(username)
                     .then(data => {
@@ -47,6 +47,14 @@ class ForgotPasswordForm extends React.Component {
                         position: "top",
                         textStyle: { textAlign: "center" },
                     });
+                });
+            }
+            else {
+                Toast.show({
+                    text: "Username is missing",
+                    duration: 2000,
+                    position: "top",
+                    textStyle: { textAlign: "center" },
                 });
             }
         });
