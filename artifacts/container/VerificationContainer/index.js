@@ -70,7 +70,7 @@ class VerificationForm extends React.Component {
     }
     render() {
         const form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode })));
+            React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode, value: this.passcode })));
         return React.createElement(Verification, { verificationForm: form, onVerification: () => this.onVerification(), onBack: this.onBack });
     }
 }

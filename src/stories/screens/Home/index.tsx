@@ -11,7 +11,7 @@ import {
   Body,
   Right,
   List,
-  ListItem
+  ListItem,
 } from "native-base";
 
 import styles from "./styles";
@@ -35,21 +35,23 @@ class Home extends React.Component<Props, State> {
             </Button>
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title>Match Search</Title>
           </Body>
           <Right />
         </Header>
         <Content>
           <List>
-            {this.props.list && this.props.list.map((item, i) => (
+            {this.props.list && this.props.list.SearchList.map((item, i) => (
               <ListItem
+                style={styles.listItem}
                 key={i}
                 onPress={() =>
                   this.props.navigation.navigate("BlankPage", {
-                    name: { item }
+                    name: item.MatchID
                   })}
               >
-                <Text>{item}</Text>
+                <Text>{item.Name}</Text>
+                <Text style={styles.namespace}>{item.CourseOfFire && item.CourseOfFire.HierarchicalName.Namespace}</Text>
               </ListItem>
             ))}
           </List>

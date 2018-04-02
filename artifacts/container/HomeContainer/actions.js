@@ -24,13 +24,9 @@ export function fetchList() {
                 Latitude: 0,
             })
         })
-            .then(response => response.json(), 
-        // Do not use catch, because that will also catch
-        // any errors in the dispatch and resulting render,
-        // causing a loop of 'Unexpected batch number' errors.
-        // https://github.com/facebook/react/issues/6895
-            error => console.log('An error occurred.', error))
+            .then(response => response.json(), error => console.log('An error occurred.', error))
             .then(json => {
+            console.log('json', json);
             dispatch(fetchListSuccess(json));
             dispatch(listIsLoading(false));
         });

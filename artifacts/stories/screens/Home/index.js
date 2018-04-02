@@ -3,19 +3,21 @@ import { Container, Header, Title, Content, Text, Button, Icon, Left, Body, Righ
 import styles from "./styles";
 class Home extends React.Component {
     render() {
+        console.log('props list', this.props.list);
         return (React.createElement(Container, { style: styles.container },
             React.createElement(Header, null,
                 React.createElement(Left, null,
                     React.createElement(Button, { transparent: true },
                         React.createElement(Icon, { active: true, name: "menu", onPress: () => this.props.navigation.navigate("DrawerOpen") }))),
                 React.createElement(Body, null,
-                    React.createElement(Title, null, "Home")),
+                    React.createElement(Title, null, "Match Search")),
                 React.createElement(Right, null)),
             React.createElement(Content, null,
-                React.createElement(List, null, this.props.list && this.props.list.map((item, i) => (React.createElement(ListItem, { key: i, onPress: () => this.props.navigation.navigate("BlankPage", {
-                        name: { item }
+                React.createElement(List, null, this.props.list && this.props.list.SearchList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("BlankPage", {
+                        name: item.MatchID
                     }) },
-                    React.createElement(Text, null, item))))))));
+                    React.createElement(Text, null, item.Name),
+                    React.createElement(Text, { style: styles.namespace }, item.CourseOfFire && item.CourseOfFire.HierarchicalName.Namespace))))))));
     }
 }
 export default Home;

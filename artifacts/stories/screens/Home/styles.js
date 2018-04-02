@@ -15,6 +15,13 @@ const styles = StyleSheet.create({
     mt: {
         marginTop: 18,
     },
+    namespace: {
+        marginTop: 10,
+    },
+    listItem: {
+        display: 'flex',
+        flexDirection: 'column',
+    }
 });
 export default styles;
 //# sourceMappingURL=styles.js.map
