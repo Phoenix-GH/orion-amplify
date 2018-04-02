@@ -35,27 +35,15 @@ const App = StackNavigator({
     Login: { screen: Login },
     Signup: {
         screen: Signup,
-        navigationOptions: {
-            title: "Login",
-        },
     },
     ForgotPassword: {
         screen: ForgotPassword,
-        navigationOptions: {
-            title: "Login",
-        },
     },
     ResetPassword: {
         screen: ResetPassword,
-        navigationOptions: {
-            title: "Back",
-        },
     },
     Verification: {
         screen: Verification,
-        navigationOptions: {
-            title: "Back",
-        },
     },
     BlankPage: { screen: BlankPage },
     Drawer: { screen: Drawer },

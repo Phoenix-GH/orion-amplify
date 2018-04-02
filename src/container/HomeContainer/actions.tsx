@@ -1,3 +1,5 @@
+import { getURL } from '../../global/api';
+
 export function listIsLoading(bool: boolean) {
 	return {
 		type: "LIST_IS_LOADING",
@@ -10,9 +12,9 @@ export function fetchListSuccess(list: Object) {
 		list,
 	};
 }
-export function fetchList(url) {
+export function fetchList(json) {
 	return dispatch => {
-		dispatch(fetchListSuccess(url));
+		dispatch(fetchListSuccess(json));
 		dispatch(listIsLoading(false));
-	};
+	}
 }

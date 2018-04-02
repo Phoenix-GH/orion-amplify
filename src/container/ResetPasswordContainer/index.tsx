@@ -113,18 +113,20 @@ class ResetPasswordForm extends React.Component<Props, State> {
 	render() {
 		const form = (
 			<Form>
-        <Field name="Verification Code" component={this.renderInput} validate={[required]} onChange={this.onChangeCode} />
+        <Field name="Verification Code" component={this.renderInput} validate={[required]} onChange={this.onChangeCode} value={this.code} />
 				<Field
 					name="Password"
 					component={this.renderInput}
 					validate={[required]}
           onChange={this.onChangePassword}
+          value={this.password}
 				/>
         <Field
 					name="Confirm Password"
 					component={this.renderInput}
 					validate={[required]}
           onChange={this.onChangeConfirm}
+          value={this.confirm}
 				/>
 			</Form>
 		);

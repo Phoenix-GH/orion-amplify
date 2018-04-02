@@ -3,9 +3,10 @@ import Signup from "../index";
 // Note: test renderer must be required after react-native.
 import renderer from "react-test-renderer";
 const onSignup = jest.fn();
+const onBack = jest.fn();
 const signupForm = React.Component;
 it("renders correctly", () => {
-    const tree = renderer.create(React.createElement(Signup, { onSignup: onSignup, signupForm: signupForm })).toJSON();
+    const tree = renderer.create(React.createElement(Signup, { onSignup: onSignup, signupForm: signupForm, onBack: onBack })).toJSON();
     expect(tree).toMatchSnapshot();
 });
 //# sourceMappingURL=index.test.js.map

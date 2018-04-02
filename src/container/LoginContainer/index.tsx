@@ -85,12 +85,13 @@ class LoginForm extends React.Component<Props, State> {
 	render() {
 		const form = (
 			<Form>
-				<Field name="email" component={this.renderInput} validate={[required]} onChange={this.onChangeEmail} />
+				<Field name="email" component={this.renderInput} validate={[required]} onChange={this.onChangeEmail} value={this.username} />
 				<Field
 					name="password"
 					component={this.renderInput}
 					validate={[required]}
 					onChange={this.onChangePassword}
+					value={this.password}
 				/>
 			</Form>
 		);

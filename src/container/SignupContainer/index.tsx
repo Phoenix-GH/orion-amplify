@@ -22,7 +22,7 @@ class SignupForm extends React.Component<Props, State> {
 	username: string;
 	password: string;
   email: string;
-  phone_number: string;
+  phoneNumber: string;
 	constructor(props) {
 		super(props);
 	}
@@ -49,7 +49,7 @@ class SignupForm extends React.Component<Props, State> {
         password: this.password,
         attributes: {
             email: this.email,          // optional
-            phone_number: this.formatNumber(this.phone_number),   // optional - E.164 number convention
+            phone_number: this.formatNumber(this.phoneNumber),   // optional - E.164 number convention
             // other custom attributes
         },
         validationData: []  //optional
@@ -95,7 +95,7 @@ class SignupForm extends React.Component<Props, State> {
   }
   
   onChangePhone = e => {
-		this.phone_number = e.nativeEvent.text;
+		this.phoneNumber = e.nativeEvent.text;
   }
   
   onChangeUsername= e => {
@@ -110,14 +110,15 @@ class SignupForm extends React.Component<Props, State> {
 	render() {
 		const form = (
 			<Form>
-        <Field name="User name" component={this.renderInput} validate={[required]} onChange={this.onChangeUsername} />
-				<Field name="Email" component={this.renderInput} validate={[email, required]} onChange={this.onChangeEmail} />
-        <Field name="Phone number" component={this.renderInput} validate={[phoneNumber]} onChange={this.onChangePhone} />
+        <Field name="User name" component={this.renderInput} validate={[required]} onChange={this.onChangeUsername} value={this.username} />
+				<Field name="Email" component={this.renderInput} validate={[email, required]} onChange={this.onChangeEmail} value={this.email} />
+        <Field name="Phone number" component={this.renderInput} validate={[phoneNumber]} onChange={this.onChangePhone} value={this.phoneNumber} />
 				<Field
 					name="Password"
 					component={this.renderInput}
 					validate={[required]}
-					onChange={this.onChangePassword}
+          onChange={this.onChangePassword}
+          value={this.password}
 				/>
 			</Form>
 		);
