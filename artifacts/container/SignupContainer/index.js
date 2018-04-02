@@ -29,7 +29,7 @@ class SignupForm extends React.Component {
             this.password = e.nativeEvent.text;
         };
         this.onChangePhone = e => {
-            this.phone_number = e.nativeEvent.text;
+            this.phoneNumber = e.nativeEvent.text;
         };
         this.onChangeUsername = e => {
             this.username = e.nativeEvent.text;
@@ -47,7 +47,7 @@ class SignupForm extends React.Component {
                 password: this.password,
                 attributes: {
                     email: this.email,
-                    phone_number: this.formatNumber(this.phone_number),
+                    phone_number: this.formatNumber(this.phoneNumber),
                 },
                 validationData: [] //optional
             })
@@ -85,10 +85,10 @@ class SignupForm extends React.Component {
     }
     render() {
         const form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "User name", component: this.renderInput, validate: [required], onChange: this.onChangeUsername }),
-            React.createElement(Field, { name: "Email", component: this.renderInput, validate: [email, required], onChange: this.onChangeEmail }),
-            React.createElement(Field, { name: "Phone number", component: this.renderInput, validate: [phoneNumber], onChange: this.onChangePhone }),
-            React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword })));
+            React.createElement(Field, { name: "User name", component: this.renderInput, validate: [required], onChange: this.onChangeUsername, value: this.username }),
+            React.createElement(Field, { name: "Email", component: this.renderInput, validate: [email, required], onChange: this.onChangeEmail, value: this.email }),
+            React.createElement(Field, { name: "Phone number", component: this.renderInput, validate: [phoneNumber], onChange: this.onChangePhone, value: this.phoneNumber }),
+            React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword, value: this.password })));
         return React.createElement(Signup, { signupForm: form, onSignup: () => this.onSignup(), onBack: this.onBack });
     }
 }

@@ -10,9 +10,9 @@ export function fetchListSuccess(list) {
         list,
     };
 }
-export function fetchList(url) {
+export function fetchList(json) {
     return dispatch => {
-        dispatch(fetchListSuccess(url));
+        dispatch(fetchListSuccess(json));
         dispatch(listIsLoading(false));
     };
 }

@@ -90,9 +90,9 @@ class ResetPasswordForm extends React.Component {
     }
     render() {
         const form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode }),
-            React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword }),
-            React.createElement(Field, { name: "Confirm Password", component: this.renderInput, validate: [required], onChange: this.onChangeConfirm })));
+            React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode, value: this.code }),
+            React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword, value: this.password }),
+            React.createElement(Field, { name: "Confirm Password", component: this.renderInput, validate: [required], onChange: this.onChangeConfirm, value: this.confirm })));
         return React.createElement(ResetPassword, { resetPasswordForm: form, onResetPassword: () => this.onResetPassword(), onBack: this.onBack });
     }
 }

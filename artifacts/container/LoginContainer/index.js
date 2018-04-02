@@ -67,8 +67,8 @@ class LoginForm extends React.Component {
     }
     render() {
         const form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "email", component: this.renderInput, validate: [required], onChange: this.onChangeEmail }),
-            React.createElement(Field, { name: "password", component: this.renderInput, validate: [required], onChange: this.onChangePassword })));
+            React.createElement(Field, { name: "email", component: this.renderInput, validate: [required], onChange: this.onChangeEmail, value: this.username }),
+            React.createElement(Field, { name: "password", component: this.renderInput, validate: [required], onChange: this.onChangePassword, value: this.password })));
         return React.createElement(Login, { loginForm: form, onLogin: () => this.login(), onSignup: this.signUp, onForgotPassword: this.forgotPassword });
     }
 }
