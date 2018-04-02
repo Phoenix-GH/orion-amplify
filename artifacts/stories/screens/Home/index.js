@@ -12,7 +12,7 @@ class Home extends React.Component {
                     React.createElement(Title, null, "Home")),
                 React.createElement(Right, null)),
             React.createElement(Content, null,
-                React.createElement(List, null, this.props.list.map((item, i) => (React.createElement(ListItem, { key: i, onPress: () => this.props.navigation.navigate("BlankPage", {
+                React.createElement(List, null, this.props.list && this.props.list.map((item, i) => (React.createElement(ListItem, { key: i, onPress: () => this.props.navigation.navigate("BlankPage", {
                         name: { item }
                     }) },
                     React.createElement(Text, null, item))))))));

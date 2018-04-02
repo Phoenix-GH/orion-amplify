@@ -41,7 +41,7 @@ class Home extends React.Component<Props, State> {
         </Header>
         <Content>
           <List>
-            {this.props.list.map((item, i) => (
+            {this.props.list && this.props.list.map((item, i) => (
               <ListItem
                 key={i}
                 onPress={() =>

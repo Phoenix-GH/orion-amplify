@@ -11,43 +11,19 @@ export interface Props {
 export interface State {}
 class HomeContainer extends React.Component<Props, State> {
 	componentDidMount() {
-		fetch(getURL('548ymwfm2i'),
-		{
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				Longitude: 0,
-				Latitude: 0,
-			})
-		})
-		.then(
-			response => response.json(),
-			// Do not use catch, because that will also catch
-			// any errors in the dispatch and resulting render,
-			// causing a loop of 'Unexpected batch number' errors.
-			// https://github.com/facebook/react/issues/6895
-			error => console.log('An error occurred.', error)
-		)
-		.then(json =>
-			// We can dispatch many times!
-			// Here, we update the app state with the results of the API call.
-			{
-				this.props.fetchList(json);
-			}
-		)
+		//this.props.fetchList();
 	}
 
 	render() {
-		return <Home navigation={this.props.navigation} list={this.props.data} />;
+		return (
+			this.props.data && <Home navigation={this.props.navigation} list={this.props.data} />
+		);
 	}
 }
 
 function bindAction(dispatch) {
 	return {
-		fetchList: json => dispatch(fetchList(json)),
+		fetchList: () => dispatch(fetchList()),
 	};
 }
 
