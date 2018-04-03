@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import styles from "./styles";
 class MatchDetail extends React.Component {
     render() {
@@ -13,7 +14,31 @@ class MatchDetail extends React.Component {
                     React.createElement(Title, null, data ? data.Name : "Match Detail")),
                 React.createElement(Right, null)),
             React.createElement(Content, { padder: true },
-                React.createElement(Text, null, data && data.Name))));
+                React.createElement(Grid, null,
+                    React.createElement(Row, { style: styles.row },
+                        React.createElement(Col, { style: styles.column }, data && data.Authorization &&
+                            data.Authorization.indexOf('Read Squadding') > -1 &&
+                            React.createElement(Button, { rounded: true, light: true, style: styles.button },
+                                React.createElement(Text, null, "View Squadding"))),
+                        React.createElement(Col, { style: styles.column }, data && data.Authorization &&
+                            data.Authorization.indexOf('Read Results') > -1 &&
+                            React.createElement(Button, { rounded: true, style: styles.button },
+                                React.createElement(Text, null, "View Results")))),
+                    React.createElement(Row, { style: styles.row },
+                        React.createElement(Col, { style: styles.column }, data && data.Authorization &&
+                            data.Authorization.indexOf('Create Target Images') > -1 &&
+                            React.createElement(Button, { rounded: true, success: true, style: styles.button },
+                                React.createElement(Text, null, "Take Target Image"))),
+                        React.createElement(Col, null)),
+                    React.createElement(Row, { style: styles.row },
+                        React.createElement(Col, { style: styles.column }, data && data.Authorization &&
+                            data.Authorization.indexOf('Create Target Images') > -1 &&
+                            React.createElement(Button, { rounded: true, info: true, style: styles.button },
+                                React.createElement(Text, null, "Take Calibration Image"))),
+                        React.createElement(Col, { style: styles.column }, data && data.Authorization &&
+                            data.Authorization.indexOf('Read Incident Reports') > -1 &&
+                            React.createElement(Button, { rounded: true, danger: true, style: styles.button },
+                                React.createElement(Text, null, "View Incident Report"))))))));
     }
 }
 export default MatchDetail;
