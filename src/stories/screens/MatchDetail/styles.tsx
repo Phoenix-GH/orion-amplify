@@ -7,13 +7,19 @@ const styles: any = StyleSheet.create({
 	button: {
 		width: '100%',
 		height: '100%',
-		padding: 10,
-		margin: 'center',
+		alignItems: 'center',
+	},
+	text: {
+		textAlign: 'center',
+		width: '100%',
 	},
 	row: {
+		marginTop: 20,
 		height: 100,
 	},
 	column: {
+		paddingLeft: 10,
+		paddingRight: 10,
 		alignItems: 'center',
 	}
 });

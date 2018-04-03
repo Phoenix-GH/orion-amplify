@@ -18,27 +18,27 @@ class MatchDetail extends React.Component {
                     React.createElement(Row, { style: styles.row },
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Squadding') > -1 &&
-                            React.createElement(Button, { rounded: true, light: true, style: styles.button },
-                                React.createElement(Text, null, "View Squadding"))),
+                            React.createElement(Button, { rounded: true, light: true, style: styles.button, onPress: () => this.props.navigation.navigate('ViewSquadding') },
+                                React.createElement(Text, { style: styles.text }, "View Squadding"))),
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Results') > -1 &&
-                            React.createElement(Button, { rounded: true, style: styles.button },
-                                React.createElement(Text, null, "View Results")))),
+                            React.createElement(Button, { rounded: true, style: styles.button, onPress: () => this.props.navigation.navigate('ViewResults') },
+                                React.createElement(Text, { style: styles.text }, "View Results")))),
                     React.createElement(Row, { style: styles.row },
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Create Target Images') > -1 &&
-                            React.createElement(Button, { rounded: true, success: true, style: styles.button },
-                                React.createElement(Text, null, "Take Target Image"))),
+                            React.createElement(Button, { rounded: true, success: true, style: styles.button, onPress: () => this.props.navigation.navigate('TakeTargetImage') },
+                                React.createElement(Text, { style: styles.text }, "Take Target Image"))),
                         React.createElement(Col, null)),
                     React.createElement(Row, { style: styles.row },
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Create Target Images') > -1 &&
-                            React.createElement(Button, { rounded: true, info: true, style: styles.button },
-                                React.createElement(Text, null, "Take Calibration Image"))),
+                            React.createElement(Button, { rounded: true, info: true, style: styles.button, onPress: () => this.props.navigation.navigate('TakeCalibrationImage') },
+                                React.createElement(Text, { style: styles.text }, "Take Calibration Image"))),
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Incident Reports') > -1 &&
-                            React.createElement(Button, { rounded: true, danger: true, style: styles.button },
-                                React.createElement(Text, null, "View Incident Report"))))))));
+                            React.createElement(Button, { rounded: true, danger: true, style: styles.button, onPress: () => this.props.navigation.navigate('ViewIncidentReport') },
+                                React.createElement(Text, { style: styles.text }, "View Incident Report"))))))));
     }
 }
 export default MatchDetail;

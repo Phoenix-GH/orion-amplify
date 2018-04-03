@@ -31,8 +31,8 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Read Squadding') > -1 &&
-								<Button rounded light style={styles.button}>
-									<Text>View Squadding</Text>
+								<Button rounded light style={styles.button} onPress={() => this.props.navigation.navigate('ViewSquadding')}>
+									<Text style={styles.text}>View Squadding</Text>
 								</Button>
 							}
 							</Col>
@@ -40,8 +40,8 @@ class MatchDetail extends React.Component<Props, State> {
 								{
 									data && data.Authorization && 
 									data.Authorization.indexOf('Read Results') > -1 &&
-									<Button rounded style={styles.button}>
-										<Text>View Results</Text>
+									<Button rounded style={styles.button} onPress={() => this.props.navigation.navigate('ViewResults')}>
+										<Text style={styles.text}>View Results</Text>
 									</Button>
 								}
 							</Col>
@@ -51,21 +51,20 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded success style={styles.button}>
-									<Text>Take Target Image</Text>
+								<Button rounded success style={styles.button} onPress={() => this.props.navigation.navigate('TakeTargetImage')}>
+									<Text style={styles.text}>Take Target Image</Text>
 								</Button>
 							}
 							</Col>
 							<Col />
 						</Row>
-						
             <Row style={styles.row}>
 							<Col style={styles.column}>
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded info style={styles.button}>
-									<Text>Take Calibration Image</Text>
+								<Button rounded info style={styles.button} onPress={() => this.props.navigation.navigate('TakeCalibrationImage')}>
+									<Text style={styles.text}>Take Calibration Image</Text>
 								</Button>
 							}
 							</Col>
@@ -73,8 +72,8 @@ class MatchDetail extends React.Component<Props, State> {
 								{
 									data && data.Authorization && 
 									data.Authorization.indexOf('Read Incident Reports') > -1 &&
-									<Button rounded danger style={styles.button}>
-										<Text>View Incident Report</Text>
+									<Button rounded danger style={styles.button} onPress={() => this.props.navigation.navigate('ViewIncidentReport')}>
+										<Text style={styles.text}>View Incident Report</Text>
 									</Button>
 								}
 							</Col>
