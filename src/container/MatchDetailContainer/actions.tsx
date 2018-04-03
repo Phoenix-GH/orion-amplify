@@ -1,4 +1,4 @@
-import { getURL } from '../../global/api';
+import { API } from 'aws-amplify';
 
 export function matchIsLoading(bool: boolean) {
 	return {
@@ -12,31 +12,15 @@ export function fetchMatchSuccess(match: Object) {
 		match,
 	};
 }
+
 export function fetchMatch(matchID) {
 	return function(dispatch) {
-		console.log('matchid', matchID);
-		return fetch(getURL('vu83zwopu5'),
-		{
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				MatchID: matchID
-			})
-		})
-		.then(
-			response => response.json(),
-			error => console.log('An error occurred on match Details actions.', error)
-		)
-		.then(json =>
-			// We can dispatch many times!
-			// Here, we update the app state with the results of the API call.
-			{
-				dispatch(fetchMatchSuccess(json));
-				dispatch(matchIsLoading(false));
-			}
-		)
-	}
+		let apiName = "GetMatchDetail";
+		let path = '/';
+		let options = { body: { "MatchID": matchID }};
+		API.post(apiName, path, options).then(response => {
+			dispatch(fetchMatchSuccess(response));
+ 			dispatch(matchIsLoading(false));
+		});
+	};
 }

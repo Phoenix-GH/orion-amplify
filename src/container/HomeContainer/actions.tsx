@@ -1,4 +1,4 @@
-import { getURL } from '../../global/api';
+import { API } from 'aws-amplify';
 
 export function listIsLoading(bool: boolean) {
 	return {
@@ -14,29 +14,12 @@ export function fetchListSuccess(list: Object) {
 }
 export function fetchList() {
 	return function(dispatch) {
-		return fetch(getURL('548ymwfm2i'),
-		{
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				Longitude: 0,
-				Latitude: 0,
-			})
-		})
-		.then(
-			response => response.json(),
-			error => console.log('An error occurred on home actions', error)
-		)
-		.then(json =>
-			// We can dispatch many times!
-			// Here, we update the app state with the results of the API call.
-			{
-				dispatch(fetchListSuccess(json));
-				dispatch(listIsLoading(false));
-			}
-		)
+		let apiName = "MatchSearch";
+		let path = '/';
+		let options = { body: { "Longitude": 0, "Latitude": 0 }};
+		API.post(apiName, path, options).then(response => {
+			dispatch(fetchListSuccess(response));
+ 			dispatch(listIsLoading(false));
+		});
 	}
 }
