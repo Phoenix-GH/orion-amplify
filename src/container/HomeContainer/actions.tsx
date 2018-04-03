@@ -28,13 +28,12 @@ export function fetchList() {
 		})
 		.then(
 			response => response.json(),
-			error => console.log('An error occurred.', error)
+			error => console.log('An error occurred on home actions', error)
 		)
 		.then(json =>
 			// We can dispatch many times!
 			// Here, we update the app state with the results of the API call.
 			{
-				console.log('json', json);
 				dispatch(fetchListSuccess(json));
 				dispatch(listIsLoading(false));
 			}

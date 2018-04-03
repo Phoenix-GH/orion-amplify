@@ -1,7 +1,6 @@
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
-import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Signup from "../../stories/screens/Signup";

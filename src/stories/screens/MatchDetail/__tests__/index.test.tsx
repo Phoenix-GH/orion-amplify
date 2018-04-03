@@ -4,8 +4,9 @@ import MatchDetail from "../index";
 import renderer from "react-test-renderer";
 
 const navigation = { state: jest.fn() };
+const data = { state: jest.fn() };
 
 it("renders correctly", () => {
-	const tree = renderer.create(<MatchDetail navigation={navigation} />).toJSON();
+	const tree = renderer.create(<MatchDetail navigation={navigation} data={data} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });

@@ -13,7 +13,6 @@ export interface State {
 	data: any;
 }
 
-export interface State {}
 class HomeContainer extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);

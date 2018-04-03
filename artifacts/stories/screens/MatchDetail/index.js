@@ -4,6 +4,7 @@ import styles from "./styles";
 class MatchDetail extends React.Component {
     render() {
         const param = this.props.navigation.state.params;
+        const { data } = this.props;
         return (React.createElement(Container, { style: styles.container },
             React.createElement(Header, null,
                 React.createElement(Left, null,
@@ -13,7 +14,7 @@ class MatchDetail extends React.Component {
                     React.createElement(Title, null, param ? param.name.item : "Match Detail")),
                 React.createElement(Right, null)),
             React.createElement(Content, { padder: true },
-                React.createElement(Text, null, param !== undefined ? param.name.item : "Create Something Awesome . . ."))));
+                React.createElement(Text, null, data && data.Name))));
     }
 }
 export default MatchDetail;

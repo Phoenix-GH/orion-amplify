@@ -46,7 +46,7 @@ class ResetPasswordForm extends React.Component {
                 }
                 const username = yield AsyncStorage.getItem("@Orion:username");
                 Auth.forgotPasswordSubmit(username, this.code, this.password)
-                    .then((data) => __awaiter(this, void 0, void 0, function* () {
+                    .then(() => __awaiter(this, void 0, void 0, function* () {
                     Toast.show({
                         text: "Successfully changed password.",
                         duration: 2000,

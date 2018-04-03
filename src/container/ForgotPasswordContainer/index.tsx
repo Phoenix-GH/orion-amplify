@@ -2,7 +2,6 @@ import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { AsyncStorage } from 'react-native';
 import { Field, reduxForm } from "redux-form";
-import { NavigationActions } from 'react-navigation';
 import { Auth } from 'aws-amplify';
 import ForgotPassword from "../../stories/screens/ForgotPassword";
 

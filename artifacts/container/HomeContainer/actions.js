@@ -24,9 +24,8 @@ export function fetchList() {
                 Latitude: 0,
             })
         })
-            .then(response => response.json(), error => console.log('An error occurred.', error))
+            .then(response => response.json(), error => console.log('An error occurred on home actions', error))
             .then(json => {
-            console.log('json', json);
             dispatch(fetchListSuccess(json));
             dispatch(listIsLoading(false));
         });

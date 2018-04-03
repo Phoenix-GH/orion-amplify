@@ -12,8 +12,9 @@ class Home extends React.Component {
                     React.createElement(Title, null, "Match Search")),
                 React.createElement(Right, null)),
             React.createElement(Content, null,
-                React.createElement(List, null, this.props.list && this.props.list.SearchList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("BlankPage", {
-                        name: item.MatchID
+                React.createElement(List, null, this.props.list && this.props.list.SearchList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("MatchDetail", {
+                        name: item.Name,
+                        id: item.MatchID
                     }) },
                     React.createElement(Text, null, item.Name),
                     React.createElement(Text, { style: styles.namespace }, item.CourseOfFire && item.CourseOfFire.HierarchicalName.Namespace))))))));

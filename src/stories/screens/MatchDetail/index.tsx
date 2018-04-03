@@ -4,11 +4,13 @@ import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Bod
 import styles from "./styles";
 export interface Props {
 	navigation: any;
+	data: any;
 }
 export interface State {}
 class MatchDetail extends React.Component<Props, State> {
 	render() {
 		const param = this.props.navigation.state.params;
+		const { data } = this.props;
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -26,7 +28,7 @@ class MatchDetail extends React.Component<Props, State> {
 				</Header>
 
 				<Content padder>
-					<Text>{param !== undefined ? param.name.item : "Create Something Awesome . . ."}</Text>
+					<Text>{data && data.Name}</Text>
 				</Content>
 			</Container>
 		);

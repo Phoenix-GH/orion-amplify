@@ -7,7 +7,7 @@ export default function(state = initialState, action) {
 	if (action.type === "FETCH_MATCH_SUCCESS") {
 		return {
 			...state,
-			list: action.list,
+			match: action.match,
 		};
 	}
 	if (action.type === "MATCH_IS_LOADING") {

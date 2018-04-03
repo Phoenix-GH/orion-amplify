@@ -6,14 +6,15 @@ export function matchIsLoading(bool: boolean) {
 		isLoading: bool,
 	};
 }
-export function fetchMatchSuccess(list: Object) {
+export function fetchMatchSuccess(match: Object) {
 	return {
 		type: "FETCH_MATCH_SUCCESS",
-		list,
+		match,
 	};
 }
 export function fetchMatch(matchID) {
 	return function(dispatch) {
+		console.log('matchid', matchID);
 		return fetch(getURL('vu83zwopu5'),
 		{
 			method: 'POST',
@@ -27,13 +28,13 @@ export function fetchMatch(matchID) {
 		})
 		.then(
 			response => response.json(),
-			error => console.log('An error occurred.', error)
+			error => console.log('An error occurred on match Details actions.', error)
 		)
 		.then(json =>
 			// We can dispatch many times!
 			// Here, we update the app state with the results of the API call.
 			{
-				console.log('json', json);
+				console.log('match', json);
 				dispatch(fetchMatchSuccess(json));
 				dispatch(matchIsLoading(false));
 			}

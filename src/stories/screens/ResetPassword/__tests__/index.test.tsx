@@ -8,6 +8,6 @@ const navigation = { state: jest.fn() };
 const resetPasswordForm = React.Component;
 
 it("renders correctly", () => {
-	const tree = renderer.create(<ResetPassword onResetPassword={onResetPassword} onBack={onBack} resetPasswordForm={resetPasswordForm} navigation={navigation} />).toJSON();
+	const tree = renderer.create(<ResetPassword onResetPassword={onResetPassword} navigation={navigation} resetPasswordForm={resetPasswordForm} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });

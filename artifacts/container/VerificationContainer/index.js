@@ -34,7 +34,7 @@ class VerificationForm extends React.Component {
                     // We have data!!
                     console.log('username', username);
                     Auth.confirmSignUp(username, this.passcode)
-                        .then(data => {
+                        .then(() => {
                         Toast.show({
                             text: "Orion Account successfully created. You may now log in.",
                             duration: 2000,

@@ -54,7 +54,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
         this.code,
         this.password,
       )
-      .then(async data => {
+      .then(async () => {
         Toast.show({
           text: "Successfully changed password.",
           duration: 2000,
