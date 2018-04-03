@@ -2,21 +2,38 @@ import * as React from "react";
 import { connect } from "react-redux";
 import Home from "../../stories/screens/Home";
 import { fetchList } from "./actions";
-import { getURL } from '../../global/api';
+
 export interface Props {
 	navigation: any;
 	fetchList: Function;
 	data: any;
 }
-export interface State {}
+
+export interface State {
+	data: any;
+}
+
 class HomeContainer extends React.Component<Props, State> {
+	constructor(props) {
+		super(props);
+		this.state = {
+			data: null,
+		};
+	}
+
 	componentDidMount() {
-		//this.props.fetchList();
+		this.props.fetchList();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { data } = nextProps;
+		this.setState({ data })
 	}
 
 	render() {
+		const { data } = this.state;
 		return (
-			this.props.data && <Home navigation={this.props.navigation} list={this.props.data} />
+				<Home navigation={this.props.navigation} list={data} />
 		);
 	}
 }
@@ -27,8 +44,9 @@ function bindAction(dispatch) {
 	};
 }
 
-const mapStateToProps = state => ({
-	data: state.homeReducer.list,
-	isLoading: state.homeReducer.isLoading,
-});
+const mapStateToProps = state => {
+	return {
+		data: state.homeReducer.list,
+		isLoading: state.homeReducer.isLoading,
+}};
 export default connect(mapStateToProps, bindAction)(HomeContainer);

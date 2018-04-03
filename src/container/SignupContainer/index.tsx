@@ -1,7 +1,6 @@
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
-import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Signup from "../../stories/screens/Signup";
@@ -82,10 +81,6 @@ class SignupForm extends React.Component<Props, State> {
     }
 	}
   
-  onBack = () => {
-    this.props.navigation.dispatch(NavigationActions.back());
-  }
-
 	onChangeEmail = e => {
 		this.email = e.nativeEvent.text;
 	}
@@ -122,7 +117,7 @@ class SignupForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Signup signupForm={form} onSignup={() => this.onSignup()} onBack={this.onBack} />;
+		return <Signup signupForm={form} onSignup={() => this.onSignup()} navigation={this.props.navigation} />;
 	}
 }
 const SignupContainer = reduxForm({

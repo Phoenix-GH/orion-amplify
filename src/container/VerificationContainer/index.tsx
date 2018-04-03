@@ -42,7 +42,7 @@ class VerificationForm extends React.Component<Props, State> {
 				// We have data!!
 				console.log('username', username);
 				Auth.confirmSignUp(username, this.passcode)
-				.then(data => {
+				.then(() => {
 					Toast.show({
 						text: "Orion Account successfully created. You may now log in.",
 						duration: 2000,
@@ -76,17 +76,13 @@ class VerificationForm extends React.Component<Props, State> {
 		this.passcode = e.nativeEvent.text;
 	}
 
-	onBack = () => {
-		this.props.navigation.dispatch(NavigationActions.back());
-	}
-
 	render() {
 		const form = (
 			<Form>
-        <Field name="Verification Code" component={this.renderInput} validate={[required]} onChange={this.onChangeCode} />
+        <Field name="Verification Code" component={this.renderInput} validate={[required]} onChange={this.onChangeCode} value={this.passcode} />
 			</Form>
 		);
-		return <Verification verificationForm={form} onVerification={() => this.onVerification()} onBack={this.onBack} />;
+		return <Verification verificationForm={form} onVerification={() => this.onVerification()} navigation={this.props.navigation} />;
 	}
 }
 const VerificationContainer = reduxForm({

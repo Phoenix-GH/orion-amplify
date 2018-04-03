@@ -20,9 +20,6 @@ class VerificationForm extends React.Component {
         this.onChangeCode = e => {
             this.passcode = e.nativeEvent.text;
         };
-        this.onBack = () => {
-            this.props.navigation.dispatch(NavigationActions.back());
-        };
     }
     renderInput({ input, meta: { touched, error } }) {
         return (React.createElement(Item, { error: error && touched },
@@ -37,7 +34,7 @@ class VerificationForm extends React.Component {
                     // We have data!!
                     console.log('username', username);
                     Auth.confirmSignUp(username, this.passcode)
-                        .then(data => {
+                        .then(() => {
                         Toast.show({
                             text: "Orion Account successfully created. You may now log in.",
                             duration: 2000,
@@ -70,8 +67,8 @@ class VerificationForm extends React.Component {
     }
     render() {
         const form = (React.createElement(Form, null,
-            React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode })));
-        return React.createElement(Verification, { verificationForm: form, onVerification: () => this.onVerification(), onBack: this.onBack });
+            React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode, value: this.passcode })));
+        return React.createElement(Verification, { verificationForm: form, onVerification: () => this.onVerification(), navigation: this.props.navigation });
     }
 }
 const VerificationContainer = reduxForm({

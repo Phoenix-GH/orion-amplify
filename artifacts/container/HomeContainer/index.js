@@ -3,11 +3,22 @@ import { connect } from "react-redux";
 import Home from "../../stories/screens/Home";
 import { fetchList } from "./actions";
 class HomeContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: null,
+        };
+    }
     componentDidMount() {
-        console.log(this.props.data);
+        this.props.fetchList();
+    }
+    componentWillReceiveProps(nextProps) {
+        const { data } = nextProps;
+        this.setState({ data });
     }
     render() {
-        return (this.props.data && React.createElement(Home, { navigation: this.props.navigation, list: this.props.data }));
+        const { data } = this.state;
+        return (React.createElement(Home, { navigation: this.props.navigation, list: data }));
     }
 }
 function bindAction(dispatch) {
@@ -15,9 +26,11 @@ function bindAction(dispatch) {
         fetchList: () => dispatch(fetchList()),
     };
 }
-const mapStateToProps = state => ({
-    data: state.homeReducer.list,
-    isLoading: state.homeReducer.isLoading,
-});
+const mapStateToProps = state => {
+    return {
+        data: state.homeReducer.list,
+        isLoading: state.homeReducer.isLoading,
+    };
+};
 export default connect(mapStateToProps, bindAction)(HomeContainer);
 //# sourceMappingURL=index.js.map

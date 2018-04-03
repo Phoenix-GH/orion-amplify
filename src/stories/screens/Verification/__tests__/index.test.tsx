@@ -4,10 +4,10 @@ import Verification from "../index";
 import renderer from "react-test-renderer";
 
 const onVerification = jest.fn();
-const onBack = jest.fn();
 const verificationForm = React.Component;
+const navigation = { state: jest.fn() };
 
 it("renders correctly", () => {
-	const tree = renderer.create(<Verification onVerification={onVerification} verificationForm={verificationForm} onBack={onBack} />).toJSON();
+	const tree = renderer.create(<Verification onVerification={onVerification} verificationForm={verificationForm} navigation={navigation} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });
