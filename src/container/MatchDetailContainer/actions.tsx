@@ -34,7 +34,6 @@ export function fetchMatch(matchID) {
 			// We can dispatch many times!
 			// Here, we update the app state with the results of the API call.
 			{
-				console.log('match', json);
 				dispatch(fetchMatchSuccess(json));
 				dispatch(matchIsLoading(false));
 			}

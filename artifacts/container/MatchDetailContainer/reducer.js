@@ -1,5 +1,5 @@
 const initialState = {
-    list: [],
+    match: {},
     isLoading: true,
 };
 export default function (state = initialState, action) {

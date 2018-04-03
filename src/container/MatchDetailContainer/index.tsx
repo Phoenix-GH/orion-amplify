@@ -23,7 +23,6 @@ export class MatchDetailContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
-		console.log('param', param);
 		if(param)
 			this.props.fetchMatch(param.id);
 	}
@@ -35,7 +34,6 @@ export class MatchDetailContainer extends React.Component<Props, State> {
 
 	render() {
 		const { data } = this.state;
-		console.log('data', data);
 		return <MatchDetail navigation={this.props.navigation} data={data} />;
 	}
 }
@@ -48,7 +46,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
 	return {
-		data: state.matchDetailReducer.data,
+		data: state.matchDetailReducer.match,
 		isLoading: state.matchDetailReducer.isLoading,
 }};
 export default connect(mapStateToProps, bindAction)(MatchDetailContainer);

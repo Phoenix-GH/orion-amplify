@@ -9,7 +9,6 @@ export interface Props {
 export interface State {}
 class MatchDetail extends React.Component<Props, State> {
 	render() {
-		const param = this.props.navigation.state.params;
 		const { data } = this.props;
 		return (
 			<Container style={styles.container}>
@@ -21,7 +20,7 @@ class MatchDetail extends React.Component<Props, State> {
 					</Left>
 
 					<Body style={{ flex: 3 }}>
-						<Title>{param ? param.name.item : "Match Detail"}</Title>
+						<Title>{data ? data.Name : "Match Detail"}</Title>
 					</Body>
 
 					<Right />

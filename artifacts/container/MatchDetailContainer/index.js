@@ -11,7 +11,6 @@ export class MatchDetailContainer extends React.Component {
     }
     componentDidMount() {
         const param = this.props.navigation.state.params;
-        console.log('param', param);
         if (param)
             this.props.fetchMatch(param.id);
     }
@@ -21,7 +20,6 @@ export class MatchDetailContainer extends React.Component {
     }
     render() {
         const { data } = this.state;
-        console.log('data', data);
         return React.createElement(MatchDetail, { navigation: this.props.navigation, data: data });
     }
 }
@@ -32,7 +30,7 @@ function bindAction(dispatch) {
 }
 const mapStateToProps = state => {
     return {
-        data: state.matchDetailReducer.data,
+        data: state.matchDetailReducer.match,
         isLoading: state.matchDetailReducer.isLoading,
     };
 };

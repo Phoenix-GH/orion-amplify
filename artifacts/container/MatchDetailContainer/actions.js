@@ -26,7 +26,6 @@ export function fetchMatch(matchID) {
         })
             .then(response => response.json(), error => console.log('An error occurred on match Details actions.', error))
             .then(json => {
-            console.log('match', json);
             dispatch(fetchMatchSuccess(json));
             dispatch(matchIsLoading(false));
         });

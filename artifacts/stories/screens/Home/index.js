@@ -13,7 +13,6 @@ class Home extends React.Component {
                 React.createElement(Right, null)),
             React.createElement(Content, null,
                 React.createElement(List, null, this.props.list && this.props.list.SearchList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("MatchDetail", {
-                        name: item.Name,
                         id: item.MatchID
                     }) },
                     React.createElement(Text, null, item.Name),

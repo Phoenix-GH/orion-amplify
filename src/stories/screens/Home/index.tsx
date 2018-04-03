@@ -47,7 +47,6 @@ class Home extends React.Component<Props, State> {
                 key={i}
                 onPress={() =>
                   this.props.navigation.navigate("MatchDetail", {
-                    name: item.Name,
                     id: item.MatchID
                   })}
               >
