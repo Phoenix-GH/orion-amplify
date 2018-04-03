@@ -46,8 +46,9 @@ class Home extends React.Component<Props, State> {
                 style={styles.listItem}
                 key={i}
                 onPress={() =>
-                  this.props.navigation.navigate("BlankPage", {
-                    name: item.MatchID
+                  this.props.navigation.navigate("MatchDetail", {
+                    name: item.Name,
+                    id: item.MatchID
                   })}
               >
                 <Text>{item.Name}</Text>
