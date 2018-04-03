@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from "react";
 import { AsyncStorage } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
-import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from "redux-form";
 import { Auth } from 'aws-amplify';
 import Signup from "../../stories/screens/Signup";
@@ -19,9 +18,6 @@ const phoneNumber = value => (value && !/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. 
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
-        this.onBack = () => {
-            this.props.navigation.dispatch(NavigationActions.back());
-        };
         this.onChangeEmail = e => {
             this.email = e.nativeEvent.text;
         };
@@ -89,7 +85,7 @@ class SignupForm extends React.Component {
             React.createElement(Field, { name: "Email", component: this.renderInput, validate: [email, required], onChange: this.onChangeEmail, value: this.email }),
             React.createElement(Field, { name: "Phone number", component: this.renderInput, validate: [phoneNumber], onChange: this.onChangePhone, value: this.phoneNumber }),
             React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword, value: this.password })));
-        return React.createElement(Signup, { signupForm: form, onSignup: () => this.onSignup(), onBack: this.onBack });
+        return React.createElement(Signup, { signupForm: form, onSignup: () => this.onSignup(), navigation: this.props.navigation });
     }
 }
 const SignupContainer = reduxForm({

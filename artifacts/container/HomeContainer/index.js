@@ -18,7 +18,6 @@ class HomeContainer extends React.Component {
     }
     render() {
         const { data } = this.state;
-        console.log('data', data);
         return (React.createElement(Home, { navigation: this.props.navigation, list: data }));
     }
 }
@@ -28,7 +27,6 @@ function bindAction(dispatch) {
     };
 }
 const mapStateToProps = state => {
-    console.log('state', state);
     return {
         data: state.homeReducer.list,
         isLoading: state.homeReducer.isLoading,

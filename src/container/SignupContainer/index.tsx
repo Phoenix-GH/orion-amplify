@@ -82,10 +82,6 @@ class SignupForm extends React.Component<Props, State> {
     }
 	}
   
-  onBack = () => {
-    this.props.navigation.dispatch(NavigationActions.back());
-  }
-
 	onChangeEmail = e => {
 		this.email = e.nativeEvent.text;
 	}
@@ -122,7 +118,7 @@ class SignupForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Signup signupForm={form} onSignup={() => this.onSignup()} onBack={this.onBack} />;
+		return <Signup signupForm={form} onSignup={() => this.onSignup()} navigation={this.props.navigation} />;
 	}
 }
 const SignupContainer = reduxForm({

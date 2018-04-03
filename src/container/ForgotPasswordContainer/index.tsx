@@ -62,10 +62,6 @@ class ForgotPasswordForm extends React.Component<Props, State> {
 			});
 		}
 	}
-
-	onBack = () => {
-		this.props.navigation.dispatch(NavigationActions.back());
-	}
 	
 	onChangeUserName = e => {
 		this.username = e.nativeEvent.text;
@@ -77,7 +73,7 @@ class ForgotPasswordForm extends React.Component<Props, State> {
         <Field name="Username" component={this.renderInput} validate={[required]} onChange={this.onChangeUserName} />
 			</Form>
 		);
-		return <ForgotPassword forgotPasswordForm={form} onResetPassword={() => this.onResetPassword()} onBack={this.onBack} />;
+		return <ForgotPassword forgotPasswordForm={form} onResetPassword={() => this.onResetPassword()} navigation={this.props.navigation} />;
 	}
 }
 const ForgotPasswordContainer = reduxForm({

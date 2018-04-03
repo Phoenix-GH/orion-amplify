@@ -101,10 +101,6 @@ class ResetPasswordForm extends React.Component<Props, State> {
 		this.code = e.nativeEvent.text;
 	}
   
-	onBack = () => {
-		this.props.navigation.dispatch(NavigationActions.back());
-	}
-
   formatNumber(number) {
     const formattedNumber = number.replace(/[^\w\s]/gi, '');
     return '+' + formattedNumber;
@@ -130,7 +126,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <ResetPassword resetPasswordForm={form} onResetPassword={() => this.onResetPassword()} onBack={this.onBack} />;
+		return <ResetPassword resetPasswordForm={form} onResetPassword={() => this.onResetPassword()} navigation={this.props.navigation} />;
 	}
 }
 const ResetPasswordContainer = reduxForm({

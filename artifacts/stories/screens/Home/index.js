@@ -1,9 +1,8 @@
 import * as React from "react";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Body, Right, List, ListItem } from "native-base";
+import { Container, Header, Title, Content, Text, Button, Icon, Left, Body, Right, List, ListItem, } from "native-base";
 import styles from "./styles";
 class Home extends React.Component {
     render() {
-        console.log('props list', this.props.list);
         return (React.createElement(Container, { style: styles.container },
             React.createElement(Header, null,
                 React.createElement(Left, null,

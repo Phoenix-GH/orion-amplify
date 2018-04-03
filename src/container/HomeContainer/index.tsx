@@ -28,7 +28,7 @@ class HomeContainer extends React.Component<Props, State> {
 
 	componentWillReceiveProps(nextProps) {
 		const { data } = nextProps;
-			this.setState({ data })
+		this.setState({ data })
 	}
 
 	render() {
@@ -46,7 +46,6 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-	console.log('state', state);
 	return {
 		data: state.homeReducer.list,
 		isLoading: state.homeReducer.isLoading,

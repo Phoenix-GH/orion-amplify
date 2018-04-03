@@ -16,7 +16,7 @@ import { Container,
 export interface Props {
 	resetPasswordForm: any;
 	onResetPassword: Function;
-	onBack: Function;
+	navigation: any;
 }
 export interface State {}
 class ResetPassword extends React.Component<Props, State> {
@@ -24,15 +24,11 @@ class ResetPassword extends React.Component<Props, State> {
 		return (
 			<Container>
 				<Header>
-          <Left>
-            <Button transparent>
-              <Icon
-                active
-                name="arrow-back"
-                onPress={() => this.props.onBack()}
-              />
-            </Button>
-          </Left>
+					<Left>
+						<Button transparent onPress={() => this.props.navigation.goBack()}>
+							<Icon name="ios-arrow-back" />
+						</Button>
+					</Left>
           <Body>
             <Title>Forgot Password</Title>
           </Body>

@@ -4,10 +4,10 @@ import ForgotPassword from "../index";
 import renderer from "react-test-renderer";
 
 const onResetPassword = jest.fn();
-const onBack = jest.fn();
+const navigation = { state: jest.fn() };
 const forgotPasswordForm = React.Component;
 
 it("renders correctly", () => {
-	const tree = renderer.create(<ForgotPassword onResetPassword={onResetPassword} onBack={onBack} forgotPasswordForm={forgotPasswordForm} />).toJSON();
+	const tree = renderer.create(<ForgotPassword onResetPassword={onResetPassword} onBack={onBack} forgotPasswordForm={forgotPasswordForm} navigation={navigation} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });

@@ -26,9 +26,6 @@ class ResetPasswordForm extends React.Component {
         this.onChangeCode = e => {
             this.code = e.nativeEvent.text;
         };
-        this.onBack = () => {
-            this.props.navigation.dispatch(NavigationActions.back());
-        };
     }
     renderInput({ input, meta: { touched, error } }) {
         return (React.createElement(Item, { error: error && touched },
@@ -93,7 +90,7 @@ class ResetPasswordForm extends React.Component {
             React.createElement(Field, { name: "Verification Code", component: this.renderInput, validate: [required], onChange: this.onChangeCode, value: this.code }),
             React.createElement(Field, { name: "Password", component: this.renderInput, validate: [required], onChange: this.onChangePassword, value: this.password }),
             React.createElement(Field, { name: "Confirm Password", component: this.renderInput, validate: [required], onChange: this.onChangeConfirm, value: this.confirm })));
-        return React.createElement(ResetPassword, { resetPasswordForm: form, onResetPassword: () => this.onResetPassword(), onBack: this.onBack });
+        return React.createElement(ResetPassword, { resetPasswordForm: form, onResetPassword: () => this.onResetPassword(), navigation: this.props.navigation });
     }
 }
 const ResetPasswordContainer = reduxForm({
