@@ -39,7 +39,7 @@ export class SquadingListContainer extends React.Component<Props, State> {
 
 function bindAction(dispatch) {
 	return {
-		fetchMatch: matchID => dispatch(fetchSquaddingList(matchID)),
+		fetchMatch: matchID => dispatch(fetchSquaddingList(matchID, "Individual")),
 	};
 }
 

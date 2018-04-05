@@ -6,20 +6,20 @@ export function squaddingListIsLoading(bool: boolean) {
 		isLoading: bool,
 	};
 }
-export function fetchSquaddingSuccess(match: Object) {
+export function fetchSquaddingSuccess(list: Object) {
 	return {
 		type: "FETCH_SQUADDINGLIST_SUCCESS",
-		match,
+		list,
 	};
 }
 
-export function fetchSquaddingList(matchID) {
+export function fetchSquaddingList(matchID, eventName) {
 	return function(dispatch) {
-		let apiName = "GetMatchDetail";
+		let apiName = "GetSquaddingList";
 		let path = '/';
-		let options = { body: { "MatchID": matchID }};
+		let options = { body: { "MatchID": matchID, "EventName": eventName }};
 		API.post(apiName, path, options).then(response => {
-			console.log('matchDetail', response);
+			console.log('GetSquaddingList', response);
 			dispatch(fetchSquaddingSuccess(response));
  			dispatch(squaddingListIsLoading(false));
 		});

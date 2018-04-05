@@ -34,6 +34,10 @@ Amplify.configure({
                 name: "GetMatchDetail",
                 endpoint: "https://vu83zwopu5.execute-api.us-east-1.amazonaws.com/alpha",
             },
+            {
+                name: "GetSquaddingList",
+                endpoint: "https://hrr4vu8a69.execute-api.us-east-1.amazonaws.com/alpha",
+            },
         ]
     }
 });
