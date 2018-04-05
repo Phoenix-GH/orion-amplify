@@ -21,7 +21,6 @@ export class SquadingListContainer extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
-		console.log('props', this.props);
 		const param = this.props.navigation.state.params;
 		if(param) {
 			this.props.fetchSquaddingList(param.matchID, param.eventName);
@@ -35,6 +34,7 @@ export class SquadingListContainer extends React.Component<Props, State> {
 
 	render() {
 		const { data } = this.state;
+		console.log('data', data);
 		return <SquaddingList navigation={this.props.navigation} list={data} />;
 	}
 }
@@ -50,4 +50,4 @@ const mapStateToProps = state => {
 		data: state.squaddingListReducer.list,
 		isLoading: state.squaddingListReducer.isLoading,
 }};
-export default connect(mapStateToProps, bindAction)(fetchSquaddingList);
+export default connect(mapStateToProps, bindAction)(SquadingListContainer);

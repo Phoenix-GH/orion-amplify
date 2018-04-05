@@ -12,15 +12,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         width: '100%',
     },
-    row: {
-        marginTop: 20,
-        height: 100,
+    title: {
+        fontSize: 20,
+        width: '100%',
     },
-    column: {
-        paddingLeft: 10,
-        paddingRight: 10,
-        alignItems: 'center',
-    }
 });
 export default styles;
 //# sourceMappingURL=styles.js.map

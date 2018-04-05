@@ -19,7 +19,6 @@ export function fetchSquaddingList(matchID, eventName) {
 		let path = '/';
 		let options = { body: { "MatchID": matchID, "EventName": eventName }};
 		API.post(apiName, path, options).then(response => {
-			console.log('GetSquaddingList', response);
 			dispatch(fetchSquaddingSuccess(response));
  			dispatch(squaddingListIsLoading(false));
 		});

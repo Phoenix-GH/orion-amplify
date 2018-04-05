@@ -1,7 +1,20 @@
 import * as React from "react";
 import {
 	Container,
-	Header, Title, Content, Text, Button, Icon, Left, Right, Body, List, ListItem } from "native-base";
+	Header,
+	Title,
+	Content,
+	Text,
+	Button,
+	Icon,
+	Left,
+	Right,
+	Body,
+	List,
+	ListItem,
+	Card,
+	CardItem
+} from "native-base";
 
 import styles from "./styles";
 export interface Props {
@@ -11,7 +24,6 @@ export interface Props {
 export interface State {}
 class SquaddingList extends React.Component<Props, State> {
 	render() {
-		console.log('props', this.props);
 		const { list } = this.props;
 		return (
 			<Container style={styles.container}>
@@ -27,23 +39,30 @@ class SquaddingList extends React.Component<Props, State> {
 					<Right />
 				</Header>
 				<Content padder>
-					<Text>{list.EventName}</Text>
+					<Text>Squadding For</Text>
+					<Text style={styles.title}>{list && list.EventName}</Text>
 					<List>
             {list && list.SquaddingList.map((item, i) => (
               <ListItem
                 style={styles.listItem}
                 key={i}
                 onPress={() =>
-                  this.props.navigation.navigate("MatchDetail", {
-										matchID: item.MatchID,
-										eventName: "Individual",
+                  this.props.navigation.navigate("IncidentReport", {
+										matchID: list.MatchID,
                   })}
               >
-								<Text>Squadding For</Text>
-								<Text>{item.Participant.DisplayName}</Text>	
-								<Text>{item.Range}</Text>	
-								<Text>{item.Relay}</Text>
-								<Text>{item.FiringPoint}</Text>	
+								<Card>
+									<CardItem header>
+										<Text>{item.Participant.DisplayName}</Text>	
+									</CardItem>
+									<CardItem>
+										<Body>
+											<Text>{item.Range}</Text>	
+											<Text>{item.Relay}</Text>
+											<Text>{item.FiringPoint}</Text>
+										</Body>
+									</CardItem>
+								</Card>
               </ListItem>
             ))}
           </List>
