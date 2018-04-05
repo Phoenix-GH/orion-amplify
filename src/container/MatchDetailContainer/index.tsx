@@ -4,9 +4,9 @@ import MatchDetail from "../../stories/screens/MatchDetail";
 import { fetchMatch } from "./actions";
 
 export interface Props {
-	navigation: any;
-	fetchMatch: Function;
-	data: any;
+	navigation: any,
+	fetchMatch: Function,
+	data: any,
 }
 
 export interface State {
