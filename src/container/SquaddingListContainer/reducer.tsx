@@ -1,16 +1,16 @@
 const initialState = {
-	match: {},
+	list: {},
 	isLoading: true,
 };
 
 export default function(state = initialState, action) {
-	if (action.type === "FETCH_MATCH_SUCCESS") {
+	if (action.type === "FETCH_SQUADDINGLIST_SUCCESS") {
 		return {
 			...state,
-			match: action.match,
+			list: action.list,
 		};
 	}
-	if (action.type === "MATCH_IS_LOADING") {
+	if (action.type === "SQUADDINGLIST_IS_LOADING") {
 		return {
 			...state,
 			isLoading: action.isLoading,

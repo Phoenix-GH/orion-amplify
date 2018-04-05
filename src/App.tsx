@@ -15,6 +15,8 @@ import Home from "./container/HomeContainer";
 import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
 import MatchDetail from "./container/MatchDetailContainer";
+import SquaddingList from "./container/SquaddingListContainer";
+
 Amplify.configure({
   Auth: {
   // REQUIRED - Amazon Cognito Identity Pool ID
@@ -35,6 +37,10 @@ Amplify.configure({
 		{
 			name: "GetMatchDetail",
 			endpoint: "https://vu83zwopu5.execute-api.us-east-1.amazonaws.com/alpha",
+    },
+    {
+			name: "GetSquaddingList",
+			endpoint: "https://hrr4vu8a69.execute-api.us-east-1.amazonaws.com/alpha",
 		},
 	]
 }
@@ -60,7 +66,8 @@ const App = StackNavigator(
 		Verification: { screen: Verification },
 		BlankPage: { screen: BlankPage },
     Drawer: { screen: Drawer },
-    MatchDetail: { screen: MatchDetail }
+    MatchDetail: { screen: MatchDetail },
+    SquaddingList: { screen: SquaddingList },
 	},
 	{
 		initialRouteName: "Login",

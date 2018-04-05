@@ -23,8 +23,9 @@ export class MatchDetailContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
-		if(param)
+		if(param) {
 			this.props.fetchMatch(param.id);
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
