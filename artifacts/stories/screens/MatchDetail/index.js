@@ -37,7 +37,7 @@ class MatchDetail extends React.Component {
                                 React.createElement(Text, { style: styles.text }, "Take Calibration Image"))),
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Incident Reports') > -1 &&
-                            React.createElement(Button, { rounded: true, danger: true, style: styles.button, onPress: () => navigation.navigate('ViewIncidentReport') },
+                            React.createElement(Button, { rounded: true, danger: true, style: styles.button, onPress: () => navigation.navigate('IncidentReport') },
                                 React.createElement(Text, { style: styles.text }, "View Incident Report"))))))));
     }
 }

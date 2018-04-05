@@ -14,6 +14,7 @@ import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
 import MatchDetail from "./container/MatchDetailContainer";
 import SquaddingList from "./container/SquaddingListContainer";
+import IncidentReport from "./container/IncidentReportContainer";
 Amplify.configure({
     Auth: {
         // REQUIRED - Amazon Cognito Identity Pool ID
@@ -59,6 +60,7 @@ const App = StackNavigator({
     Drawer: { screen: Drawer },
     MatchDetail: { screen: MatchDetail },
     SquaddingList: { screen: SquaddingList },
+    IncidentReport: { screen: IncidentReport }
 }, {
     initialRouteName: "Login",
     headerMode: "none",

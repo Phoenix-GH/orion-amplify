@@ -72,7 +72,7 @@ class MatchDetail extends React.Component<Props, State> {
 								{
 									data && data.Authorization && 
 									data.Authorization.indexOf('Read Incident Reports') > -1 &&
-									<Button rounded danger style={styles.button} onPress={() => navigation.navigate('ViewIncidentReport')}>
+									<Button rounded danger style={styles.button} onPress={() => navigation.navigate('IncidentReport')}>
 										<Text style={styles.text}>View Incident Report</Text>
 									</Button>
 								}

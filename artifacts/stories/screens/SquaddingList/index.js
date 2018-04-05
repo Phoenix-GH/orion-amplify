@@ -13,11 +13,10 @@ class SquaddingList extends React.Component {
                     React.createElement(Title, null, "Squadding List")),
                 React.createElement(Right, null)),
             React.createElement(Content, { padder: true },
-                React.createElement(Text, { style: styles.title }, "Squadding For"),
-                React.createElement(Text, { style: { textAlign: 'center' } }, list && list.EventName),
-                React.createElement(List, null, list && list.SquaddingList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("MatchDetail", {
-                        matchID: item.MatchID,
-                        eventName: "Individual",
+                React.createElement(Text, null, "Squadding For"),
+                React.createElement(Text, { style: styles.title }, list && list.EventName),
+                React.createElement(List, null, list && list.SquaddingList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("IncidentReport", {
+                        matchID: list.MatchID,
                     }) },
                     React.createElement(Card, null,
                         React.createElement(CardItem, { header: true },
