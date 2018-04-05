@@ -10,9 +10,10 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
+        width: '100%',
     },
     row: {
-        paddingTop: 10,
+        marginTop: 20,
         height: 100,
     },
     column: {

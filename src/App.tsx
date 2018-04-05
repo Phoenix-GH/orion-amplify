@@ -25,7 +25,19 @@ Amplify.configure({
       userPoolId: 'us-east-1_EOdAipVdq',
   // OPTIONAL - Amazon Cognito Web Client ID
       userPoolWebClientId: '6bim5j26a7cjsl5omabar19vi6', 
-  }
+  },
+  API: {
+	endpoints: [
+		{
+			name: "MatchSearch",
+			endpoint: "https://548ymwfm2i.execute-api.us-east-1.amazonaws.com/alpha"
+		},
+		{
+			name: "GetMatchDetail",
+			endpoint: "https://vu83zwopu5.execute-api.us-east-1.amazonaws.com/alpha",
+		},
+	]
+}
 });
 
 const Drawer = DrawerNavigator(

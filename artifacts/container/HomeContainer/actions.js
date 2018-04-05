@@ -1,4 +1,4 @@
-import { getURL } from '../../global/api';
+import { API } from 'aws-amplify';
 export function listIsLoading(bool) {
     return {
         type: "LIST_IS_LOADING",
@@ -13,20 +13,11 @@ export function fetchListSuccess(list) {
 }
 export function fetchList() {
     return function (dispatch) {
-        return fetch(getURL('548ymwfm2i'), {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                Longitude: 0,
-                Latitude: 0,
-            })
-        })
-            .then(response => response.json(), error => console.log('An error occurred on home actions', error))
-            .then(json => {
-            dispatch(fetchListSuccess(json));
+        let apiName = "MatchSearch";
+        let path = '/';
+        let options = { body: { "Longitude": 0, "Latitude": 0 } };
+        API.post(apiName, path, options).then(response => {
+            dispatch(fetchListSuccess(response));
             dispatch(listIsLoading(false));
         });
     };
