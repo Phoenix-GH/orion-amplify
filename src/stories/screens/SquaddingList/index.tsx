@@ -1,16 +1,18 @@
 import * as React from "react";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import {
+	Container,
+	Header, Title, Content, Text, Button, Icon, Left, Right, Body, List, ListItem } from "native-base";
 
 import styles from "./styles";
 export interface Props {
 	navigation: any;
-	data: any;
+	list: any;
 }
 export interface State {}
 class SquaddingList extends React.Component<Props, State> {
 	render() {
-		const { data } = this.props;
+		console.log('props', this.props);
+		const { list } = this.props;
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -20,65 +22,31 @@ class SquaddingList extends React.Component<Props, State> {
 						</Button>
 					</Left>
 					<Body style={{ flex: 3 }}>
-						<Title>{data ? data.Name : "Match Detail"}</Title>
+						<Title>Squadding List</Title>
 					</Body>
 					<Right />
 				</Header>
 				<Content padder>
-					<Grid>
-						<Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								data && data.Authorization && 
-								data.Authorization.indexOf('Read Squadding') > -1 &&
-								<Button rounded light style={styles.button} onPress={() => this.props.navigation.navigate('ViewSquadding')}>
-									<Text style={styles.text}>View Squadding</Text>
-								</Button>
-							}
-							</Col>
-							<Col style={styles.column}>
-								{
-									data && data.Authorization && 
-									data.Authorization.indexOf('Read Results') > -1 &&
-									<Button rounded style={styles.button} onPress={() => this.props.navigation.navigate('ViewResults')}>
-										<Text style={styles.text}>View Results</Text>
-									</Button>
-								}
-							</Col>
-						</Row>
-						<Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								data && data.Authorization && 
-								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded success style={styles.button} onPress={() => this.props.navigation.navigate('TakeTargetImage')}>
-									<Text style={styles.text}>Take Target Image</Text>
-								</Button>
-							}
-							</Col>
-							<Col />
-						</Row>
-            <Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								data && data.Authorization && 
-								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded info style={styles.button} onPress={() => this.props.navigation.navigate('TakeCalibrationImage')}>
-									<Text style={styles.text}>Take Calibration Image</Text>
-								</Button>
-							}
-							</Col>
-							<Col style={styles.column}>
-								{
-									data && data.Authorization && 
-									data.Authorization.indexOf('Read Incident Reports') > -1 &&
-									<Button rounded danger style={styles.button} onPress={() => this.props.navigation.navigate('ViewIncidentReport')}>
-										<Text style={styles.text}>View Incident Report</Text>
-									</Button>
-								}
-							</Col>
-						</Row>
-          </Grid>
+					<Text>{list.EventName}</Text>
+					<List>
+            {list && list.SquaddingList.map((item, i) => (
+              <ListItem
+                style={styles.listItem}
+                key={i}
+                onPress={() =>
+                  this.props.navigation.navigate("MatchDetail", {
+										matchID: item.MatchID,
+										eventName: "Individual",
+                  })}
+              >
+								<Text>Squadding For</Text>
+								<Text>{item.Participant.DisplayName}</Text>	
+								<Text>{item.Range}</Text>	
+								<Text>{item.Relay}</Text>
+								<Text>{item.FiringPoint}</Text>	
+              </ListItem>
+            ))}
+          </List>
 				</Content>
 			</Container>
 		);

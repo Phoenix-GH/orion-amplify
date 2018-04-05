@@ -4,7 +4,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import styles from "./styles";
 class MatchDetail extends React.Component {
     render() {
-        const { data } = this.props;
+        const { data, navigation } = this.props;
         return (React.createElement(Container, { style: styles.container },
             React.createElement(Header, null,
                 React.createElement(Left, null,
@@ -18,16 +18,16 @@ class MatchDetail extends React.Component {
                     React.createElement(Row, { style: styles.row },
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Squadding') > -1 &&
-                            React.createElement(Button, { rounded: true, light: true, style: styles.button, onPress: () => this.props.navigation.navigate('ViewSquadding') },
+                            React.createElement(Button, { rounded: true, light: true, style: styles.button, onPress: () => navigation.navigate('SquaddingList', { matchID: navigation.state.params.id, eventName: 'Individual' }) },
                                 React.createElement(Text, { style: styles.text }, "View Squadding"))),
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Results') > -1 &&
-                            React.createElement(Button, { rounded: true, style: styles.button, onPress: () => this.props.navigation.navigate('ViewResults') },
+                            React.createElement(Button, { rounded: true, style: styles.button, onPress: () => navigation.navigate('ViewResults') },
                                 React.createElement(Text, { style: styles.text }, "View Results")))),
                     React.createElement(Row, { style: styles.row },
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Create Target Images') > -1 &&
-                            React.createElement(Button, { rounded: true, success: true, style: styles.button, onPress: () => this.props.navigation.navigate('TakeTargetImage') },
+                            React.createElement(Button, { rounded: true, success: true, style: styles.button, onPress: () => navigation.navigate('TakeTargetImage') },
                                 React.createElement(Text, { style: styles.text }, "Take Target Image"))),
                         React.createElement(Col, null)),
                     React.createElement(Row, { style: styles.row },
@@ -37,7 +37,7 @@ class MatchDetail extends React.Component {
                                 React.createElement(Text, { style: styles.text }, "Take Calibration Image"))),
                         React.createElement(Col, { style: styles.column }, data && data.Authorization &&
                             data.Authorization.indexOf('Read Incident Reports') > -1 &&
-                            React.createElement(Button, { rounded: true, danger: true, style: styles.button, onPress: () => this.props.navigation.navigate('ViewIncidentReport') },
+                            React.createElement(Button, { rounded: true, danger: true, style: styles.button, onPress: () => navigation.navigate('ViewIncidentReport') },
                                 React.createElement(Text, { style: styles.text }, "View Incident Report"))))))));
     }
 }

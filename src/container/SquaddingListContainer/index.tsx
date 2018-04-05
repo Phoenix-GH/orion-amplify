@@ -21,9 +21,11 @@ export class SquadingListContainer extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
+		console.log('props', this.props);
 		const param = this.props.navigation.state.params;
-		if(param)
-			this.props.fetchSquaddingList(param.id);
+		if(param) {
+			this.props.fetchSquaddingList(param.matchID, param.eventName);
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -33,13 +35,13 @@ export class SquadingListContainer extends React.Component<Props, State> {
 
 	render() {
 		const { data } = this.state;
-		return <SquaddingList navigation={this.props.navigation} data={data} />;
+		return <SquaddingList navigation={this.props.navigation} list={data} />;
 	}
 }
 
 function bindAction(dispatch) {
 	return {
-		fetchMatch: matchID => dispatch(fetchSquaddingList(matchID, "Individual")),
+		fetchSquaddingList: (matchID, eventName) => dispatch(fetchSquaddingList(matchID, eventName)),
 	};
 }
 

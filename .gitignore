@@ -59,3 +59,7 @@ aws-exports.js
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 ~awsmobilejs-*/
+
+#artifacts
+artifacts/
+

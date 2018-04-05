@@ -10,7 +10,7 @@ export interface Props {
 export interface State {}
 class MatchDetail extends React.Component<Props, State> {
 	render() {
-		const { data } = this.props;
+		const { data, navigation } = this.props;
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -31,7 +31,7 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Read Squadding') > -1 &&
-								<Button rounded light style={styles.button} onPress={() => this.props.navigation.navigate('ViewSquadding')}>
+								<Button rounded light style={styles.button} onPress={() => navigation.navigate('SquaddingList', { matchID: navigation.state.params.id, eventName: 'Individual' })}>
 									<Text style={styles.text}>View Squadding</Text>
 								</Button>
 							}
@@ -40,7 +40,7 @@ class MatchDetail extends React.Component<Props, State> {
 								{
 									data && data.Authorization && 
 									data.Authorization.indexOf('Read Results') > -1 &&
-									<Button rounded style={styles.button} onPress={() => this.props.navigation.navigate('ViewResults')}>
+									<Button rounded style={styles.button} onPress={() => navigation.navigate('ViewResults')}>
 										<Text style={styles.text}>View Results</Text>
 									</Button>
 								}
@@ -51,7 +51,7 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded success style={styles.button} onPress={() => this.props.navigation.navigate('TakeTargetImage')}>
+								<Button rounded success style={styles.button} onPress={() => navigation.navigate('TakeTargetImage')}>
 									<Text style={styles.text}>Take Target Image</Text>
 								</Button>
 							}
@@ -72,7 +72,7 @@ class MatchDetail extends React.Component<Props, State> {
 								{
 									data && data.Authorization && 
 									data.Authorization.indexOf('Read Incident Reports') > -1 &&
-									<Button rounded danger style={styles.button} onPress={() => this.props.navigation.navigate('ViewIncidentReport')}>
+									<Button rounded danger style={styles.button} onPress={() => navigation.navigate('ViewIncidentReport')}>
 										<Text style={styles.text}>View Incident Report</Text>
 									</Button>
 								}
