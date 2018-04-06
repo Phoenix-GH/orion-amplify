@@ -22,8 +22,9 @@ export class IncidentReportContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
+		console.log('param', param.matchID);
 		if(param) {
-			this.props.fetchIncidentReport(param.matchID, param.eventName);
+			this.props.fetchIncidentReport(param.matchID, "");
 		}
 	}
 
@@ -47,7 +48,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
 	return {
-		data: state.squaddingListReducer.list,
-		isLoading: state.squaddingListReducer.isLoading,
+		data: state.incidentReportReducer.list,
+		isLoading: state.incidentReportReducer.isLoading,
 }};
 export default connect(mapStateToProps, bindAction)(IncidentReportContainer);

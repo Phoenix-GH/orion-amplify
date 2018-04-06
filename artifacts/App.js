@@ -40,6 +40,10 @@ Amplify.configure({
                 name: "GetSquaddingList",
                 endpoint: "https://hrr4vu8a69.execute-api.us-east-1.amazonaws.com/alpha",
             },
+            {
+                name: "GetIncidentReport",
+                endpoint: "https://wv4drsoyo6.execute-api.us-east-1.amazonaws.com/alpha",
+            },
         ]
     }
 });

@@ -41,24 +41,23 @@ class IncidentReport extends React.Component<Props, State> {
 				<Content padder>
 					<Text style={styles.title}>{list && list.EventName}</Text>
 					<List>
-            {list && list.SquaddingList.map((item, i) => (
+            {list && list.IncidentReportList.map((item, i) => (
               <ListItem
                 style={styles.listItem}
                 key={i}
                 onPress={() =>
-                  this.props.navigation.navigate("IncidentReport", {
-										matchID: list.MatchID,
+                  this.props.navigation.navigate("IncidentDetail", {
+										incidentReportID: item.incidentReportID,
                   })}
               >
 								<Card>
 									<CardItem header>
-										<Text>{item.Participant.DisplayName}</Text>	
 									</CardItem>
 									<CardItem>
 										<Body>
-											<Text>{item.Range}</Text>	
-											<Text>{item.Relay}</Text>
-											<Text>{item.FiringPoint}</Text>
+											<Text>{item.Participant.DisplayName}</Text>	
+											<Text>{item.RuleViolation.Name}</Text>	
+											<Text>{item.Status}</Text>
 										</Body>
 									</CardItem>
 								</Card>
