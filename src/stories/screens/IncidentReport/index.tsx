@@ -35,6 +35,7 @@ class IncidentReport extends React.Component<Props, State> {
 	
 	onRefresh = () => {
 		console.log('refreshing');
+		this.setState({refreshing: true});
 	}
 
 	renderListView = (data) => {
@@ -78,9 +79,10 @@ class IncidentReport extends React.Component<Props, State> {
 				<Content padder>
 					{
 						list && list.IncidentReportList && <FlatList
-							data={list.IncidentReportList}
-      				renderItem={(data) => this.renderListView(data)}>
-							onRefresh={() => this.onRefresh()}
+							data = {list.IncidentReportList}
+      				renderItem = {(data) => this.renderListView(data)}>
+							onRefresh = {() => this.onRefresh()}
+							refreshing = {this.state.refreshing}
 						>
 						</FlatList>
 					}

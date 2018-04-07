@@ -1,11 +1,12 @@
 import React from "react";
-import BlankPage from "../index";
+import MatchDetail from "../index";
 // Note: test renderer must be required after react-native.
 import renderer from "react-test-renderer";
 
 const navigation = { state: jest.fn() };
+const data = { state: jest.fn() };
 
 it("renders correctly", () => {
-	const tree = renderer.create(<BlankPage navigation={navigation} />).toJSON();
+	const tree = renderer.create(<MatchDetail navigation={navigation} data={data} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });

@@ -12,7 +12,9 @@ import {
 	Body,
 	Item,
 	Label,
-	H2 
+	H2,
+	List,
+	ListItem,
 } from "native-base";
 
 import styles from "./styles";
@@ -47,7 +49,7 @@ class MatchDetail extends React.Component<Props, State> {
 					{
 						data && <Text>{data.RuleViolation.RuleReference}</Text>
 					}
-					<H2>Status</H2>
+					<H2 style={styles.h2}>Status</H2>
 					<Item fixedLabel>
 						<Label>Firing Point</Label>
 						{
@@ -66,6 +68,18 @@ class MatchDetail extends React.Component<Props, State> {
 							data && <Text>{data.Relay}</Text>
 						}
 					</Item>
+					<H2 style={styles.h2}>
+						Official Comments
+					</H2>
+					<List>
+            {data && data.Log.map((item, i) => (
+              <ListItem
+                key={i}
+              >
+								<Text>{item.MatchOfficialComments}</Text>
+              </ListItem>
+            ))}
+          </List>
 				</Content>
 			</Container>
 		);
