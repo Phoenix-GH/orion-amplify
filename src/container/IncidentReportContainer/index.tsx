@@ -22,7 +22,6 @@ export class IncidentReportContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
-		console.log('param', param.matchID);
 		if(param) {
 			this.props.fetchIncidentReport(param.matchID, "");
 		}
@@ -35,7 +34,6 @@ export class IncidentReportContainer extends React.Component<Props, State> {
 
 	render() {
 		const { data } = this.state;
-		console.log('data', data);
 		return <IncidentReport navigation={this.props.navigation} list={data} />;
 	}
 }
