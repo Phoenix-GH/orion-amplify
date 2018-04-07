@@ -14,6 +14,7 @@ import {
 	ListItem,
 	Card,
 	CardItem,
+	H3,
 } from "native-base";
 
 import styles from "./styles";
@@ -49,15 +50,9 @@ class IncidentReport extends React.Component<Props, State> {
 				<Card>
 					<CardItem>
 						<Body>
-							{
-								item && item.Participant && <Text>{item.Participant.DisplayName}</Text>
-							}
-							{
-								item && item.RuleViolation && <Text>{item.RuleViolation.Name}</Text>
-							}
-							{
-								item && <Text>{item.Status}</Text>
-							}
+							<H3>{item.Participant.DisplayName}</H3>
+							<Text>{item.RuleViolation.Name}</Text>
+							<Text>{item.Status}</Text>
 						</Body>
 					</CardItem>
 				</Card>

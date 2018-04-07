@@ -54,14 +54,12 @@ class MatchDetail extends React.Component<Props, State> {
 							data && <Text>{data.FiringPoint}</Text>
 						}
           </Item>
-					
 					<Item fixedLabel>
 						<Label>Range</Label>
 						{
 							data && <Text>{data.Range}</Text>
 						}
           </Item>
-
 					<Item fixedLabel>
 						<Label>Range</Label>
 						{
