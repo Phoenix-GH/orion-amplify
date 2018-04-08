@@ -16,7 +16,7 @@ class SquaddingList extends React.Component {
                 React.createElement(Text, null, "Squadding For"),
                 React.createElement(Text, { style: styles.title }, list && list.EventName),
                 React.createElement(List, null, list && list.SquaddingList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("ParticipantDetail", {
-                        matchId: navigation.state.params.matchID,
+                        matchID: navigation.state.params.matchID,
                         data: item,
                     }) },
                     React.createElement(Card, null,

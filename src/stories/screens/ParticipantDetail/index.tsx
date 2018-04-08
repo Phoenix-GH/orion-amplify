@@ -24,6 +24,7 @@ export interface Props {
 export interface State {}
 class ParticipantDetail extends React.Component<Props, State> {
 	render() {
+		console.log('props of participant detail', this.props);
 		const { irdata, navigation, squaddingdata } = this.props;
 		console.log('navigation of participant detail', this.props.navigation);
 		console.log('squaddingdata', squaddingdata);
@@ -41,20 +42,27 @@ class ParticipantDetail extends React.Component<Props, State> {
 					<Right />
 				</Header>
 				<Content padder>
-					<H2>Incident Reports</H2>
+					<H2>{squaddingdata && squaddingdata.Participant.DisplayName}</H2>
+					<Text>Relay: {squaddingdata && squaddingdata.Relay}</Text>
+					<Text>Firing Point: {squaddingdata && squaddingdata.FiringPoint}</Text>
+					
+					<H2>Rule Violation</H2>
 					<List>
             {irdata && irdata.IncidentReportList.map((item, i) => (
               <ListItem
                 key={i}
                 onPress={() =>
                   this.props.navigation.navigate("IncidentDetail", {
-										irID: item.IncidentReportID,
+										data: item,
                   })}
               >
 								<Text>{item.RuleViolation.Name}</Text>	
               </ListItem>
             ))}
           </List>
+					<Button block>
+            <Text>New Incident Report</Text>
+          </Button>
 				</Content>
 			</Container>
 		);

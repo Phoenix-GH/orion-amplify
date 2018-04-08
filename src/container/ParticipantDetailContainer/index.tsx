@@ -22,7 +22,9 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
+		console.log('navigation on participant container', this.props.navigation);
 		const param = this.props.navigation.state.params;
+		console.log('param on partipantdetail', param);
 		if(param) {
 			this.props.fetchIncidentReport(param.matchID);
 		}
@@ -34,7 +36,7 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	}
 
 	render() {
-		const { navigation } = this.props.navigation;
+		const { navigation } = this.props;
 		const squaddingdata = navigation.state.params.data;
 		const data = this.state.data;
 		console.log('navigation on container', navigation);
