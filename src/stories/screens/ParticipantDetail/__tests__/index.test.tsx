@@ -1,12 +1,13 @@
 import React from "react";
-import MatchDetail from "../index";
+import ParticipantDetail from "../index";
 // Note: test renderer must be required after react-native.
 import renderer from "react-test-renderer";
 
 const navigation = { state: jest.fn() };
 const data = { state: jest.fn() };
 
+
 it("renders correctly", () => {
-	const tree = renderer.create(<MatchDetail navigation={navigation} data={data} />).toJSON();
+	const tree = renderer.create(<ParticipantDetail navigation={navigation} squaddingdata={data} irdata={data} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });

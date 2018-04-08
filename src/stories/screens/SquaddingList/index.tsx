@@ -24,7 +24,7 @@ export interface Props {
 export interface State {}
 class SquaddingList extends React.Component<Props, State> {
 	render() {
-		const { list } = this.props;
+		const { list, navigation } = this.props;
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -48,7 +48,8 @@ class SquaddingList extends React.Component<Props, State> {
                 key={i}
                 onPress={() =>
                   this.props.navigation.navigate("ParticipantDetail", {
-										matchID: list.MatchID,
+										matchID: navigation.state.params.matchID,
+										data: item,
                   })}
               >
 								<Card>

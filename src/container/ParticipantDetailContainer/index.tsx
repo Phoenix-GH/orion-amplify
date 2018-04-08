@@ -1,11 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import ParticipantDetail from "../../stories/screens/ParticipantDetail";
-import { fetchMatch } from "./actions";
+import { fetchIncidentReport } from "../IncidentReportContainer/actions";
 
 export interface Props {
 	navigation: any,
-	fetchMatch: Function,
+	fetchIncidentReport: Function,
 	data: any,
 }
 
@@ -24,7 +24,7 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
 		if(param) {
-			this.props.fetchMatch(param.id);
+			this.props.fetchIncidentReport(param.matchID);
 		}
 	}
 
@@ -34,20 +34,24 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	}
 
 	render() {
-		const { data } = this.state;
-		return <ParticipantDetail navigation={this.props.navigation} data={data} />;
+		const { navigation } = this.props.navigation;
+		const squaddingdata = navigation.state.params.data;
+		const data = this.state.data;
+		console.log('navigation on container', navigation);
+		console.log('data on container', data);
+		return <ParticipantDetail navigation={navigation} squaddingdata={squaddingdata} irdata={data} />;
 	}
 }
 
 function bindAction(dispatch) {
 	return {
-		fetchMatch: matchID => dispatch(fetchMatch(matchID)),
+		fetchIncidentReport: (matchID) => dispatch(fetchIncidentReport(matchID)),
 	};
 }
 
 const mapStateToProps = state => {
 	return {
-		data: state.matchDetailReducer.match,
-		isLoading: state.matchDetailReducer.isLoading,
+		data: state.incidentReportReducer.list,
+		isLoading: state.incidentReportReducer.isLoading,
 }};
 export default connect(mapStateToProps, bindAction)(ParticipantDetailContainer);

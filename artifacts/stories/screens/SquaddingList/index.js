@@ -3,7 +3,7 @@ import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Bod
 import styles from "./styles";
 class SquaddingList extends React.Component {
     render() {
-        const { list } = this.props;
+        const { list, navigation } = this.props;
         return (React.createElement(Container, { style: styles.container },
             React.createElement(Header, null,
                 React.createElement(Left, null,
@@ -16,7 +16,8 @@ class SquaddingList extends React.Component {
                 React.createElement(Text, null, "Squadding For"),
                 React.createElement(Text, { style: styles.title }, list && list.EventName),
                 React.createElement(List, null, list && list.SquaddingList.map((item, i) => (React.createElement(ListItem, { style: styles.listItem, key: i, onPress: () => this.props.navigation.navigate("ParticipantDetail", {
-                        matchID: list.MatchID,
+                        matchId: navigation.state.params.matchID,
+                        data: item,
                     }) },
                     React.createElement(Card, null,
                         React.createElement(CardItem, { header: true },

@@ -34,7 +34,6 @@ export class SquadingListContainer extends React.Component<Props, State> {
 
 	render() {
 		const { data } = this.state;
-		console.log('data', data);
 		return <SquaddingList navigation={this.props.navigation} list={data} />;
 	}
 }
