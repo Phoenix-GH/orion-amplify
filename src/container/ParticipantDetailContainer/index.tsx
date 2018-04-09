@@ -22,16 +22,15 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
-		console.log('navigation on participant container', this.props.navigation);
 		const param = this.props.navigation.state.params;
-		console.log('param on partipantdetail', param);
 		if(param) {
-			this.props.fetchIncidentReport(param.matchID);
+			this.props.fetchIncidentReport(param.matchID, "");
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		const { data } = nextProps;
+		console.log('will receive data', data);
 		this.setState({ data })
 	}
 
@@ -39,15 +38,13 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 		const { navigation } = this.props;
 		const squaddingdata = navigation.state.params.data;
 		const data = this.state.data;
-		console.log('navigation on container', navigation);
-		console.log('data on container', data);
 		return <ParticipantDetail navigation={navigation} squaddingdata={squaddingdata} irdata={data} />;
 	}
 }
 
 function bindAction(dispatch) {
 	return {
-		fetchIncidentReport: (matchID) => dispatch(fetchIncidentReport(matchID)),
+		fetchIncidentReport: (matchID, incidentReportID) => dispatch(fetchIncidentReport(matchID, incidentReportID)),
 	};
 }
 

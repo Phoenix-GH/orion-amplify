@@ -26,8 +26,6 @@ class ParticipantDetail extends React.Component<Props, State> {
 	render() {
 		console.log('props of participant detail', this.props);
 		const { irdata, navigation, squaddingdata } = this.props;
-		console.log('navigation of participant detail', this.props.navigation);
-		console.log('squaddingdata', squaddingdata);
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -46,19 +44,22 @@ class ParticipantDetail extends React.Component<Props, State> {
 					<Text>Relay: {squaddingdata && squaddingdata.Relay}</Text>
 					<Text>Firing Point: {squaddingdata && squaddingdata.FiringPoint}</Text>
 					
-					<H2>Rule Violation</H2>
+					<H2 style={styles.h2}>Rule Violation</H2>
 					<List>
-            {irdata && irdata.IncidentReportList.map((item, i) => (
-              <ListItem
-                key={i}
-                onPress={() =>
-                  this.props.navigation.navigate("IncidentDetail", {
-										data: item,
-                  })}
-              >
-								<Text>{item.RuleViolation.Name}</Text>	
-              </ListItem>
-            ))}
+            {
+							irdata && irdata.IncidentReportList.map((item, i) => (
+							(item.Participant.CompetitorNumber === squaddingdata.Participant.CompetitorNumber) &&
+								<ListItem
+									key={i}
+									onPress={() =>
+										this.props.navigation.navigate("IncidentDetail", {
+											data: item,
+										})}
+								>
+									<Text>{item.RuleViolation.Name}</Text>	
+								</ListItem>
+							))
+						}
           </List>
 					<Button block>
             <Text>New Incident Report</Text>
