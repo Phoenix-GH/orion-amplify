@@ -13,19 +13,21 @@ import {
 	H2,
 	List,
 	ListItem,
+	Thumbnail,
 } from "native-base";
 
 import styles from "./styles";
 export interface Props {
 	navigation: any;
-	irdata: any;
-	squaddingdata: any;
+	irData: any;
+	squaddingData: any;
+	matchData: any;
 }
 export interface State {}
 class ParticipantDetail extends React.Component<Props, State> {
 	render() {
 		console.log('props of participant detail', this.props);
-		const { irdata, navigation, squaddingdata } = this.props;
+		const { irData, navigation, squaddingData, matchData } = this.props;
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -35,20 +37,44 @@ class ParticipantDetail extends React.Component<Props, State> {
 						</Button>
 					</Left>
 					<Body style={{ flex: 3 }}>
-						<Title>{squaddingdata ? squaddingdata.Participant.DisplayName : "Participant Detail"}</Title>
+						<Title>{squaddingData ? squaddingData.Participant.DisplayName : "Participant Detail"}</Title>
 					</Body>
 					<Right />
 				</Header>
 				<Content padder>
-					<H2>{squaddingdata && squaddingdata.Participant.DisplayName}</H2>
-					<Text>Relay: {squaddingdata && squaddingdata.Relay}</Text>
-					<Text>Firing Point: {squaddingdata && squaddingdata.FiringPoint}</Text>
+					<H2>{squaddingData && squaddingData.Participant.DisplayName}</H2>
+					<Text>Relay: {squaddingData && squaddingData.Relay}</Text>
+					<Text>Firing Point: {squaddingData && squaddingData.FiringPoint}</Text>
 					
+					<List>
+            {
+							matchData && matchData.SquaddingEvents && matchData.SquaddingEvents[0].TargetStages.map((item, i) => (
+								<ListItem
+									icon
+									key={i}
+								>
+									<Left>
+										<Thumbnail square size={80} source={{ uri: 'Image URL' }} />
+									</Left>
+            			<Body>
+										<Text>{item.Name}</Text>
+									</Body>
+									<Right>
+										<Icon name='checkmark' />
+									</Right>
+								</ListItem>
+							))
+						}
+          </List>
+					<Button iconLeft light>
+            <Icon name='camera' />
+						<Text />
+          </Button>
 					<H2 style={styles.h2}>Rule Violation</H2>
 					<List>
             {
-							irdata && irdata.IncidentReportList.map((item, i) => (
-							(item.Participant.CompetitorNumber === squaddingdata.Participant.CompetitorNumber) &&
+							irData && irData.IncidentReportList.map((item, i) => (
+							(item.Participant.CompetitorNumber === squaddingData.Participant.CompetitorNumber) &&
 								<ListItem
 									key={i}
 									onPress={() =>
@@ -61,7 +87,7 @@ class ParticipantDetail extends React.Component<Props, State> {
 							))
 						}
           </List>
-					<Button block>
+					<Button block onPress={() => navigation.navigate('AddIncidentReportPage')}>
             <Text>New Incident Report</Text>
           </Button>
 				</Content>

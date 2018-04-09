@@ -30,7 +30,7 @@ export class MatchDetailContainer extends React.Component<Props, State> {
 
 	componentWillReceiveProps(nextProps) {
 		const { data } = nextProps;
-		this.setState({ data })
+		this.setState({ data });
 	}
 
 	render() {

@@ -6,8 +6,7 @@ import renderer from "react-test-renderer";
 const navigation = { state: jest.fn() };
 const data = { state: jest.fn() };
 
-
 it("renders correctly", () => {
-	const tree = renderer.create(<ParticipantDetail navigation={navigation} squaddingdata={data} irdata={data} />).toJSON();
+	const tree = renderer.create(<ParticipantDetail navigation={navigation} squaddingData={data} irData={data} matchData={data} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });
