@@ -18,6 +18,7 @@ import SquaddingList from "./container/SquaddingListContainer";
 import IncidentReport from "./container/IncidentReportContainer";
 import IncidentDetail from "./container/IncidentDetailContainer";
 import ParticipantDetail from "./container/ParticipantDetailContainer";
+import SelectNewIRStage from "./container/SelectNewIRStageContainer";
 
 Amplify.configure({
   Auth: {
@@ -74,8 +75,9 @@ const App = StackNavigator(
 		MatchDetail: { screen: MatchDetail },
 		SquaddingList: { screen: SquaddingList },
     IncidentReport: { screen: IncidentReport },
-	IncidentDetail: { screen: IncidentDetail },
-	ParticipantDetail: { screen: ParticipantDetail },
+		IncidentDetail: { screen: IncidentDetail },
+		ParticipantDetail: { screen: ParticipantDetail },
+		SelectNewIRStage: { screen: SelectNewIRStage },
 	},
 	{
 		initialRouteName: "Login",

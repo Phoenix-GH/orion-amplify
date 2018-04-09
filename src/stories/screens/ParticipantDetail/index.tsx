@@ -87,7 +87,7 @@ class ParticipantDetail extends React.Component<Props, State> {
 							))
 						}
           </List>
-					<Button block onPress={() => navigation.navigate('AddIncidentReportPage')}>
+					<Button style={styles.newIRButton} block onPress={() => navigation.navigate('SelectNewIRStage', { matchID: navigation.state.params.matchID, squaddingData: squaddingData })}>
             <Text>New Incident Report</Text>
           </Button>
 				</Content>

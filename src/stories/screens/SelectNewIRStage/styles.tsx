@@ -6,9 +6,6 @@ const styles: any = StyleSheet.create({
 	},
 	h2: {
 		marginTop: 20,
-	},
-	newIRButton: {
-		marginBottom: 20,
 	}
 });
 export default styles;

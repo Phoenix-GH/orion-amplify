@@ -28,6 +28,7 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
 		if(param) {
+			console.log('param on PDContainer', param);
 			this.props.fetchIncidentReport(param.matchID, "");
 			this.props.fetchMatch(param.id);
 		}
@@ -35,10 +36,8 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 
 	componentWillReceiveProps(nextProps) {
 		const { data, matchData } = nextProps;
-		console.log('will receive data', data);
 		this.setState({ data });
 		this.setState({ matchData });
-		console.log('matchData', matchData);
 	}
 
 	render() {
