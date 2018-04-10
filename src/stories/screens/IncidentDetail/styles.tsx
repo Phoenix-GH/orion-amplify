@@ -4,13 +4,8 @@ const styles: any = StyleSheet.create({
 	container: {
 		backgroundColor: "#FBFAFA",
 	},
-	text: {
-		textAlign: 'center',
-		width: '100%',
-	},
-	title: {
-		fontSize: 20,
-		width: '100%',
-	},
+	h2: {
+		marginTop: 20
+	}
 });
 export default styles;

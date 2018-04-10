@@ -47,7 +47,7 @@ class SquaddingList extends React.Component<Props, State> {
                 style={styles.listItem}
                 key={i}
                 onPress={() =>
-                  this.props.navigation.navigate("IncidentReport", {
+                  this.props.navigation.navigate("ParticipantDetail", {
 										matchID: list.MatchID,
                   })}
               >
@@ -57,9 +57,11 @@ class SquaddingList extends React.Component<Props, State> {
 									</CardItem>
 									<CardItem>
 										<Body>
-											<Text>{item.Range}</Text>	
-											<Text>{item.Relay}</Text>
-											<Text>{item.FiringPoint}</Text>
+											{
+												item.Participant.Club && <Text>{item.Participant.Club}</Text>	
+											}
+											<Text>Relay: {item.Relay}</Text>
+											<Text>Firing Point: {item.FiringPoint}</Text>
 										</Body>
 									</CardItem>
 								</Card>

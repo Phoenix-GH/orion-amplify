@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import MatchDetail from "../../stories/screens/MatchDetail";
+import ParticipantDetail from "../../stories/screens/ParticipantDetail";
 import { fetchMatch } from "./actions";
 
 export interface Props {
@@ -13,7 +13,7 @@ export interface State {
 	data: any;
 }
 
-export class MatchDetailContainer extends React.Component<Props, State> {
+export class ParticipantDetailContainer extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -35,7 +35,7 @@ export class MatchDetailContainer extends React.Component<Props, State> {
 
 	render() {
 		const { data } = this.state;
-		return <MatchDetail navigation={this.props.navigation} data={data} />;
+		return <ParticipantDetail navigation={this.props.navigation} data={data} />;
 	}
 }
 
@@ -50,4 +50,4 @@ const mapStateToProps = state => {
 		data: state.matchDetailReducer.match,
 		isLoading: state.matchDetailReducer.isLoading,
 }};
-export default connect(mapStateToProps, bindAction)(MatchDetailContainer);
+export default connect(mapStateToProps, bindAction)(ParticipantDetailContainer);

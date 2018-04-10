@@ -12,10 +12,11 @@ import ForgotPassword from "./container/ForgotPasswordContainer";
 import ResetPassword from "./container/ResetPasswordContainer";
 import Verification from "./container/VerificationContainer";
 import Home from "./container/HomeContainer";
-import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
 import MatchDetail from "./container/MatchDetailContainer";
 import SquaddingList from "./container/SquaddingListContainer";
+import IncidentReport from "./container/IncidentReportContainer";
+import IncidentDetail from "./container/IncidentDetailContainer";
 
 Amplify.configure({
   Auth: {
@@ -41,6 +42,10 @@ Amplify.configure({
     {
 			name: "GetSquaddingList",
 			endpoint: "https://hrr4vu8a69.execute-api.us-east-1.amazonaws.com/alpha",
+    },
+    {
+			name: "GetIncidentReport",
+			endpoint: "https://wv4drsoyo6.execute-api.us-east-1.amazonaws.com/testonly",
 		},
 	]
 }
@@ -64,10 +69,11 @@ const App = StackNavigator(
 		ForgotPassword: { screen: ForgotPassword },
 		ResetPassword: { screen: ResetPassword },
 		Verification: { screen: Verification },
-		BlankPage: { screen: BlankPage },
-    Drawer: { screen: Drawer },
-    MatchDetail: { screen: MatchDetail },
-    SquaddingList: { screen: SquaddingList },
+		Drawer: { screen: Drawer },
+		MatchDetail: { screen: MatchDetail },
+		SquaddingList: { screen: SquaddingList },
+    IncidentReport: { screen: IncidentReport },
+    IncidentDetail: { screen: IncidentDetail },
 	},
 	{
 		initialRouteName: "Login",
