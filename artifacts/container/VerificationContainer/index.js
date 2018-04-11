@@ -50,7 +50,6 @@ class VerificationForm extends React.Component {
                         }));
                     })
                         .catch(err => {
-                        console.log(err);
                         Toast.show({
                             text: err.message,
                             duration: 2000,

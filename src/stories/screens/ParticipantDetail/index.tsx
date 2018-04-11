@@ -26,7 +26,6 @@ export interface Props {
 export interface State {}
 class ParticipantDetail extends React.Component<Props, State> {
 	render() {
-		console.log('props of participant detail', this.props);
 		const { irData, navigation, squaddingData, matchData } = this.props;
 		return (
 			<Container style={styles.container}>

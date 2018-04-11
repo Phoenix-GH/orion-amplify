@@ -7,6 +7,6 @@ const navigation = { state: jest.fn() };
 const data = { state: jest.fn() };
 
 it("renders correctly", () => {
-	const tree = renderer.create(<SelectNewIRStage navigation={navigation} matchData={data} />).toJSON();
+	const tree = renderer.create(<SelectNewIRStage navigation={navigation} matchData={data} squaddingData={data} />).toJSON();
 	expect(tree).toMatchSnapshot();
 });

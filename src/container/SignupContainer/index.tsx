@@ -54,7 +54,6 @@ class SignupForm extends React.Component<Props, State> {
         validationData: []  //optional
       })
       .then(async data => {
-        console.log(data);
         try {
           await AsyncStorage.setItem('@Orion:username', this.username);
         } catch (error) {

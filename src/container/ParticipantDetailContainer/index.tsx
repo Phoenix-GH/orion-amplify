@@ -28,7 +28,6 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
 		if(param) {
-			console.log('param on PDContainer', param);
 			this.props.fetchIncidentReport(param.matchID, "");
 			this.props.fetchMatch(param.id);
 		}

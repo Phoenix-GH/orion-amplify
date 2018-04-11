@@ -1,31 +1,42 @@
 import * as React from "react";
+import { ScrollView } from 'react-native';
 import {
 	Container,
 	Header,
 	Title,
 	Content,
-	Text,
 	Button,
 	Icon,
 	Left,
 	Right,
-	Body, 
-	H2,
-	List,
-	ListItem,
+	Body,
 } from "native-base";
 
+import SelectRule from './SelectRule';
+import SelectStage from './SelectStage';
+import WriteUp from './WriteUp';
 import styles from "./styles";
 export interface Props {
 	navigation: any;
 	matchData: any;
 	squaddingData: any;
 }
-export interface State {}
+export interface State {
+	page: any;
+}
 class SelectNewIRStage extends React.Component<Props, State> {
+	constructor(props) {
+		super(props);
+		this.state = {page: 0};
+	}
+
+	changePage = (page) => {
+		console.log('page', page);
+		this.setState({page: page});
+	}
+
 	render() {
 		const { navigation, matchData, squaddingData } = this.props;
-		console.log('squadding on selectnewIRstage', squaddingData);
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -39,23 +50,17 @@ class SelectNewIRStage extends React.Component<Props, State> {
 					</Body>
 					<Right />
 				</Header>
-				<Content padder>
-					<H2>{squaddingData && squaddingData.Participant.DisplayName}</H2>
-					<List>
-            {
-							matchData && matchData.SquaddingEvents && matchData.SquaddingEvents[0].TargetStages.map((item, i) => (
-								<ListItem
-									key={i}
-									onPress={() =>
-										this.props.navigation.navigate("IncidentDetail", {
-											data: item,
-									})}
-								>
-									<Text>{item.Name}</Text>
-								</ListItem>
-							))
-						}
-          </List>
+				<Content>
+					<ScrollView
+						pagingEnabled
+						horizontal
+						showsHorizontalScrollIndicator={false}
+						
+					>
+							<SelectStage navigation={navigation} matchData={matchData} squaddingData={squaddingData} changePage={(page) => this.changePage(page)}/>
+							<SelectRule navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
+							<WriteUp  navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
+					</ScrollView>
 				</Content>
 			</Container>
 		);

@@ -19,7 +19,6 @@ export function fetchIncidentReport(matchID, incidentReportID = null) {
 		let path = '/';
 		let options = { body: { "MatchID": matchID, "IncidentReportID": incidentReportID }};
 		API.post(apiName, path, options).then(response => {
-			console.log('response', response);
 			dispatch(fetchReportSuccess(response));
 			dispatch(reportIsLoading(false));
 		});

@@ -32,11 +32,9 @@ class ForgotPasswordForm extends React.Component {
                 yield AsyncStorage.setItem('@Orion:username', this.username);
                 Auth.forgotPassword(username)
                     .then(data => {
-                    console.log(data);
                     this.props.navigation.navigate("ResetPassword");
                 })
                     .catch(err => {
-                    console.log(err);
                     Toast.show({
                         text: err.message,
                         duration: 2000,
