@@ -24,6 +24,7 @@ export interface Props {
 export interface State {
 	page: any;
 }
+
 class SelectNewIRStage extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
@@ -57,9 +58,9 @@ class SelectNewIRStage extends React.Component<Props, State> {
 						showsHorizontalScrollIndicator={false}
 						
 					>
-							<SelectStage navigation={navigation} matchData={matchData} squaddingData={squaddingData} changePage={(page) => this.changePage(page)}/>
-							<SelectRule navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
-							<WriteUp  navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
+						<SelectStage navigation={navigation} matchData={matchData} squaddingData={squaddingData} changePage={(page) => this.changePage(page)}/>
+						<SelectRule navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
+						<WriteUp navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
 					</ScrollView>
 				</Content>
 			</Container>

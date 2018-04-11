@@ -8,7 +8,6 @@ export interface Props {
 	navigation: any,
 	fetchIncidentReport: Function,
 	fetchMatch: Function,
-	data: any,
 }
 
 export interface State {
@@ -57,7 +56,8 @@ function bindAction(dispatch) {
 const mapStateToProps = state => {
 	return {
 		data: state.incidentReportReducer.list,
-		isLoading: state.incidentReportReducer.isLoading,
+		isReportLoading: state.incidentReportReducer.isLoading,
 		matchData: state.matchDetailReducer.match,
+		isMatchLoading: state.matchDetailReducer.isLoading,
 }};
 export default connect(mapStateToProps, bindAction)(ParticipantDetailContainer);

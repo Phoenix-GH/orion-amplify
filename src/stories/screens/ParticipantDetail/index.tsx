@@ -53,7 +53,7 @@ class ParticipantDetail extends React.Component<Props, State> {
 									key={i}
 								>
 									<Left>
-										<Thumbnail square size={80} source={{ uri: 'Image URL' }} />
+										<Thumbnail square size={80} source={null} />
 									</Left>
             			<Body>
 										<Text>{item.Name}</Text>

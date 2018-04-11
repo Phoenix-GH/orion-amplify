@@ -1,32 +1,26 @@
 import * as React from "react";
+import { Dimensions } from 'react-native';
 import {
-	Container,
-	Header,
-	Title,
 	Content,
 	Text,
-	Button,
-	Icon,
-	Left,
-	Right,
-	Body, 
 	H2,
 	List,
 	ListItem,
 } from "native-base";
 
-import styles from "./styles";
 export interface Props {
 	navigation: any;
 	matchData: any;
 	squaddingData: any;
 }
 export interface State {}
+const deviceWidth = Dimensions.get('window').width;
+
 class SelectNewIRStage extends React.Component<Props, State> {
 	render() {
-		const { navigation, matchData, squaddingData } = this.props;
+		const { matchData, squaddingData } = this.props;
 		return (
-			<Content style={styles.content}>
+			<Content style={{width: deviceWidth}}>
 				<H2>{squaddingData && squaddingData.Participant.DisplayName}</H2>
 				<List>
 					{
