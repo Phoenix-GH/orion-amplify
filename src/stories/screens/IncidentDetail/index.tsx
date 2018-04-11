@@ -47,7 +47,7 @@ class MatchDetail extends React.Component<Props, State> {
 						data && <Text>{data.RuleViolation.Name}</Text>
 					}
 					{
-						data && <Text>{data.RuleViolation.RuleReference}</Text>
+						data && <Text>Rule {data.RuleViolation.RuleReference}</Text>
 					}
 					<H2 style={styles.h2}>Status</H2>
 					<Item fixedLabel>
@@ -63,7 +63,7 @@ class MatchDetail extends React.Component<Props, State> {
 						}
           </Item>
 					<Item fixedLabel>
-						<Label>Range</Label>
+						<Label>Relay</Label>
 						{
 							data && <Text>{data.Relay}</Text>
 						}
