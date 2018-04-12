@@ -1,7 +1,9 @@
 import * as React from "react";
+import { Toast } from "native-base";
 import { connect } from "react-redux";
-import SelectNewIR from "../../stories/screens/SelectNewIR";
+import SelectNewIR from "../../stories/screens/SubmitNewIR";
 import { fetchMatch } from "../MatchDetailContainer/actions";
+import { submitIncidentReport } from "./actions";
 
 export interface Props {
 	navigation: any;
@@ -31,8 +33,16 @@ export class SubmitNewIRContainer extends React.Component<Props, State> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { matchData } = nextProps;
+		const { matchData, response } = nextProps;
 		this.setState({ matchData });
+		if(response && response.IncidentReportID) {
+			Toast.show({
+				text: "Successfully submitted!",
+				duration: 2000,
+				position: "top",
+				textStyle: { textAlign: "center" },
+			});
+		}
 	}
 
 	handleSubmit(data) {
@@ -49,6 +59,7 @@ export class SubmitNewIRContainer extends React.Component<Props, State> {
 function bindAction(dispatch) {
 	return {
 		fetchMatch: matchID => dispatch(fetchMatch(matchID)),
+		submitIncidentReport: body => dispatch(submitIncidentReport(body)),
 	};
 }
 

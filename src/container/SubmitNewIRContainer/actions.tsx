@@ -19,6 +19,7 @@ export function submitIncidentReport(body) {
 		let path = '/';
 		let options = {body};
 		API.post(apiName, path, options).then(response => {
+			console.log('submitNewIRResponse', response)
 			dispatch(submitIncidentSuccess(response));
  			dispatch(submitIncidentIsLoading(false));
 		});
