@@ -44,7 +44,7 @@ class SelectNewIRStage extends React.Component<Props, State> {
 
 	render() {
 		const { currentTime, comment } = this.state;
-		const { matchData, squaddingData, ruleViolation, submit } = this.props;
+		const { squaddingData, ruleViolation, submit } = this.props;
 		return (
 			<Content style={{width: deviceWidth}} padder>
 				<Form>

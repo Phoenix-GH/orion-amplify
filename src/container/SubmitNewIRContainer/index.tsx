@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import SelectNewIRStage from "../../stories/screens/SelectNewIRStage";
+import SelectNewIR from "../../stories/screens/SelectNewIR";
 import { fetchMatch } from "../MatchDetailContainer/actions";
 
 export interface Props {
@@ -8,13 +8,14 @@ export interface Props {
 	fetchMatch: Function;
 	data: any;
 	squaddingData: any;
+	submitIncidentReport: any;
 }
 
 export interface State {
 	matchData: any;
 }
 
-export class SubmitIncidentReportContainer extends React.Component<Props, State> {
+export class SubmitNewIRContainer extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -34,10 +35,14 @@ export class SubmitIncidentReportContainer extends React.Component<Props, State>
 		this.setState({ matchData });
 	}
 
+	handleSubmit(data) {
+		this.props.submitIncidentReport(data);
+	}
+
 	render() {
 		const { navigation } = this.props;
 		const { matchData } = this.state;
-		return <SelectNewIRStage navigation={navigation} matchData={matchData} squaddingData={navigation.state.params.squaddingData} />;
+		return <SelectNewIR navigation={navigation} matchData={matchData} squaddingData={navigation.state.params.squaddingData} onSubmit={(data) => this.handleSubmit(data)}/>;
 	}
 }
 
@@ -49,7 +54,8 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
 	return {
-		isLoading: state.matchDetailReducer.isLoading,
+		response: state.submitNewIRReducer.response,
 		matchData: state.matchDetailReducer.match,
+		isLoading: state.matchDetailReducer.isLoading,
 }};
-export default connect(mapStateToProps, bindAction)(SubmitIncidentReportContainer);
+export default connect(mapStateToProps, bindAction)(SubmitNewIRContainer);
