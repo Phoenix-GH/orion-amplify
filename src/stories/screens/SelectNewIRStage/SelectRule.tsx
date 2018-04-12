@@ -6,19 +6,24 @@ import {
 	H2,
 	List,
 	ListItem,
+	Right,
+	Radio,
+	Left,
 } from "native-base";
 
 export interface Props {
 	navigation: any;
 	matchData: any;
 	squaddingData: any;
+	changePage: any;
+	ruleViolation: any;
 }
 export interface State {}
 const deviceWidth = Dimensions.get('window').width;
 
 class SelectNewIRStage extends React.Component<Props, State> {
 	render() {
-		const { matchData, squaddingData } = this.props;
+		const { matchData, squaddingData, ruleViolation } = this.props;
 		return (
 			<Content style={{width: deviceWidth}}>
 				<H2>{squaddingData && squaddingData.Participant.DisplayName}</H2>
@@ -27,12 +32,15 @@ class SelectNewIRStage extends React.Component<Props, State> {
 						matchData && matchData.SquaddingEvents && matchData.CommonIncidentReports.map((item, i) => (
 							<ListItem
 								key={i}
-								onPress={() =>
-									this.props.navigation.navigate("IncidentDetail", {
-										data: item,
-								})}
+								onPress={() => this.props.changePage(2, item)}
 							>
-								<Text>{item.Name}</Text>
+								<Left>
+									<Text>{item.Name}</Text>
+									<Text note>{item.RuleReference}</Text>
+								</Left>
+								<Right>
+									<Radio selected={ruleViolation && ruleViolation.RuleReference === item.RuleReference} />
+								</Right>
 							</ListItem>
 						))
 					}

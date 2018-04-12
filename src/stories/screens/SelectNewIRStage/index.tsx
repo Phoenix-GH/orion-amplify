@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ScrollView } from 'react-native';
+import { Dimensions } from 'react-native';
 import {
 	Container,
 	Header,
@@ -23,21 +24,39 @@ export interface Props {
 }
 export interface State {
 	page: any;
+	stage: any;
+	ruleViolation: any;
 }
+const deviceWidth = Dimensions.get('window').width;
 
 class SelectNewIRStage extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
-		this.state = {page: 0};
+		this.state = {
+			page: 0,
+			stage: {},
+			ruleViolation: {}
+		};
 	}
 
-	changePage = (page) => {
-		console.log('page', page);
+	changePage = (page, item) => {
 		this.setState({page: page});
+		// if(page === 1) {
+		// 	this.setState({stage: item});
+		// }
+		// else if(page === 2) {
+		// 	this.setState({ruleViolation: item});
+		// }
+		this.refs._scrollView.scrollTo({x: page * deviceWidth, y: 0});
+	}
+
+	submit(comment) {
+		console.log('comment', comment);
 	}
 
 	render() {
 		const { navigation, matchData, squaddingData } = this.props;
+		const { stage, ruleViolation } = this.state;
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -47,7 +66,7 @@ class SelectNewIRStage extends React.Component<Props, State> {
 						</Button>
 					</Left>
 					<Body style={{ flex: 3 }}>
-						<Title>{"Submit Incident Report"}</Title>
+						<Title>Submit Incident Report</Title>
 					</Body>
 					<Right />
 				</Header>
@@ -56,11 +75,11 @@ class SelectNewIRStage extends React.Component<Props, State> {
 						pagingEnabled
 						horizontal
 						showsHorizontalScrollIndicator={false}
-						
+						ref='_scrollView'
 					>
-						<SelectStage navigation={navigation} matchData={matchData} squaddingData={squaddingData} changePage={(page) => this.changePage(page)}/>
-						<SelectRule navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
-						<WriteUp navigation={navigation} matchData={matchData} squaddingData={squaddingData}/>
+						<SelectStage navigation={navigation} matchData={matchData} squaddingData={squaddingData} stage={stage} changePage={(page, item) => this.changePage(page, item)} />
+						<SelectRule navigation={navigation} matchData={matchData} squaddingData={squaddingData} ruleViolation={ruleViolation} changePage={(page, item) => this.changePage(page, item)} />
+						<WriteUp navigation={navigation} matchData={matchData} squaddingData={squaddingData} stage={stage} ruleViolation={ruleViolation} submit={this.submit} />
 					</ScrollView>
 				</Content>
 			</Container>

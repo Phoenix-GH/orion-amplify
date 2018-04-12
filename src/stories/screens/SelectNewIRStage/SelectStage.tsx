@@ -6,6 +6,9 @@ import {
 	H2,
 	List,
 	ListItem,
+	Right,
+	Radio,
+	Left,
 } from "native-base";
 
 export interface Props {
@@ -13,13 +16,15 @@ export interface Props {
 	matchData: any;
 	squaddingData: any;
 	changePage: any;
+	stage: any;
 }
+import styles from "./styles";
 export interface State {}
 const deviceWidth = Dimensions.get('window').width;
 
 class SelectNewIRStage extends React.Component<Props, State> {
 	render() {
-		const { matchData, squaddingData } = this.props;
+		const { matchData, squaddingData, stage } = this.props;
 		return (
 			<Content style={{width: deviceWidth}}>
 				<H2>{squaddingData && squaddingData.Participant.DisplayName}</H2>
@@ -28,9 +33,14 @@ class SelectNewIRStage extends React.Component<Props, State> {
 						matchData && matchData.SquaddingEvents && matchData.SquaddingEvents[0].TargetStages.map((item, i) => (
 							<ListItem
 								key={i}
-								onPress={() => this.props.changePage(1)}
+								onPress={() => this.props.changePage(1, item)}
 							>
-								<Text>{item.Name}</Text>
+								<Left>
+									<Text style={styles.listText}>{item.Name}</Text>
+								</Left>
+								<Right>
+									<Radio selected={stage && stage.Key === item.Key} />
+								</Right>
 							</ListItem>
 						))
 					}

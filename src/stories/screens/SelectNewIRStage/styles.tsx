@@ -9,6 +9,9 @@ const styles: any = StyleSheet.create({
 	},
 	h2: {
 		marginTop: 20,
+	},
+	title: {
+		marginTop: 20,
 	}
 });
 export default styles;

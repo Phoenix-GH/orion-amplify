@@ -14,6 +14,7 @@ import {
 	List,
 	ListItem,
 	Thumbnail,
+	Radio,
 } from "native-base";
 
 import styles from "./styles";
@@ -59,7 +60,7 @@ class ParticipantDetail extends React.Component<Props, State> {
 										<Text>{item.Name}</Text>
 									</Body>
 									<Right>
-										<Icon name='checkmark' />
+										<Radio selected={true} />
 									</Right>
 								</ListItem>
 							))
@@ -72,8 +73,8 @@ class ParticipantDetail extends React.Component<Props, State> {
 					<H2 style={styles.h2}>Rule Violation</H2>
 					<List>
             {
-							irData && irData.IncidentReportList.map((item, i) => (
-							(item.Participant.CompetitorNumber === squaddingData.Participant.CompetitorNumber) &&
+							irData && irData.IncidentReportList && irData.IncidentReportList.map((item, i) => (
+							squaddingData && squaddingData.Participant && (item.Participant.CompetitorNumber === squaddingData.Participant.CompetitorNumber) &&
 								<ListItem
 									key={i}
 									onPress={() =>
