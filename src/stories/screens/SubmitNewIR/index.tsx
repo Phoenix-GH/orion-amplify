@@ -65,9 +65,8 @@ class SelectNewIR extends React.Component<Props, State> {
 			EventName: matchData.SquaddingEvents[0].Name,
 			StageName: stage.Name,
 			RuleViolation: ruleViolation,
-			MatchOfficalComments: comment,
+			MatchOfficialComments: comment,
 		};
-		console.log('submitNewIR body', body);
 		this.props.onSubmit(body);
 	}
 

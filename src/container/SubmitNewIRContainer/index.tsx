@@ -38,7 +38,7 @@ export class SubmitNewIRContainer extends React.Component<Props, State> {
 		if(response && response.IncidentReportID) {
 			Toast.show({
 				text: "Successfully submitted!",
-				duration: 2000,
+				duration: 4000,
 				position: "top",
 				textStyle: { textAlign: "center" },
 			});
