@@ -18,9 +18,8 @@ export function fetchIncidentReport(matchID, incidentReportID = null) {
 		let apiName = "GetIncidentReport";
 		let path = '/';
 		let options = { body: { "MatchID": matchID, "IncidentReportID": incidentReportID }};
-		console.log('incidentreport body', options);
 		API.post(apiName, path, options).then(response => {
-			console.log('incidentreport response', response);
+			console.log('GetIncidentReport response', response);
 			dispatch(fetchReportSuccess(response));
 			dispatch(reportIsLoading(false));
 		});

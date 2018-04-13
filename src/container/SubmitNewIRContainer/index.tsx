@@ -31,17 +31,19 @@ export class SubmitNewIRContainer extends React.Component<Props, State> {
 			this.props.fetchMatch(param.matchID);
 		}
 	}
-
+	
 	componentWillReceiveProps(nextProps) {
 		const { matchData, response } = nextProps;
 		this.setState({ matchData });
 		if(response && response.IncidentReportID) {
 			Toast.show({
 				text: "Successfully submitted!",
-				duration: 4000,
+				duration: 2000,
 				position: "top",
+				type: 'success',
 				textStyle: { textAlign: "center" },
 			});
+			this.props.navigation.goBack();
 		}
 	}
 

@@ -34,7 +34,6 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 
 	componentWillReceiveProps(nextProps) {
 		const { data, matchData } = nextProps;
-		console.log('ParticipantDetail', nextProps);
 		this.setState({ data });
 		this.setState({ matchData });
 	}

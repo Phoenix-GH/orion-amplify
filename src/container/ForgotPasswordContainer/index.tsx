@@ -46,7 +46,8 @@ class ForgotPasswordForm extends React.Component<Props, State> {
         Toast.show({
           text: err.message,
           duration: 2000,
-          position: "top",
+					position: "top",
+					type: "danger",
           textStyle: { textAlign: "center" },
         });
       })
@@ -55,6 +56,7 @@ class ForgotPasswordForm extends React.Component<Props, State> {
 				text: "Username is missing",
 				duration: 2000,
 				position: "top",
+				type: "warning",
 				textStyle: { textAlign: "center" },
 			});
 		}

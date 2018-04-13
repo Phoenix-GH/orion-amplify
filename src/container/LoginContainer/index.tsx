@@ -53,6 +53,7 @@ class LoginForm extends React.Component<Props, State> {
 					text: err.message,
 					duration: 2000,
 					position: "top",
+					type: "danger",
 					textStyle: { textAlign: "center" },
 				});
 			})
@@ -61,6 +62,7 @@ class LoginForm extends React.Component<Props, State> {
 				text: "Enter Valid UserName & password!",
 				duration: 2000,
 				position: "top",
+				type: "warning",
 				textStyle: { textAlign: "center" },
 			});
 		}
