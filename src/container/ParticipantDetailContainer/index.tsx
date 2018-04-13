@@ -28,12 +28,13 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 		const param = this.props.navigation.state.params;
 		if(param) {
 			this.props.fetchIncidentReport(param.matchID, "");
-			this.props.fetchMatch(param.id);
+			this.props.fetchMatch(param.matchID);
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		const { data, matchData } = nextProps;
+		console.log('ParticipantDetail', nextProps);
 		this.setState({ data });
 		this.setState({ matchData });
 	}

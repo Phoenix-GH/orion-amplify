@@ -51,7 +51,7 @@ Amplify.configure({
 		},
 		{
 			name: "SubmitIncidentReport",
-			endpoint: "https://b7xopcbggh.execute-api.us-east-1.amazonaws.com/testonly",
+			endpoint: "https://b7xopcbggh.execute-api.us-east-1.amazonaws.com/alpha",
 		},
 	]
 }
