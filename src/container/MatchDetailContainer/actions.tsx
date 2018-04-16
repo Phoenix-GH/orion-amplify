@@ -13,7 +13,7 @@ export function fetchMatchSuccess(match: Object) {
 	};
 }
 
-export function fetchMatch(matchID) {
+export default function fetchMatch(matchID) {
 	return function(dispatch) {
 		let apiName = "GetMatchDetail";
 		let path = '/';

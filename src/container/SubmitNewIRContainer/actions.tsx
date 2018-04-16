@@ -13,7 +13,7 @@ export function submitIncidentSuccess(response: Object) {
 	};
 }
 
-export function submitIncidentReport(body) {
+export default function submitIncidentReport(body) {
 	return function(dispatch) {
 		let apiName = "SubmitIncidentReport";
 		let path = '/';

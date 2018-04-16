@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import ParticipantDetail from "../../stories/screens/ParticipantDetail";
 import { fetchIncidentReport } from "../IncidentReportContainer/actions";
-import { fetchMatch } from "../MatchDetailContainer/actions";
+import fetchMatch from "../MatchDetailContainer/actions";
 
 export interface Props {
 	navigation: any,

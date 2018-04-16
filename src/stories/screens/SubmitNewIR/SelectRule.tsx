@@ -29,7 +29,6 @@ const customItem = {
 };
 
 class SelectNewIRStage extends React.Component<Props, State> {
-	
 	render() {
 		const { matchData, squaddingData, ruleViolation, changePage } = this.props;
 		return (

@@ -1,6 +1,5 @@
 import * as React from "react";
-import { ScrollView } from 'react-native';
-import { Dimensions } from 'react-native';
+import { ScrollView, Dimensions } from 'react-native';
 import {
 	Container,
 	Header,
@@ -51,9 +50,15 @@ class SelectNewIR extends React.Component<Props, State> {
 		this.refs._scrollView.scrollTo({x: page * deviceWidth, y: 0});
 	}
 
-	submit = (comment) => {
+	submit = (data) => {
 		const { matchData, squaddingData } = this.props;
-		const { stage, ruleViolation } = this.state;
+		const { stage } = this.state;
+		const newViolation = {
+			RuleReference: data.ruleReference,
+      SuggestedResolution: data.suggestedResolution,
+      Name: data.ruleName,
+		}
+		console.log('new violation', newViolation)
 		const body = {
 			MatchID: this.props.navigation.state.params.matchID,
 			AccountNumber: matchData.AccountNumber,
@@ -64,8 +69,8 @@ class SelectNewIR extends React.Component<Props, State> {
 			FiringOrder: squaddingData.FiringOrder,
 			EventName: matchData.SquaddingEvents[0].Name,
 			StageName: stage.Name,
-			RuleViolation: ruleViolation,
-			MatchOfficialComments: comment,
+			RuleViolation: newViolation,
+			MatchOfficialComments: data.comment,
 		};
 		this.props.onSubmit(body);
 	}

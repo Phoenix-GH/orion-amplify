@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import MatchDetail from "../../stories/screens/MatchDetail";
-import { fetchMatch } from "./actions";
+import fetchMatch from "./actions";
 
 export interface Props {
 	navigation: any,
