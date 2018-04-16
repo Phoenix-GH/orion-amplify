@@ -35,7 +35,6 @@ const deviceWidth = Dimensions.get('window').width;
 class WriteUp extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
-		
 		this.state = {
 			currentTime: new Date().toLocaleString(),
 			ruleName: '',
@@ -51,7 +50,6 @@ class WriteUp extends React.Component<Props, State> {
 			ruleName: ruleViolation && ruleViolation.Name,
 			ruleReference: ruleViolation && ruleViolation.RuleReference,
 		});
-		
 	}
 
 	componentDidMount() {
@@ -109,7 +107,7 @@ class WriteUp extends React.Component<Props, State> {
 					</Content>
 					<Text style={styles.title}>Time</Text>
 					<H2>{currentTime}</H2>
-					<Textarea rowSpan={5} bordered validate={[required]} placeholder="Comments" onChange={this.onChangeComment}>
+					<Textarea rowSpan={5} bordered placeholder="Comments" onChange={this.onChangeComment}>
 						{comment}
 					</Textarea>
 				</Form>

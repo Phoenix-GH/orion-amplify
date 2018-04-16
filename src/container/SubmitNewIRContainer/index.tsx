@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Toast } from "native-base";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
 import SelectNewIR from "../../stories/screens/SubmitNewIR";
 import fetchMatch from "../MatchDetailContainer/actions";
 import submitIncidentReport from "./actions";
@@ -72,6 +71,5 @@ const mapStateToProps = state => {
 		matchData: state.matchDetailReducer.match,
 		isLoading: state.matchDetailReducer.isLoading,
 }};
-
 
 export default connect(mapStateToProps, bindAction)(SubmitNewIRContainer);
