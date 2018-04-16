@@ -48,6 +48,7 @@ class VerificationForm extends React.Component<Props, State> {
 						duration: 2000,
 						position: "top",
 						textStyle: { textAlign: "center" },
+						type: "success",
 					});
 					this.props.navigation.dispatch(NavigationActions.reset({
             index: 0,
@@ -58,12 +59,12 @@ class VerificationForm extends React.Component<Props, State> {
           }));
 				})
 				.catch(err => {
-					console.log(err);
 					Toast.show({
 						text: err.message,
 						duration: 2000,
 						position: "top",
 						textStyle: { textAlign: "center" },
+						type: "danger",
 					});
 				})
 			}

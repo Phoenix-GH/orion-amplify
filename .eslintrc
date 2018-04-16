@@ -11,7 +11,7 @@
   
   "extends": "airbnb",
 
-  "plugins": ["flowtype", "prettier", "react"],
+  "plugins": ["flowtype", "prettier", "react", "react-native", "typescript"],
 
   // Map from global var to bool specifying if it can be redefined
   "globals": {

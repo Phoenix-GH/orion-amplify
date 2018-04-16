@@ -4,11 +4,14 @@ const styles: any = StyleSheet.create({
 	container: {
 		backgroundColor: "#FBFAFA",
 	},
+	content: {
+		alignSelf: 'stretch',
+	},
 	h2: {
 		marginTop: 20,
 	},
-	newIRButton: {
-		marginBottom: 20,
+	title: {
+		marginTop: 20,
 	}
 });
 export default styles;

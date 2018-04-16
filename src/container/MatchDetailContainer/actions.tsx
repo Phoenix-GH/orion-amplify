@@ -13,12 +13,14 @@ export function fetchMatchSuccess(match: Object) {
 	};
 }
 
-export function fetchMatch(matchID) {
+export default function fetchMatch(matchID) {
 	return function(dispatch) {
 		let apiName = "GetMatchDetail";
 		let path = '/';
 		let options = { body: { "MatchID": matchID }};
+		console.log('GetMatchDetail body', options);
 		API.post(apiName, path, options).then(response => {
+			console.log('GetMatchDetail response', response);
 			dispatch(fetchMatchSuccess(response));
  			dispatch(matchIsLoading(false));
 		});

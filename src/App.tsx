@@ -17,6 +17,8 @@ import MatchDetail from "./container/MatchDetailContainer";
 import SquaddingList from "./container/SquaddingListContainer";
 import IncidentReport from "./container/IncidentReportContainer";
 import IncidentDetail from "./container/IncidentDetailContainer";
+import ParticipantDetail from "./container/ParticipantDetailContainer";
+import SubmitNewIR from "./container/SubmitNewIRContainer";
 
 Amplify.configure({
   Auth: {
@@ -45,7 +47,11 @@ Amplify.configure({
     },
     {
 			name: "GetIncidentReport",
-			endpoint: "https://wv4drsoyo6.execute-api.us-east-1.amazonaws.com/testonly",
+			endpoint: "https://wv4drsoyo6.execute-api.us-east-1.amazonaws.com/alpha",
+		},
+		{
+			name: "SubmitIncidentReport",
+			endpoint: "https://b7xopcbggh.execute-api.us-east-1.amazonaws.com/alpha",
 		},
 	]
 }
@@ -73,7 +79,9 @@ const App = StackNavigator(
 		MatchDetail: { screen: MatchDetail },
 		SquaddingList: { screen: SquaddingList },
     IncidentReport: { screen: IncidentReport },
-    IncidentDetail: { screen: IncidentDetail },
+		IncidentDetail: { screen: IncidentDetail },
+		ParticipantDetail: { screen: ParticipantDetail },
+		SubmitNewIR: { screen: SubmitNewIR },
 	},
 	{
 		initialRouteName: "Login",

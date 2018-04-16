@@ -1,16 +1,18 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import ParticipantDetail from "../../stories/screens/ParticipantDetail";
-import { fetchMatch } from "./actions";
+import { fetchIncidentReport } from "../IncidentReportContainer/actions";
+import fetchMatch from "../MatchDetailContainer/actions";
 
 export interface Props {
 	navigation: any,
+	fetchIncidentReport: Function,
 	fetchMatch: Function,
-	data: any,
 }
 
 export interface State {
 	data: any;
+	matchData: any;
 }
 
 export class ParticipantDetailContainer extends React.Component<Props, State> {
@@ -18,36 +20,44 @@ export class ParticipantDetailContainer extends React.Component<Props, State> {
 		super(props);
 		this.state = {
 			data: null,
+			matchData: null,
 		};
 	}
 
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
 		if(param) {
-			this.props.fetchMatch(param.id);
+			this.props.fetchIncidentReport(param.matchID, "");
+			this.props.fetchMatch(param.matchID);
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { data } = nextProps;
-		this.setState({ data })
+		const { data, matchData } = nextProps;
+		this.setState({ data });
+		this.setState({ matchData });
 	}
 
 	render() {
-		const { data } = this.state;
-		return <ParticipantDetail navigation={this.props.navigation} data={data} />;
+		const { navigation } = this.props;
+		const squaddingdata = navigation.state.params.data;
+		const { data, matchData} = this.state;
+		return <ParticipantDetail navigation={navigation} squaddingData={squaddingdata} irData={data} matchData={matchData} />;
 	}
 }
 
 function bindAction(dispatch) {
 	return {
+		fetchIncidentReport: (matchID, incidentReportID) => dispatch(fetchIncidentReport(matchID, incidentReportID)),
 		fetchMatch: matchID => dispatch(fetchMatch(matchID)),
 	};
 }
 
 const mapStateToProps = state => {
 	return {
-		data: state.matchDetailReducer.match,
-		isLoading: state.matchDetailReducer.isLoading,
+		data: state.incidentReportReducer.list,
+		isReportLoading: state.incidentReportReducer.isLoading,
+		matchData: state.matchDetailReducer.match,
+		isMatchLoading: state.matchDetailReducer.isLoading,
 }};
 export default connect(mapStateToProps, bindAction)(ParticipantDetailContainer);

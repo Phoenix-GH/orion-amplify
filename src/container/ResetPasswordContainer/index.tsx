@@ -45,6 +45,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
           duration: 2000,
           position: "top",
           textStyle: { textAlign: "center" },
+          type: "warning",
         });
         return;
       }
@@ -60,6 +61,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
           duration: 2000,
           position: "top",
           textStyle: { textAlign: "center" },
+          type: "success",
         });
         this.props.navigation.dispatch(NavigationActions.reset({
           index: 0,
@@ -70,11 +72,11 @@ class ResetPasswordForm extends React.Component<Props, State> {
         }));
       })
       .catch(err => {
-        console.log(err);
         Toast.show({
           text: err.message,
           duration: 2000,
           position: "top",
+          type: "danger",
           textStyle: { textAlign: "center" },
         });
       })
@@ -84,6 +86,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
         text: "Please fill all the fields",
         duration: 2000,
         position: "top",
+        type: "warning",
         textStyle: { textAlign: "center" },
       });
     }

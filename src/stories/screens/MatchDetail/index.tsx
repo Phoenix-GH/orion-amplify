@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Linking } from 'react-native';
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
@@ -39,8 +40,8 @@ class MatchDetail extends React.Component<Props, State> {
 							<Col style={styles.column}>
 								{
 									data && data.Authorization && 
-									data.Authorization.indexOf('Read Results') > -1 &&
-									<Button rounded style={styles.button} onPress={() => navigation.navigate('ViewResults')}>
+									data.Authorization.indexOf('Read Results') > -1 && data.ResultURL &&
+									<Button rounded style={styles.button} onPress={() => Linking.openURL(data.ResultURL)}>
 										<Text style={styles.text}>View Results</Text>
 									</Button>
 								}

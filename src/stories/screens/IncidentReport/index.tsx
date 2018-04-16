@@ -1,5 +1,4 @@
 import * as React from "react";
-import { FlatList } from 'react-native';
 import {
 	Container,
 	Header,
@@ -38,29 +37,6 @@ class IncidentReport extends React.Component<Props, State> {
 		this.setState({refreshing: true});
 	}
 
-	renderListView = (data) => {
-		const { item } = data;
-		return (
-			<ListItem
-				key={item.IncidentReportID}
-				onPress={() =>
-					this.props.navigation.navigate("IncidentDetail", {
-						data: item,
-					})}
-			>
-				<Card>
-					<CardItem>
-						<Body>
-							<H3>{item.Participant.DisplayName}</H3>
-							<Text>{item.RuleViolation.Name}</Text>
-							<Text>{item.Status}</Text>
-						</Body>
-					</CardItem>
-				</Card>
-			</ListItem>
-		);
-	};
-
 	render() {
 		const { list } = this.props;
 		return (
@@ -78,13 +54,25 @@ class IncidentReport extends React.Component<Props, State> {
 				</Header>
 				<Content padder>
 					{
-						list && list.IncidentReportList && <FlatList
-							data = {list.IncidentReportList}
-      				renderItem = {(data) => this.renderListView(data)}>
-							onRefresh = {() => this.onRefresh()}
-							refreshing = {this.state.refreshing}
-						>
-						</FlatList>
+						list && list.IncidentReportList.map((item, i) => (
+							<ListItem
+								key={i}
+								onPress={() =>
+									this.props.navigation.navigate("IncidentDetail", {
+										data: item,
+									})}
+							>
+								<Card>
+									<CardItem>
+										<Body>
+											<H3>{item.Participant.DisplayName}</H3>
+											<Text>{item.RuleViolation.Name}</Text>
+											<Text>{item.Status}</Text>
+										</Body>
+									</CardItem>
+								</Card>
+							</ListItem>
+						))
 					}
 				</Content>
 			</Container>

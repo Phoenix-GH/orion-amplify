@@ -54,7 +54,6 @@ class SignupForm extends React.Component<Props, State> {
         validationData: []  //optional
       })
       .then(async data => {
-        console.log(data);
         try {
           await AsyncStorage.setItem('@Orion:username', this.username);
         } catch (error) {
@@ -67,6 +66,7 @@ class SignupForm extends React.Component<Props, State> {
           text: err.message,
           duration: 2000,
           position: "top",
+          type: "danger",
           textStyle: { textAlign: "center" },
         });
       })
@@ -76,6 +76,7 @@ class SignupForm extends React.Component<Props, State> {
         text: "Please fill all the fields",
         duration: 2000,
         position: "top",
+        type: "warning",
         textStyle: { textAlign: "center" },
       });
     }

@@ -1,88 +1,99 @@
 import * as React from "react";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import {
+	Container,
+	Header,
+	Title,
+	Content,
+	Text,
+	Button,
+	Icon,
+	Left,
+	Right,
+	Body, 
+	H2,
+	List,
+	ListItem,
+	Thumbnail,
+	Radio,
+} from "native-base";
 
 import styles from "./styles";
 export interface Props {
 	navigation: any;
-	data: any;
+	irData: any;
+	squaddingData: any;
+	matchData: any;
 }
 export interface State {}
-class MatchDetail extends React.Component<Props, State> {
+class ParticipantDetail extends React.Component<Props, State> {
 	render() {
-		const { data, navigation } = this.props;
+		const { irData, navigation, squaddingData, matchData } = this.props;
 		return (
 			<Container style={styles.container}>
 				<Header>
 					<Left>
-						<Button transparent onPress={() => this.props.navigation.goBack()}>
+						<Button transparent onPress={() => navigation.goBack()}>
 							<Icon name="ios-arrow-back" />
 						</Button>
 					</Left>
 					<Body style={{ flex: 3 }}>
-						<Title>{data ? data.Name : "Match Detail"}</Title>
+						<Title>{squaddingData ? squaddingData.Participant.DisplayName : "Participant Detail"}</Title>
 					</Body>
 					<Right />
 				</Header>
 				<Content padder>
-					<Grid>
-						<Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								data && data.Authorization && 
-								data.Authorization.indexOf('Read Squadding') > -1 &&
-								<Button rounded light style={styles.button} onPress={() => navigation.navigate('SquaddingList', { matchID: navigation.state.params.id, eventName: 'Individual' })}>
-									<Text style={styles.text}>View Squadding</Text>
-								</Button>
-							}
-							</Col>
-							<Col style={styles.column}>
-								{
-									data && data.Authorization && 
-									data.Authorization.indexOf('Read Results') > -1 &&
-									<Button rounded style={styles.button} onPress={() => navigation.navigate('ViewResults')}>
-										<Text style={styles.text}>View Results</Text>
-									</Button>
-								}
-							</Col>
-						</Row>
-						<Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								data && data.Authorization && 
-								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded success style={styles.button} onPress={() => navigation.navigate('TakeTargetImage')}>
-									<Text style={styles.text}>Take Target Image</Text>
-								</Button>
-							}
-							</Col>
-							<Col />
-						</Row>
-            <Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								data && data.Authorization && 
-								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded info style={styles.button} onPress={() => this.props.navigation.navigate('TakeCalibrationImage')}>
-									<Text style={styles.text}>Take Calibration Image</Text>
-								</Button>
-							}
-							</Col>
-							<Col style={styles.column}>
-								{
-									data && data.Authorization && 
-									data.Authorization.indexOf('Read Incident Reports') > -1 &&
-									<Button rounded danger style={styles.button} onPress={() => navigation.navigate('IncidentReport', { matchID: navigation.state.params.id })}>
-										<Text style={styles.text}>View Incident Report</Text>
-									</Button>
-								}
-							</Col>
-						</Row>
-          </Grid>
+					<H2>{squaddingData && squaddingData.Participant.DisplayName}</H2>
+					<Text>Relay: {squaddingData && squaddingData.Relay}</Text>
+					<Text>Firing Point: {squaddingData && squaddingData.FiringPoint}</Text>
+					
+					<List>
+            {
+							matchData && matchData.SquaddingEvents && matchData.SquaddingEvents[0].TargetStages.map((item, i) => (
+								<ListItem
+									icon
+									key={i}
+								>
+									<Left>
+										<Thumbnail square size={80} source={null} />
+									</Left>
+            			<Body>
+										<Text>{item.Name}</Text>
+									</Body>
+									<Right>
+										<Radio selected={true} />
+									</Right>
+								</ListItem>
+							))
+						}
+          </List>
+					<Button iconLeft light>
+            <Icon name='camera' />
+						<Text />
+          </Button>
+					<H2 style={styles.h2}>Rule Violation</H2>
+					<List>
+            {
+							irData && irData.IncidentReportList && irData.IncidentReportList.map((item, i) => (
+							squaddingData && squaddingData.Participant && (item.Participant.CompetitorNumber === squaddingData.Participant.CompetitorNumber) &&
+								<ListItem
+									key={i}
+									onPress={() =>
+										this.props.navigation.navigate("IncidentDetail", {
+											data: item,
+										})}
+								>
+									<Text>{item.RuleViolation.Name}</Text>	
+								</ListItem>
+							))
+						}
+          </List>
+					<Button style={styles.newIRButton} block onPress={() => navigation.navigate('SubmitNewIR', { matchID: navigation.state.params.matchID, squaddingData: squaddingData })}>
+            <Text>New Incident Report</Text>
+          </Button>
 				</Content>
 			</Container>
 		);
 	}
 }
 
-export default MatchDetail;
+export default ParticipantDetail;
