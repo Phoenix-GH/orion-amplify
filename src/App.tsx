@@ -19,6 +19,7 @@ import IncidentReport from "./container/IncidentReportContainer";
 import IncidentDetail from "./container/IncidentDetailContainer";
 import ParticipantDetail from "./container/ParticipantDetailContainer";
 import SubmitNewIR from "./container/SubmitNewIRContainer";
+import TargetImgCapture from "./container/TargetImgCaptureContainer";
 
 Amplify.configure({
   Auth: {
@@ -82,6 +83,7 @@ const App = StackNavigator(
 		IncidentDetail: { screen: IncidentDetail },
 		ParticipantDetail: { screen: ParticipantDetail },
 		SubmitNewIR: { screen: SubmitNewIR },
+		TargetImgCapture: { screen: TargetImgCapture },
 	},
 	{
 		initialRouteName: "Login",

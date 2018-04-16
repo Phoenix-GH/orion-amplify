@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import SquaddingList from "../../stories/screens/SquaddingList";
-import { fetchSquaddingList } from "./actions";
+import fetchSquaddingList from "./actions";
 
 export interface Props {
 	navigation: any,
@@ -12,7 +12,7 @@ export interface State {
 	data: any;
 }
 
-export class SquadingListContainer extends React.Component<Props, State> {
+export class SquaddingListContainer extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
 		data: state.squaddingListReducer.list,
 		isLoading: state.squaddingListReducer.isLoading,
 }};
-export default connect(mapStateToProps, bindAction)(SquadingListContainer);
+export default connect(mapStateToProps, bindAction)(SquaddingListContainer);

@@ -13,7 +13,7 @@ export function fetchSquaddingSuccess(list: Object) {
 	};
 }
 
-export function fetchSquaddingList(matchID, eventName) {
+export default function fetchSquaddingList(matchID, eventName) {
 	return function(dispatch) {
 		let apiName = "GetSquaddingList";
 		let path = '/';
