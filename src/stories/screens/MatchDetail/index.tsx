@@ -52,7 +52,7 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded success style={styles.button} onPress={() => navigation.navigate('TakeTargetImage')}>
+								<Button rounded success style={styles.button} onPress={() => navigation.navigate('TargetImgCapture')}>
 									<Text style={styles.text}>Take Target Image</Text>
 								</Button>
 							}

@@ -26,6 +26,7 @@ class TargetImgCaptureContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		const param = this.props.navigation.state.params;
+		console.log('target param', param);
 		if(param) {
 			this.props.fetchSquaddingList(param.matchID, param.eventName);
 			this.props.fetchMatch(param.matchID);
@@ -33,12 +34,14 @@ class TargetImgCaptureContainer extends React.Component<Props, State> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { data } = nextProps;
+		const { squaddingList, matchData } = nextProps;
+		this.setState({ squaddingList });
+		this.setState({ matchData });
+		console.log('squaddinglist', squaddingList);
 	}
 
 	render() {
 		const { matchData, squaddingList } = this.state;
-		{ }
 		return (
 			<TargetImgCapture navigation={this.props.navigation} squaddingList={squaddingList} matchData={matchData} />
 		);
@@ -56,6 +59,8 @@ const mapStateToProps = state => {
 	return {
 		matchData: state.matchDetailReducer.match,
 		isMatchLoading: state.matchDetailReducer.isLoading,
+		squaddingList: state.squaddingListReducer.list,
+		isListLoading: state.squaddingListReducer.isLoading,
 
 }};
 export default connect(mapStateToProps, bindAction)(TargetImgCaptureContainer);
