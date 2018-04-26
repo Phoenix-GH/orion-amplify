@@ -1,11 +1,12 @@
 import * as React from "react";
 
 import {
-	Container,
 	Content,
 	Thumbnail,
 	Text,
+	View,
 } from "native-base";
+import { Dimensions } from 'react-native';
 import styles from "./styles";
 
 export interface Props {
@@ -13,20 +14,26 @@ export interface Props {
 	participant: any;
 }
 export interface State {}
+
+const deviceWidth = Dimensions.get('window').width;
+
 class TargetImgPage extends React.Component<Props, State> {
 	render() {
 		const { targetStages, participant } = this.props;
+		console.log('targetStages', targetStages);
+		console.log('participant', participant);
 		return (
-			<Container>
-				<Content>
-					{
-						targetStages && targetStages.map(item => (
-							<Thumbnail source={{uri: 'Image URL'}} style={styles.photoItem} />
-						))
-					}
-					<Text>{participant && participant.DisplayName}</Text>
-				</Content>
-			</Container>
+			<Content style={{ width: deviceWidth }}>
+				{
+					targetStages && targetStages.map(item => (
+						<View>
+							<Thumbnail large source={{uri: 'Image URL'}} style={styles.photoItem} key={item.Key} />
+							<Text>{`${participant.Participant.DisplayName}: R${participant.Relay}, FP${participant.FiringPoint} ${item.Name}`}</Text>
+						</View>
+					))
+				}
+				
+			</Content>
 		);
 	}
 }

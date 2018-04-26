@@ -40,12 +40,12 @@ class TargetImgCapture extends React.Component<Props, State> {
 					<ScrollView
 						pagingEnabled
 						horizontal
-						showsHorizontalScrollIndicator={false}
+						showsHorizontalScrollIndicator
 						ref='_scrollView'
 					>
 					{
-						squaddingList && squaddingList.SquaddingList && matchData && matchData.TargetStages && squaddingList.SquaddingList.map(item => (
-							<TargetImgPage targetStages={matchData.TargetStages} participant={item} />
+						squaddingList && squaddingList.SquaddingList && matchData && matchData.SquaddingEvents && squaddingList.SquaddingList.map((item, index) => (
+							<TargetImgPage key={index} targetStages={matchData.SquaddingEvents[0].TargetStages} participant={item} />
 						))
 					}
 					</ScrollView>

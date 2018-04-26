@@ -10,9 +10,18 @@ const styles: any = StyleSheet.create({
 		left: 0,
 		right: 0,
 		backgroundColor: "#FBFAFA",
+		height: deviceHeight,
 	},
 	photoItem: {
 		width: '50%',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		backgroundColor: '#000000',
 	},
+	content: {
+		width: '100%',
+		height: '100%',
+	}
 });
 export default styles;
