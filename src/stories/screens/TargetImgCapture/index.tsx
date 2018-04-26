@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Platform } from "react-native";
 import {
 	Container,
 	Content,
@@ -7,13 +6,15 @@ import {
 	Body,
 	Title,
 	Button,
-	Text,
-	View,
 	Icon,
 	Left,
-	Right, 
+	Right,
+	Grid,
+	Col,
+	Row,
+	Text,
 } from "native-base";
-//import styles from "./styles";
+import styles from "./styles";
 export interface Props {
 	squaddingList: any;
 	matchData: any;
@@ -36,7 +37,21 @@ class TargetImgCapture extends React.Component<Props, State> {
           <Right />
         </Header>
 				<Content>
-					
+					<Grid>
+						<Row style={styles.row}>
+							<Col style={styles.column}>
+							{
+								
+							}
+							</Col>
+							<Col style={styles.column}>
+							{
+								
+							}
+							</Col>
+						</Row>
+          </Grid>
+					<Text>{}</Text>
 				</Content>
 			</Container>
 		);
