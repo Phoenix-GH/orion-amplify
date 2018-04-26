@@ -52,7 +52,7 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded success style={styles.button} onPress={() => navigation.navigate('TargetImgCapture')}>
+								<Button rounded success style={styles.button} onPress={() => navigation.navigate('TargetImgCapture', { matchID: navigation.state.params.id, eventName: 'Individual' })}>
 									<Text style={styles.text}>Take Target Image</Text>
 								</Button>
 							}
@@ -64,7 +64,7 @@ class MatchDetail extends React.Component<Props, State> {
 							{
 								data && data.Authorization && 
 								data.Authorization.indexOf('Create Target Images') > -1 &&
-								<Button rounded info style={styles.button} onPress={() => this.props.navigation.navigate('TakeCalibrationImage')}>
+								<Button rounded info style={styles.button} onPress={() => this.props.navigation.navigate('TakeCalibrationImage', { matchID: navigation.state.params.id })}>
 									<Text style={styles.text}>Take Calibration Image</Text>
 								</Button>
 							}

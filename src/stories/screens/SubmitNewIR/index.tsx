@@ -58,7 +58,6 @@ class SelectNewIR extends React.Component<Props, State> {
       SuggestedResolution: data.suggestedResolution,
       Name: data.ruleName,
 		}
-		console.log('new violation', newViolation)
 		const body = {
 			MatchID: this.props.navigation.state.params.matchID,
 			AccountNumber: matchData.AccountNumber,
