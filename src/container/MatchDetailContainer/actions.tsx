@@ -18,9 +18,7 @@ export default function fetchMatch(matchID) {
 		let apiName = "GetMatchDetail";
 		let path = '/';
 		let options = { body: { "MatchID": matchID }};
-		console.log('GetMatchDetail body', options);
 		API.post(apiName, path, options).then(response => {
-			console.log('GetMatchDetail response', response);
 			dispatch(fetchMatchSuccess(response));
  			dispatch(matchIsLoading(false));
 		});

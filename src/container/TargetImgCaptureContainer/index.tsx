@@ -20,7 +20,7 @@ class TargetImgCaptureContainer extends React.Component<Props, State> {
 		super(props);
 		this.state = {
 			matchData: null,
-			squaddingList: [],
+			squaddingList: null,
 		};
 	}
 
@@ -34,8 +34,12 @@ class TargetImgCaptureContainer extends React.Component<Props, State> {
 
 	componentWillReceiveProps(nextProps) {
 		const { squaddingList, matchData } = nextProps;
-		this.setState({ squaddingList });
-		this.setState({ matchData });
+		if(squaddingList) {
+			this.setState({ squaddingList });
+		}
+		if(matchData) {
+			this.setState({ matchData });
+		}
 	}
 
 	render() {
