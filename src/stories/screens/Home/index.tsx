@@ -51,7 +51,7 @@ class Home extends React.Component<Props, State> {
                   })}
               >
                 <Text>{item.Name}</Text>
-                <Text style={styles.namespace}>{item.CourseOfFire && item.CourseOfFire.HierarchicalName.Namespace}</Text>
+                <Text style={styles.namespace}>{item.CourseOfFire && item.CourseOfFire.HierarchicalName.ProperName}</Text>
               </ListItem>
             ))}
           </List>

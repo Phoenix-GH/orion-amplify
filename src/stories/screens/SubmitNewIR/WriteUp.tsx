@@ -49,6 +49,7 @@ class WriteUp extends React.Component<Props, State> {
 		this.setState({
 			ruleName: ruleViolation && ruleViolation.Name,
 			ruleReference: ruleViolation && ruleViolation.RuleReference,
+			suggestedResolution: ruleViolation && ruleViolation.SuggestedResolution
 		});
 	}
 
