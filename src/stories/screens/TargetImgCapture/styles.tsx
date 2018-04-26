@@ -11,26 +11,8 @@ const styles: any = StyleSheet.create({
 		right: 0,
 		backgroundColor: "#FBFAFA",
 	},
-	shadow: {
-		flex: 1,
-		width: undefined,
-		height: undefined,
-	},
-	bg: {
-		flex: 1,
-		marginTop: deviceHeight / 1.75,
-		paddingTop: 20,
-		paddingLeft: 10,
-		paddingRight: 10,
-		paddingBottom: 30,
-		bottom: 0,
-	},
-	input: {
-		marginBottom: 20,
-	},
-	btn: {
-		marginTop: 20,
-		alignSelf: "center",
+	photoItem: {
+		width: '50%',
 	},
 });
 export default styles;

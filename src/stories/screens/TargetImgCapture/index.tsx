@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ScrollView } from 'react-native';
 import {
 	Container,
 	Content,
@@ -9,12 +10,10 @@ import {
 	Icon,
 	Left,
 	Right,
-	Grid,
-	Col,
-	Row,
-	Text,
 } from "native-base";
 import styles from "./styles";
+import TargetImgPage from "./TargetImgPage";
+
 export interface Props {
 	squaddingList: any;
 	matchData: any;
@@ -23,6 +22,7 @@ export interface Props {
 export interface State {}
 class TargetImgCapture extends React.Component<Props, State> {
 	render() {
+		const { squaddingList, matchData } = this.props;
 		return (
 			<Container>
 				<Header>
@@ -37,21 +37,18 @@ class TargetImgCapture extends React.Component<Props, State> {
           <Right />
         </Header>
 				<Content>
-					<Grid>
-						<Row style={styles.row}>
-							<Col style={styles.column}>
-							{
-								
-							}
-							</Col>
-							<Col style={styles.column}>
-							{
-								
-							}
-							</Col>
-						</Row>
-          </Grid>
-					<Text>{}</Text>
+					<ScrollView
+						pagingEnabled
+						horizontal
+						showsHorizontalScrollIndicator={false}
+						ref='_scrollView'
+					>
+					{
+						squaddingList && matchData && squaddingList.map(item => (
+							<TargetImgPage targetStages={matchData.TargetStages} participant={item} />
+						))
+					}
+					</ScrollView>
 				</Content>
 			</Container>
 		);
