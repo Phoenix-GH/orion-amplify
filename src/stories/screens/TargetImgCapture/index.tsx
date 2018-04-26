@@ -44,7 +44,7 @@ class TargetImgCapture extends React.Component<Props, State> {
 						ref='_scrollView'
 					>
 					{
-						squaddingList && matchData && squaddingList.map(item => (
+						squaddingList && squaddingList.SquaddingList && matchData && matchData.TargetStages && squaddingList.SquaddingList.map(item => (
 							<TargetImgPage targetStages={matchData.TargetStages} participant={item} />
 						))
 					}
