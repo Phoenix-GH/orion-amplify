@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Platform } from "react-native";
-import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
+import { Container, Content, Header, Body, Title, Button, Text, View, Footer, Thumbnail } from "native-base";
 //import styles from "./styles";
 export interface Props {
 	loginForm: any;
@@ -9,13 +9,14 @@ export interface Props {
   onForgotPassword: Function;
 }
 export interface State {}
+
 class Login extends React.Component<Props, State> {
 	render() {
 		return (
 			<Container>
 				<Header style={{ height: 200 }}>
 					<Body style={{ alignItems: "center" }}>
-						<Icon name="flash" style={{ fontSize: 104 }} />
+						
 						<Title>Orion</Title>
 						<View padder>
 							<Text style={{ color: Platform.OS === "ios" ? "#000" : "#FFF" }} />

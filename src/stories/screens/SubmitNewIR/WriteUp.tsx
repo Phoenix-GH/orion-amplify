@@ -10,7 +10,6 @@ import {
 	Input,
 	Item,
 } from "native-base";
-import { Field } from "redux-form";
 import styles from "./styles";
 
 const required = value => (value ? undefined : "Required");
