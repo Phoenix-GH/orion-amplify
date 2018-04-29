@@ -46,7 +46,7 @@ class TargetImgCapture extends React.Component<Props, State> {
 					{
 						squaddingList && squaddingList.SquaddingList && matchData && matchData.SquaddingEvents && squaddingList.SquaddingList.map((item, index) => (
 							<TargetImgPage key={index} targetStages={matchData.SquaddingEvents[0].TargetStages} participant={item} />
-						))
+						));
 					}
 					</ScrollView>
 				</Content>

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Platform } from "react-native";
-import { Container, Content, Header, Body, Title, Button, Text, View, Footer, Thumbnail } from "native-base";
+import { Platform, Image } from "react-native";
+import { Container, Content, Header, Body, Button, Text, View, Footer } from "native-base";
 //import styles from "./styles";
 export interface Props {
 	loginForm: any;
@@ -16,8 +16,7 @@ class Login extends React.Component<Props, State> {
 			<Container>
 				<Header style={{ height: 200 }}>
 					<Body style={{ alignItems: "center" }}>
-						
-						<Title>Orion</Title>
+						<Image source={require('../../../../assets/OrionLogo.png')} style={{height: 200, width: 200, flex: 1}}/>
 						<View padder>
 							<Text style={{ color: Platform.OS === "ios" ? "#000" : "#FFF" }} />
 						</View>

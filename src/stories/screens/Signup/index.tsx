@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Platform } from "react-native";
+import { Platform, Image } from "react-native";
 import {
 	Container,
 	Content,
@@ -38,7 +38,7 @@ class Signup extends React.Component<Props, State> {
 				<Header style={{ height: 200 }}>
 					<Body>
 						<Body style={{ alignItems: "center" }}>
-							<Icon name="flash" style={{ fontSize: 104 }} />
+						<Image source={require('../../../../assets/OrionLogo.png')} style={{height: 200, width: 200, flex: 1}}/>
 							<Title>New User</Title>
 							<View padder>
 								<Text style={{ color: Platform.OS === "ios" ? "#000" : "#FFF" }} />
