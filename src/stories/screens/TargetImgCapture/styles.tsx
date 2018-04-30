@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 
+const deviceWidth = Dimensions.get("window").width;
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
@@ -22,6 +23,12 @@ const styles: any = StyleSheet.create({
 	content: {
 		width: '100%',
 		height: '100%',
+	},
+	targetPage: {
+		display: 'flex',
+		flexDirection: 'column',
+		height: '100%',
+		width: deviceWidth,
 	}
 });
 export default styles;

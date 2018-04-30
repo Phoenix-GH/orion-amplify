@@ -11,7 +11,6 @@ import {
 	Left,
 	Right,
 } from "native-base";
-import styles from "./styles";
 import TargetImgPage from "./TargetImgPage";
 
 export interface Props {
@@ -21,7 +20,14 @@ export interface Props {
 }
 export interface State {}
 class TargetImgCapture extends React.Component<Props, State> {
+	
 	render() {
+		const renderTargetStage = (item) => {
+			const { matchData } = this.props;
+			 return matchData.SquaddingEvents[0].TargetStages.map(targetStage => {
+					return <TargetImgPage targetStage={targetStage} participant={item} />
+			 });
+		}
 		const { squaddingList, matchData } = this.props;
 		return (
 			<Container>
@@ -44,9 +50,9 @@ class TargetImgCapture extends React.Component<Props, State> {
 						ref='_scrollView'
 					>
 					{
-						squaddingList && squaddingList.SquaddingList && matchData && matchData.SquaddingEvents && squaddingList.SquaddingList.map((item, index) => (
-							<TargetImgPage key={index} targetStages={matchData.SquaddingEvents[0].TargetStages} participant={item} />
-						));
+						squaddingList && squaddingList.SquaddingList && matchData && matchData.SquaddingEvents && squaddingList.SquaddingList.map((item) =>	{
+							return renderTargetStage(item);
+						})
 					}
 					</ScrollView>
 				</Content>
