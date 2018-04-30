@@ -5,7 +5,7 @@ import {
 	Text,
 	View,
 	Button,
-	Thumbnail,
+	Icon,
 } from "native-base";
 import { Image } from 'react-native';
 import styles from "./styles";
@@ -13,6 +13,7 @@ import styles from "./styles";
 export interface Props {
 	targetStage: any;
 	participant: any;
+	moveToCaptureSelection: Function;
 }
 export interface State {}
 
@@ -20,21 +21,32 @@ class TargetImgPage extends React.Component<Props, State> {
 	takePhoto = () => {
 
 	}
+	
+	confirm = () => {
+
+	}
+
 	render() {
 		const { targetStage, participant } = this.props;
-		console.log('targetStages', targetStage);
-		console.log('participant', participant);
 		return (
-			<Content style={styles.targetPage} key={`${targetStage.Key}${participant.Participant.DisplayName}`}>
+			<Content style={styles.targetPage}>
 				<View style={{flex:1, height: undefined, width: undefined, flexDirection: 'column'}}>
 					<Image source={require('../../../../assets/guide/guide1.jpeg')} style={styles.photoItem} resizeMode="contain" />
 				</View>
-				<View>	
-					<Button block onPress={() => this.takePhoto()}>
-						<Text>Take Photo</Text>
+				<View style={styles.contentView}>
+					<View style={styles.buttonRow}>	
+						<Button block onPress={() => this.takePhoto()} style={styles.takePhotoButton}>
+							<Text>Take Photo</Text>
+						</Button>
+						<Button>
+							<Icon name="checkmark" />
+						</Button>
+					</View>
+					<Button block onPress={() => this.props.moveToCaptureSelection()} style={{marginTop: 10}}>
+						<Text>Image Capture Selection</Text>
 					</Button>
+					<Text>{`${participant.Participant.DisplayName}: R${participant.Relay}, FP${participant.FiringPoint} ${targetStage.Name}`}</Text>
 				</View>
-				<Text>{`${participant.Participant.DisplayName}: R${participant.Relay}, FP${participant.FiringPoint} ${targetStage.Name}`}</Text>
 			</Content>
 		);
 	}

@@ -20,14 +20,22 @@ export interface Props {
 }
 export interface State {}
 class TargetImgCapture extends React.Component<Props, State> {
+	moveToCaptureSelection = () => {
+		const { squaddingList, matchData } = this.props;
+		this.props.navigation.navigate("TargetImgCaptureSelection", {
+			targetStages: matchData.SquaddingEvents[0].TargetStages,
+		});
+	}
+
 	deleteImage = () => {
 
 	}
+
 	render() {
 		const renderTargetStage = (item) => {
-			const { matchData } = this.props;
+			const { matchData, navigation } = this.props;
 			 return matchData.SquaddingEvents[0].TargetStages.map(targetStage => {
-					return <TargetImgPage targetStage={targetStage} participant={item} />
+					return <TargetImgPage targetStage={targetStage} participant={item} key={`${targetStage.Key}${item.Participant.DisplayName}`} moveToCaptureSelection={this.moveToCaptureSelection} />
 			 });
 		}
 		const { squaddingList, matchData } = this.props;

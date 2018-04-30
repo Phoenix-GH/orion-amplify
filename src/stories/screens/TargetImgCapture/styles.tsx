@@ -15,13 +15,13 @@ const styles: any = StyleSheet.create({
 	},
 	photoItem: {
 		width: '100%',
-		height: 300,
+		height: '60vh',
 		flex: 1,
 		backgroundColor: '#000000',
 	},
-	content: {
-		width: '100%',
-		height: '100%',
+	contentView: {
+		flex: 1,
+		padding: 10,
 	},
 	targetPage: {
 		display: 'flex',
@@ -29,6 +29,13 @@ const styles: any = StyleSheet.create({
 		flex: 1,
 		width: deviceWidth,
 		position: 'relative',
-	}
+	},
+	buttonRow: {
+		flexDirection: 'row',
+	},
+	takePhotoButton: {
+		flex: 1,
+		marginRight: 20,
+	},
 });
 export default styles;
