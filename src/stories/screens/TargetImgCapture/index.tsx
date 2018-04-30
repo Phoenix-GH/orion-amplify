@@ -33,7 +33,7 @@ class TargetImgCapture extends React.Component<Props, State> {
 
 	render() {
 		const renderTargetStage = (item) => {
-			const { matchData, navigation } = this.props;
+			const { matchData } = this.props;
 			 return matchData.SquaddingEvents[0].TargetStages.map(targetStage => {
 					return <TargetImgPage targetStage={targetStage} participant={item} key={`${targetStage.Key}${item.Participant.DisplayName}`} moveToCaptureSelection={this.moveToCaptureSelection} />
 			 });

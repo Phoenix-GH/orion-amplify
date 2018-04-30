@@ -3,16 +3,12 @@ import * as React from "react";
 import {
 	Content,
 	Text,
-	View,
-	Button,
 	Icon,
-	Thumbnail,
 	List,
 	ListItem,
 	Left,
 	Body,
 } from "native-base";
-import { Image } from 'react-native';
 
 export interface Props {
 	targetStages: any;

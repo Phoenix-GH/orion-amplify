@@ -15,7 +15,7 @@ const styles: any = StyleSheet.create({
 	},
 	photoItem: {
 		width: '100%',
-		height: '60vh',
+		height: 400,
 		flex: 1,
 		backgroundColor: '#000000',
 	},
