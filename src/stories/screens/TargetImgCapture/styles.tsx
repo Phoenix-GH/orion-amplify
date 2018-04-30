@@ -14,10 +14,9 @@ const styles: any = StyleSheet.create({
 		height: deviceHeight,
 	},
 	photoItem: {
-		width: '50%',
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+		width: '100%',
+		height: 300,
+		flex: 1,
 		backgroundColor: '#000000',
 	},
 	content: {
@@ -27,8 +26,9 @@ const styles: any = StyleSheet.create({
 	targetPage: {
 		display: 'flex',
 		flexDirection: 'column',
-		height: '100%',
+		flex: 1,
 		width: deviceWidth,
+		position: 'relative',
 	}
 });
 export default styles;

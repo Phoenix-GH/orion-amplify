@@ -20,7 +20,9 @@ export interface Props {
 }
 export interface State {}
 class TargetImgCapture extends React.Component<Props, State> {
-	
+	deleteImage = () => {
+
+	}
 	render() {
 		const renderTargetStage = (item) => {
 			const { matchData } = this.props;
@@ -40,7 +42,11 @@ class TargetImgCapture extends React.Component<Props, State> {
           <Body>
             <Title>Target Image Capture</Title>
           </Body>
-          <Right />
+          <Right>
+						<Button transparent onPress={() => this.deleteImage()}>
+							<Icon name="ios-close" />
+						</Button>
+					</Right>
         </Header>
 				<Content>
 					<ScrollView
